@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Brayden Cheek</title>
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e1e;
+        }
+
+        p, span, a {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 0;
+            opacity: 1;
+            color: #e4e4e4;
+        }
+
+        a {
+            text-decoration: none;
+            color: #1a73e8;
+            padding: 3px;
+            background-color: transparent;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            transition: all
+        }
+
+        a:active {
+            font-weight: bold;
+        }
+
+        header {
+        width: 100%;
+        min-height: 1em;
+        background-color:#4285F4;
+        padding: 0.5em 1em;
+        color: white;
+        font-family:'Courier New', Courier, monospace;
+        font-size: 2.5em;
+        }
+
+        .blinking-cursor {
+        position: absolute;
+        font-size: 1em;
+        color: white;
+        animation: 1s blink step-end infinite;
+        }
+
+        @keyframes blink {
+        from, to {
+            color: transparent;
+        }
+        50% {
+            color: white;
+        }
+        }
+
+        #topnav {
+        display: inline;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: visible;
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        top: 0;
+        }
+
+        #topnav a {
+            text-decoration:none;
+            font-family:'Courier New', Courier, monospace;
+        }
+
+        #topnav li {
+        float: right;
+        }
+
+        #topnav li a {
+        display: block;
+        color: white;
+        padding: 0.3em 1em;
+        border-radius: 0.2em;
+        text-align: center;
+        text-decoration: none;
+        font-size: 0.7em;
+        }
+
+        #topnav li:hover a {
+        background-color: #F4B400;
+        color: #555;
+        transition: all 0.2s;
+        }
+
+        .active {
+        background-color: #0F9D58;
+        }
+
+        #contact-info {
+            z-index: 9;
+            width: 100%;
+            height: 50px;
+            position: fixed;
+            bottom: 0px;
+            background-color: rgba(55,55,55,0.5);
+            /* background-color: #aaa; */
+            /* opacity: 0.5; */
+            border-top: solid 1px rgba(185, 185, 185, 0.5);
+            display: flex;
+            justify-content: center;
+        }
+
+        #contact-info span {
+            margin: 15px;
+        }
+
+        #resume-container {
+            height: 50em;
+            width: 90%;
+            margin: auto;
+            margin-top: 2em;
+            border: 3px solid #4285F4; 
+            position: relative;
+        }
+
+        .circle-container {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 1em 1em 0 1em;
+            border: 3px solid #4285F4;
+            float: left;
+            overflow: hidden;
+            transition: all 1s;
+        }
+
+        .circle-container:hover {
+            width: 90%;
+            border-radius: 0;
+            margin: 1em 5%;
+            transition: all 1s ease-in-out 0.1s;
+        }
+
+        .circle-container:hover + #resume-head {
+            opacity: 0;
+            transition: all 0.2s;
+        }
+        
+        .circle-container:hover ~ #about-me {
+            opacity: 0;
+            transition: all 0.2s;
+        }
+
+        #my-face {
+            width: 242px;
+            height: 208px;
+        }
+
+        #resume-head {
+            height: 200px;
+            margin: 16px 0 0 232px;
+            /* border: 1px solid black; */
+            position: absolute;
+            transition: all 0.1s ease-in-out 1s;
+        }
+
+        #name {
+            font-size: 4em;
+            margin: 0.3em 0;
+        }
+
+        #title {
+            font-size: 2em;
+            color: #949494;
+        }
+
+        #about-me {
+            height: 200px;
+            padding: 0.5vw;
+            border: 3px solid #4285F4;
+            border-radius: 10px;
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            left: 750px;
+            transition: all 0.1s ease-in-out 1s;
+        }
+
+        #about-me p {
+            font-size: 0.85vw;
+        }
+
+        .section-head {
+            font-size: 1vw; 
+            font-weight: bold;
+            color: #DB4437;
+            margin-bottom: .1vw;
+        }
+        
+        #res-main {
+            position: absolute;
+            top: 232px;
+        }
+
+        #res-cols div {
+            height: 70%;
+            margin: 16px 16px 0 16px;
+            border: 3px solid #4285F4;
+            border-radius: 10px;
+            padding: 0.5vw;
+        }
+
+        #ext-info {
+            height: 100em;
+            width: 90%;
+            border: 3px solid #4285F4;
+            position: absolute;
+            left: 5%;
+            top: 949px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #ext-info .section {
+            height: 48%;
+            width: 48%;
+            margin: 16px;
+            border: 3px solid #4285F4;
+        }
+
+        .whitespace {
+            height: .01em;
+            width: 100%;
+            position: absolute;
+            bottom: -103em;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        /Brayden Cheek <span style="position: relative; right: 0.5em;" class="blinking-cursor">_</span>
+        <ul id="topnav">
+            <li><a class="" href="#edu-long">Education</a></li>
+            <li><a class="" href="#exp-long">Experience</a></li>
+            <li><a class="" href="#personal-proj-long">Personal Projects</a></li>
+            <li><a class="" href="#abt-me-long">About Me</a></li>
+            <li><a class="active" href="#resume-container">Overview</a></li>
+        </ul>
+        <script>
+            var btnList = document.getElementById("topnav");
+            var btns = btnList.getElementsByTagName("a");
+            for (var i=0; i<btns.length; i++) {
+                btns[i].addEventListener("click", function() {
+                    var cur = document.getElementsByClassName("active");
+                    if (cur.length>0) cur[0].className = cur[0].className.replace("active", "");
+                    this.className += "active";
+                })
+            }
+        </script>
+    </header>
+    <div id="contact-info">
+        <span>Email: <a href="mailto:bwc1024@hotmail.com">bwc1024@hotmail.com</a></span>
+        <span>Phone: <a href="tel:13213129592">+1 (321) 312-9592</a></span>
+    </div>
+    <div id="resume-container">
+        <div class="circle-container">
+            <img src="meAlt.jpg" alt="me" id="my-face">
+        </div>
+        <div id="resume-head">
+            <p id="name">Brayden Cheek</p>
+            <p id="title">Software Engineer</p>
+        </div>
+        <div id="about-me"><p class="section-head">About Me</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Molestie a iaculis at erat pellentesque adipiscing commodo elit. Donec enim diam vulputate ut pharetra sit. Turpis in eu mi bibendum neque egestas congue. A pellentesque sit amet porttitor eget dolor. Duis ultricies lacus sed turpis tincidunt. At tempor commodo ullamcorper a lacus vestibulum sed arcu non. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Mattis aliquam faucibus purus in massa tempor. Purus ut faucibus pulvinar elementum. Sit amet dictum sit amet justo. Vitae tortor condimentum lacinia quis vel eros donec ac odio. Quam id leo in vitae turpis massa sed elementum tempus. Fermentum leo vel orci porta non pulvinar neque. Ac turpis egestas integer eget.</p></div>
+        <div id="res-main">
+            <div id="res-cols" style="display: flex; justify-content: center;">
+                <div><p class="section-head">Personal Projects</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Molestie a iaculis at erat pellentesque adipiscing commodo elit. Donec enim diam vulputate ut pharetra sit. Turpis in eu mi bibendum neque egestas congue. A pellentesque sit amet porttitor eget dolor. Duis ultricies lacus sed turpis tincidunt. At tempor commodo ullamcorper a lacus vestibulum sed arcu non. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Mattis aliquam faucibus purus in massa tempor. Purus ut faucibus pulvinar elementum. Sit amet dictum sit amet justo. Vitae tortor condimentum lacinia quis vel eros donec ac odio. Quam id leo in vitae turpis massa sed elementum tempus. Fermentum leo vel orci porta non pulvinar neque. Ac turpis egestas integer eget.</p></div>
+                <div><p class="section-head">Experience</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Molestie a iaculis at erat pellentesque adipiscing commodo elit. Donec enim diam vulputate ut pharetra sit. Turpis in eu mi bibendum neque egestas congue. A pellentesque sit amet porttitor eget dolor. Duis ultricies lacus sed turpis tincidunt. At tempor commodo ullamcorper a lacus vestibulum sed arcu non. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Mattis aliquam faucibus purus in massa tempor. Purus ut faucibus pulvinar elementum. Sit amet dictum sit amet justo. Vitae tortor condimentum lacinia quis vel eros donec ac odio. Quam id leo in vitae turpis massa sed elementum tempus. Fermentum leo vel orci porta non pulvinar neque. Ac turpis egestas integer eget.</p></div>
+                <div><p class="section-head">Education</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Molestie a iaculis at erat pellentesque adipiscing commodo elit. Donec enim diam vulputate ut pharetra sit. Turpis in eu mi bibendum neque egestas congue. A pellentesque sit amet porttitor eget dolor. Duis ultricies lacus sed turpis tincidunt. At tempor commodo ullamcorper a lacus vestibulum sed arcu non. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Mattis aliquam faucibus purus in massa tempor. Purus ut faucibus pulvinar elementum. Sit amet dictum sit amet justo. Vitae tortor condimentum lacinia quis vel eros donec ac odio. Quam id leo in vitae turpis massa sed elementum tempus. Fermentum leo vel orci porta non pulvinar neque. Ac turpis egestas integer eget.</p></div>
+            </div>
+        </div>
+    </div>
+    <div id="ext-info">
+        <div class="section" id="abt-me-long"></div>
+        <div class="section" id="personal-proj-long"></div>
+        <div class="section" id="exp-long"></div>
+        <div class="section" id="edu-long"></div>
+    </div>
+    <div class="whitespace"></div>
+
+
+</body>
+</html>
