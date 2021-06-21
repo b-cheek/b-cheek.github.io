@@ -8,6 +8,14 @@
             box-sizing: border-box;
         }
 
+        #top-of-site-pixel-anchor {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            top: 10em;
+            left: 0;
+        }
+
         html, body {
             margin: 0;
             padding: 0;
@@ -37,41 +45,92 @@
             font-weight: bold;
         }
 
-        header {
-        width: 100%;
-        min-height: 1em;
-        background-color:#4285F4;
-        padding: 0.5em 1em;
-        color: white;
-        font-family:'Courier New', Courier, monospace;
-        font-size: 2.5em;
+        #header {
+            width: 100%;
+            height: 2.3em;
+            background-color:#4285F4;
+            padding: 0.412em 1em;
+            color: white;
+            border-bottom: 0px solid rgba(255, 255, 255, 0);
+            border-right: 0px solid rgba(255, 255, 255, 0);
+            position: fixed;
+            font-family:'Courier New', Courier, monospace;
+            font-size: 2.5em;
+            transition: all 1s;
+        }
+
+        #firstname {
+            position: absolute;
+            left: 1em;
+            top: 0.588em;
+            color: white;
+            font-family:'Courier New', Courier, monospace;
+            transition: all 1s;
+        }
+
+        #lastname {
+            position: absolute;
+            left: 6.3em;
+            top: 0.588em;
+            color: white;
+            font-family:'Courier New', Courier, monospace;
+            transition: all 1s;
+        }
+
+        body.header-not-at-top #header {
+            width: 5.4em;
+            height: 2.8em;
+            padding: 0.2em 0.3em;
+            border-bottom: 2px solid rgba(255, 255, 255, 1);
+            border-right: 2px solid rgba(255, 255, 255, 1);
+            border-radius: 0 0 20px 0;
+            transition: all 1s;
+        }
+
+        body.header-not-at-top #header ul, body.header-not-at-top #header .blinking-cursor {
+            opacity: 0;
+            transition: all 0.2s;
+        }
+
+        body.header-not-at-top #lastname {
+            left: 0.3em;
+            padding-top: 0.7em;
+            transition: all 1s;
+        }
+
+        body.header-not-at-top #firstname {
+            left: 0.3em;
+            top: 0.3em;
+            transition: all 1s;
         }
 
         .blinking-cursor {
-        position: absolute;
-        font-size: 1em;
-        color: white;
-        animation: 1s blink step-end infinite;
+            position: relative;
+            left: 8.35em;
+            font-size: 1em;
+            color: white;
+            transition: all ease-in-out 0.2s 1s;
+            animation: 1s blink step-end infinite;
         }
 
         @keyframes blink {
-        from, to {
-            color: transparent;
-        }
-        50% {
-            color: white;
-        }
+            from, to {
+                color: transparent;
+            }
+            50% {
+                color: white;
+            }
         }
 
         #topnav {
-        display: inline;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: visible;
-        position: -webkit-sticky; /* Safari */
-        position: sticky;
-        top: 0;
+            display: inline;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: visible;
+            position: -webkit-sticky; /* Safari */
+            position: sticky;
+            top: 0;
         }
 
         #topnav a {
@@ -79,28 +138,35 @@
             font-family:'Courier New', Courier, monospace;
         }
 
+        #header ul {
+            position: fixed;
+            top: 0.55em;
+            right: 1em;
+            transition: all ease-in-out 0.2s 1s;
+        }
+
         #topnav li {
-        float: right;
+            float: right;
         }
 
         #topnav li a {
-        display: block;
-        color: white;
-        padding: 0.3em 1em;
-        border-radius: 0.2em;
-        text-align: center;
-        text-decoration: none;
-        font-size: 0.7em;
+            display: block;
+            color: white;
+            padding: 0.3em 1em;
+            border-radius: 0.2em;
+            text-align: center;
+            text-decoration: none;
+            font-size: 0.7em;
         }
 
         #topnav li:hover a {
-        background-color: #F4B400;
-        color: #555;
-        transition: all 0.2s;
+            background-color: #F4B400;
+            color: #555;
+            transition: all 0.2s;
         }
 
         .active {
-        background-color: #0F9D58;
+            background-color: #0F9D58;
         }
 
         #contact-info {
@@ -121,121 +187,6 @@
             margin: 15px;
         }
 
-        #resume-container {
-            height: 50em;
-            width: 90%;
-            margin: auto;
-            margin-top: 2em;
-            border: 3px solid #4285F4; 
-            position: relative;
-        }
-
-        .circle-container {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin: 1em 1em 0 1em;
-            border: 3px solid #4285F4;
-            float: left;
-            overflow: hidden;
-            transition: all 1s;
-        }
-
-        .circle-container:hover {
-            width: 90%;
-            border-radius: 0;
-            margin: 1em 5%;
-            transition: all 1s ease-in-out 0.1s;
-        }
-
-        .circle-container:hover + #resume-head {
-            opacity: 0;
-            transition: all 0.2s;
-        }
-        
-        .circle-container:hover ~ #about-me {
-            opacity: 0;
-            transition: all 0.2s;
-        }
-
-        #my-face {
-            width: 242px;
-            height: 208px;
-        }
-
-        #resume-head {
-            height: 200px;
-            margin: 16px 0 0 232px;
-            /* border: 1px solid black; */
-            position: absolute;
-            transition: all 0.1s ease-in-out 1s;
-        }
-
-        #name {
-            font-size: 4em;
-            margin: 0.3em 0;
-        }
-
-        #title {
-            font-size: 2em;
-            color: #949494;
-        }
-
-        #about-me {
-            height: 200px;
-            padding: 0.5vw;
-            border: 3px solid #4285F4;
-            border-radius: 10px;
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            left: 750px;
-            transition: all 0.1s ease-in-out 1s;
-        }
-
-        #about-me p {
-            font-size: 0.85vw;
-        }
-
-        .section-head {
-            font-size: 1vw; 
-            font-weight: bold;
-            color: #DB4437;
-            margin-bottom: .1vw;
-        }
-        
-        #res-main {
-            position: absolute;
-            top: 232px;
-        }
-
-        #res-cols div {
-            height: 70%;
-            margin: 16px 16px 0 16px;
-            border: 3px solid #4285F4;
-            border-radius: 10px;
-            padding: 0.5vw;
-        }
-
-        #ext-info {
-            height: 100em;
-            width: 90%;
-            border: 3px solid #4285F4;
-            position: absolute;
-            left: 5%;
-            top: 949px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        #ext-info .section {
-            height: 48%;
-            width: 48%;
-            margin: 16px;
-            border: 3px solid #4285F4;
-        }
-
         .whitespace {
             height: .01em;
             width: 100%;
@@ -246,8 +197,25 @@
     </style>
 </head>
 <body>
-    <header>
-        /Brayden Cheek <span style="position: relative; right: 0.5em;" class="blinking-cursor">_</span>
+    <div id="top-of-site-pixel-anchor"></div>
+    <script>
+        if (
+            "IntersectionObserver" in window &&
+            "IntersectionObserverEntry" in window &&
+            "intersectionRatio" in window.IntersectionObserverEntry.prototype
+        ) {
+        let observer = new IntersectionObserver(entries => {
+            if (entries[0].boundingClientRect.y < 0) {
+                document.body.classList.add("header-not-at-top");
+            } else {
+                document.body.classList.remove("header-not-at-top");
+            }
+        });
+        observer.observe(document.querySelector("#top-of-site-pixel-anchor"));
+        }
+    </script>
+    <div id="header">
+    <span id="firstname">\Brayden</span><span id="lastname">Cheek</span><span class="blinking-cursor">_</span>
         <ul id="topnav">
             <li><a class="" href="#edu-long">Education</a></li>
             <li><a class="" href="#exp-long">Experience</a></li>
@@ -266,33 +234,10 @@
                 })
             }
         </script>
-    </header>
+    </div>
     <div id="contact-info">
         <span>Email: <a href="mailto:bwc1024@hotmail.com">bwc1024@hotmail.com</a></span>
         <span>Phone: <a href="tel:13213129592">+1 (321) 312-9592</a></span>
-    </div>
-    <div id="resume-container">
-        <div class="circle-container">
-            <img src="meAlt.jpg" alt="me" id="my-face">
-        </div>
-        <div id="resume-head">
-            <p id="name">Brayden Cheek</p>
-            <p id="title">Software Engineer</p>
-        </div>
-        <div id="about-me"><p class="section-head">About Me</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Molestie a iaculis at erat pellentesque adipiscing commodo elit. Donec enim diam vulputate ut pharetra sit. Turpis in eu mi bibendum neque egestas congue. A pellentesque sit amet porttitor eget dolor. Duis ultricies lacus sed turpis tincidunt. At tempor commodo ullamcorper a lacus vestibulum sed arcu non. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Mattis aliquam faucibus purus in massa tempor. Purus ut faucibus pulvinar elementum. Sit amet dictum sit amet justo. Vitae tortor condimentum lacinia quis vel eros donec ac odio. Quam id leo in vitae turpis massa sed elementum tempus. Fermentum leo vel orci porta non pulvinar neque. Ac turpis egestas integer eget.</p></div>
-        <div id="res-main">
-            <div id="res-cols" style="display: flex; justify-content: center;">
-                <div><p class="section-head">Personal Projects</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Molestie a iaculis at erat pellentesque adipiscing commodo elit. Donec enim diam vulputate ut pharetra sit. Turpis in eu mi bibendum neque egestas congue. A pellentesque sit amet porttitor eget dolor. Duis ultricies lacus sed turpis tincidunt. At tempor commodo ullamcorper a lacus vestibulum sed arcu non. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Mattis aliquam faucibus purus in massa tempor. Purus ut faucibus pulvinar elementum. Sit amet dictum sit amet justo. Vitae tortor condimentum lacinia quis vel eros donec ac odio. Quam id leo in vitae turpis massa sed elementum tempus. Fermentum leo vel orci porta non pulvinar neque. Ac turpis egestas integer eget.</p></div>
-                <div><p class="section-head">Experience</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Molestie a iaculis at erat pellentesque adipiscing commodo elit. Donec enim diam vulputate ut pharetra sit. Turpis in eu mi bibendum neque egestas congue. A pellentesque sit amet porttitor eget dolor. Duis ultricies lacus sed turpis tincidunt. At tempor commodo ullamcorper a lacus vestibulum sed arcu non. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Mattis aliquam faucibus purus in massa tempor. Purus ut faucibus pulvinar elementum. Sit amet dictum sit amet justo. Vitae tortor condimentum lacinia quis vel eros donec ac odio. Quam id leo in vitae turpis massa sed elementum tempus. Fermentum leo vel orci porta non pulvinar neque. Ac turpis egestas integer eget.</p></div>
-                <div><p class="section-head">Education</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Molestie a iaculis at erat pellentesque adipiscing commodo elit. Donec enim diam vulputate ut pharetra sit. Turpis in eu mi bibendum neque egestas congue. A pellentesque sit amet porttitor eget dolor. Duis ultricies lacus sed turpis tincidunt. At tempor commodo ullamcorper a lacus vestibulum sed arcu non. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Mattis aliquam faucibus purus in massa tempor. Purus ut faucibus pulvinar elementum. Sit amet dictum sit amet justo. Vitae tortor condimentum lacinia quis vel eros donec ac odio. Quam id leo in vitae turpis massa sed elementum tempus. Fermentum leo vel orci porta non pulvinar neque. Ac turpis egestas integer eget.</p></div>
-            </div>
-        </div>
-    </div>
-    <div id="ext-info">
-        <div class="section" id="abt-me-long"></div>
-        <div class="section" id="personal-proj-long"></div>
-        <div class="section" id="exp-long"></div>
-        <div class="section" id="edu-long"></div>
     </div>
     <div class="whitespace"></div>
 
