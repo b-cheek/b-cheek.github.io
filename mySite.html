@@ -6,15 +6,42 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link rel="stylesheet" href="mySite.css">
 </head>
-<label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
-    <span id="light-theme-switch" class="material-icons" style="font-size: 35px;">light_mode</span>
-    <span id="dark-theme-switch" class="material-icons" style="font-size: 35px;">dark_mode</span>
-</label>
-<body>
-    <div id="top-of-site-pixel-anchor"></div>
+<body class="dark-mode">
     <script>
+        // The debounce function receives our function as a parameter
+        const debounce = (fn) => {
+        // This holds the requestAnimationFrame reference, so we can cancel it if we wish
+        let frame;
+
+        // The debounce function returns a new function that can receive a variable number of arguments
+        return (...params) => {
+            // If the frame variable has been defined, clear it now, and queue for next frame
+            if (frame) {
+            cancelAnimationFrame(frame);
+            }
+
+            // Queue our function call for the next frame
+            frame = requestAnimationFrame(() => {
+            // Call our function and pass any params we received
+            fn(...params);
+            });
+        };
+        };
+
+        // Reads out the scroll position and stores it in the data attribute
+        // so we can use it in our stylesheets
+        const storeScroll = () => {
+        document.documentElement.dataset.scroll = window.scrollY;
+        };
+
+        // Listen for new scroll events, here we debounce our `storeScroll` function
+        document.addEventListener("scroll", debounce(storeScroll));
+
+        // Update scroll position for first time
+        storeScroll();
+    </script>
+    <!-- <div id="top-of-site-pixel-anchor"></div> -->
+    <!-- <script>
         if (
             "IntersectionObserver" in window &&
             "IntersectionObserverEntry" in window &&
@@ -29,16 +56,59 @@
         });
         observer.observe(document.querySelector("#top-of-site-pixel-anchor"));
         }
-    </script>
-    <div id="header">
+    </script> -->
+    <div id="header" class="dark-mode">
     <span id="firstname">\Brayden</span><span id="lastname">Cheek</span><span class="blinking-cursor">_</span>
-        <ul id="topnav">
-            <li><a class="" href="#edu-long">Education</a></li>
-            <li><a class="" href="#exp-long">Experience</a></li>
-            <li><a class="" href="#personal-proj-long">Personal Projects</a></li>
-            <li><a class="" href="#abt-me-long">About Me</a></li>
-            <li><a class="active" href="#resume-container">Overview</a></li>
+        <ul id="topnav" class="dark-mode">
+            <li><a class="active" href="#ov">Overview</a></li>
+            <li><a class="" href="#am">About Me</a></li>
+            <li><a class="" href="#pp">Personal Projects</a></li>
+            <li><a class="" href="#ex">Experience</a></li>
+            <li><a class="" href="#ed">Education</a></li>
         </ul>
+        <label id="nav-lbl" class="dark-mode">
+            <input id="opt-page-check" type="checkbox">
+            <span id="nav-icon">
+                <div id="top-bar" class="options-bar"></div>
+                <div id="mid-bar" class="options-bar"></div>
+                <div id="bot-bar" class="options-bar"></div>
+            </span>
+            <div id="option-page">
+                <div><a class="active" href="#ov" onclick="uncheckPage()">Overview</a></div>
+                <div><a class="" href="#am" onclick="uncheckPage()">About Me</a></div>
+                <div><a class="" href="#pp" onclick="uncheckPage()">Personal Projects</a></div>
+                <div><a class="" href="#ex" onclick="uncheckPage()">Experience</a></div>
+                <div><a class="" href="#ed" onclick="uncheckPage()">Education</a></div>
+            </div>
+        </label>
+        <script>
+            function uncheckPage() {
+                document.getElementById("opt-page-check").checked = false;
+            }
+        </script>
+        <button id="theme-btn" class="dark-mode" onclick="themeSwitch()">
+            <span id="theme-switch" class="material-icons dark-mode">light_mode</span>
+        </button>
+        <script>
+            function themeSwitch() {
+                if (document.body.className==="dark-mode") {
+                    document.getElementById("theme-switch").innerHTML="dark_mode";
+                    var elements = document.getElementsByClassName("dark-mode");
+                    var len = elements.length;
+                    for (var i=0; i<len; i++) {
+                        elements[0].className = elements[0].className.replace("dark", "light")
+                    }
+                }
+                else if (document.body.className==="light-mode") {
+                    document.getElementById("theme-switch").innerHTML="light_mode";
+                    var elements = document.getElementsByClassName("light-mode");
+                    var len = elements.length;
+                    for (var i=0; i<len; i++) {
+                        elements[0].className = elements[0].className.replace("light", "dark");
+                    }
+                }
+            }
+        </script>
         <script>
             var btnList = document.getElementById("topnav");
             var btns = btnList.getElementsByTagName("a");
@@ -51,11 +121,47 @@
             }
         </script>
     </div>
-    <div id="overview">
+    <div id="overview" class="sect-head dark-mode">
+        <div id="ov" class="anchor"></div>
         Overview
-        <div class="underline"></div>
+        <div class="underline dark-mode"></div>
     </div>
-    <div id="contact-info">
+    <div id="abt-me" class="sect-head dark-mode">
+        <div id="am" class="anchor"></div>
+        About Me
+        <div class="scroll underline dark-mode"></div>
+    </div>
+    <div id="personal-proj" class="sect-head dark-mode">
+        <div id="pp" class="anchor"></div>
+        Personal Projects
+        <div class="scroll underline dark-mode"></div>
+    </div>
+    <div id="exp" class="sect-head dark-mode">
+        <div id="ex" class="anchor"></div>
+        Experience
+        <div class="scroll underline dark-mode"></div>
+    </div>
+    <div id="edu" class="sect-head dark-mode">
+        <div id="ed" class="anchor"></div>
+        Education
+        <div class="scroll underline dark-mode"></div>
+    </div>
+    <script>
+        // set underline widths
+        document.addEventListener("scroll", function() {
+            var elements = document.getElementsByClassName("scroll underline");
+            for (var i=0; i<elements.length; i++) {
+                var parentStyle = getComputedStyle(elements[i].parentElement);
+                var topBuffer = 40;
+                var underlineLoadRange = 300;
+                var loadEndPos = parseInt(parentStyle.top)-(parseInt(parentStyle.height)+topBuffer);
+                var loadStartPos = loadEndPos - underlineLoadRange;
+                if ((window.scrollY-loadStartPos) > 0) elements[i].style.width = (100*((window.scrollY-loadStartPos)/underlineLoadRange).toString() + "%");
+                else elements[i].style.width = 0;
+            }
+        });
+    </script>
+    <div id="contact-info" class="dark-mode">
         <span>Email: <a href="mailto:bwc1024@hotmail.com">bwc1024@hotmail.com</a></span>
         <span>Phone: <a href="tel:13213129592">+1 (321) 312-9592</a></span>
     </div>
