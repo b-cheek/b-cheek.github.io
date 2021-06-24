@@ -58,7 +58,7 @@
         }
     </script> -->
     <div id="header" class="dark-mode">
-    <span id="firstname">\Brayden</span><span id="lastname">Cheek</span><span class="blinking-cursor">_</span>
+        <span id="firstname">\Brayden</span><span id="lastname">Cheek</span><span class="blinking-cursor">_</span>
         <ul id="topnav" class="dark-mode">
             <li><a class="active" href="#ov">Overview</a></li>
             <li><a class="" href="#am">About Me</a></li>
@@ -80,6 +80,11 @@
                 <div><a class="" href="#ex" onclick="uncheckPage()">Experience</a></div>
                 <div><a class="" href="#ed" onclick="uncheckPage()">Education</a></div>
             </div>
+            <script>
+                if (window.innerWidth > 770) document.getElementById("option-page").classList.toggle("long");
+                console.log(window.innerWidth);
+                console.log(window.innerHeight);
+            </script>
         </label>
         <script>
             function uncheckPage() {
@@ -107,6 +112,10 @@
                         elements[0].className = elements[0].className.replace("light", "dark");
                     }
                 }
+                document.getElementById("theme-btn").classList.toggle("disabled");
+                window.setTimeout(function() {
+                    document.getElementById("theme-btn").classList.toggle("disabled");
+                }, 1000);
             }
         </script>
         <script>
@@ -125,6 +134,9 @@
         <div id="ov" class="anchor"></div>
         Overview
         <div class="underline dark-mode"></div>
+    </div>
+    <div class="sect-content">
+        <img src="https://media-exp1.licdn.com/dms/image/C561BAQHRF3ANePBm9A/company-background_10000/0/1551215180620?e=2159024400&v=beta&t=BbDNKWvNXDp_00uJL6P2VyI2ldv8NdN162kjLkGgxNU">
     </div>
     <div id="abt-me" class="sect-head dark-mode">
         <div id="am" class="anchor"></div>

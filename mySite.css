@@ -145,28 +145,22 @@ body.header-not-at-top #firstname {
 }
 
 #topnav {
+    height: 2.3em;
     display: flex;
+    align-items: center;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: visible;
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
+    position: fixed;
     top: 0;
+    right: 1em;
 }
 
 #topnav a {
     text-decoration:none;
     font-family: 'Courier New', Courier, monospace;
     transition: 0.2s;
-}
-
-#header ul {
-    position: fixed;
-    top: 0.55em;
-    right: 1em;
-    /* V this is for the header collapse */
-    /* transition: all ease-in-out 0.2s 1s; */
 }
 
 #topnav li {
@@ -182,7 +176,13 @@ body.header-not-at-top #firstname {
     border-radius: 0.2em;
     text-align: center;
     text-decoration: none;
-    font-size: 0.7em;
+    font-size: 1.4vw;
+}
+
+@media screen and (min-width:2500px) {
+    #topnav li a {
+        font-size: 35px;
+    }
 }
 
 #topnav li:hover a:not(.active) {
@@ -215,6 +215,10 @@ body.header-not-at-top #firstname {
     right: 37px;
 }
 
+#theme-btn.disabled {
+    pointer-events: none;
+}
+
 #theme-btn.dark-mode {
     background-color: #1e1e1e;
     transition: .4s;
@@ -224,6 +228,7 @@ body.header-not-at-top #firstname {
     background-color: white;
     transition: .4s;
 }
+
 
 #theme-btn.dark-mode:hover {
     cursor: pointer;
@@ -362,7 +367,7 @@ body.header-not-at-top #firstname {
     bottom: -103em;
 }
 
-@media screen and (max-width: 1700px) {
+@media screen and (max-width: 1300px) { /*add dimensions for smaller pc/laptop not moile*/ 
 
     #topnav {
         flex-direction: column;
@@ -423,6 +428,7 @@ body.header-not-at-top #firstname {
         background:rgba(185, 185, 185, 0.5);
         backdrop-filter: blur(2px);
         display: flex;
+        flex-wrap: nowrap;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -433,17 +439,32 @@ body.header-not-at-top #firstname {
         transition: height 1s;
     }
 
+    #option-page.long {
+        flex-direction: row;
+        flex-wrap: wrap;
+        transition: height 1s 0.25s;
+    }
+
+    #option-page.long > div {
+        opacity: 0;
+    }
+
     #option-page > div {
-        margin: 0px;
-        width: 60%;
+        margin: 0;
+        background-color: rgba(255, 255, 255, 0.9);
         border-radius: 10px;
-        transition: 1s;
+        padding: 0;
+        transition: all 0.5s;
         text-align: center;
     }
 
     #option-page > div a {
         color: #1e1e1e;
         font-weight: 1000;
+    }
+
+    #option-page.long > div a {
+        transition: 0.25s 0.5s;
     }
 
     #opt-nav {
@@ -475,12 +496,20 @@ body.header-not-at-top #firstname {
 
     input:checked ~ #option-page {
         height: 100%;
-        font-size: 2em;
+        font-size: 7vw;
         transition: height 1s;
     }
 
     input:checked ~ #option-page > div {
-        margin: 10px;
+        margin: 4vh 0;
+        padding: 3vh 1em;
+    }
+
+    input:checked ~ #option-page.long > div {
+        opacity: 1;
+        margin: 4vh 1vh;
+        padding: 2vh 1vh;
+        transition: opacity 0.25s 1s;
     }
 
     #theme-btn {
