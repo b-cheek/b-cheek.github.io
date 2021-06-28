@@ -154,7 +154,6 @@
         <img id="iso-logo" src="https://media-exp3.licdn.com/dms/image/C4E0BAQEefxwwtRx5yg/company-logo_200_200/0/1551453606381?e=2159024400&v=beta&t=-Pwfw_jqJPfRkHpkAZcnHWawNLEoRaCqNsCwbXsPAPw">
         <span id="ISO Group - Supply Chain Partner" class="content-head"></span>
         <!-- <img id="myID" src="meSticker.png"> -->
-        <div id="cir"></div>
     </div>
     <div id="edu" class="sect-head dark-mode">
         <div id="ed" class="anchor"></div>
@@ -210,103 +209,197 @@
     <script>
         class cirObj {
             constructor(width, height, top, right, xSpeed, ySpeed) {
-                this.width = width;
-                this.height = height;
-                this.top = top;
-                this.right = right;
+                cirObj.numInstances = (cirObj.numInstances || 0) + 1;
+                document.getElementsByClassName("sect-content")[0].innerHTML += "<div id=\"cir" + cirObj.numInstances + "\" class=\"cir\"></div>";
+                this.me = document.getElementById("cir" + cirObj.numInstances);
+                this.myStyle = getComputedStyle(this.me);
+                this.r = width;
                 this.ySpeed = ySpeed;
                 this.xSpeed = xSpeed;
-                this.bumpIn = false;
-                this.bumpOut = false;
-                this.move = true;
-                this.bumpTimer = 0;
-                this.ease = 1;
-            }
+                this.xBumpDepth = 1/(4*Math.abs(xSpeed)) + 0.55;
+                this.yBumpDepth = 1/(4*Math.abs(ySpeed)) + 0.55;
+                this.bumpRY = Math.round((this.yBumpDepth*this.r)/this.ySpeed)*this.ySpeed;
+                this.bumpRX = Math.round((this.xBumpDepth*this.r)/this.xSpeed)*this.xSpeed;
+                this.UBumpIn = false;
+                this.UBumpOut = false;
+                this.DBumpIn = false;
+                this.DBumpOut = false;
+                this.LBumpIn = false;
+                this.LBumpOut = false;
+                this.RBumpIn = false;
+                this.RBumpOut = false;
+                this.moveY = true;
+                this.moveX = true;
+                this.bumpTimerY = 0;
+                this.bumpTimerX = 0;
+                this.easeY = 1;
+                this.easeX = 1;
 
-            init() {
-                document.getElementsByClassName("sect-content")[0].innerHTML += "<div class=\"cir\"></div>";
+                this.me.style.width = width + "px";
+                this.me.style.height = height + "px";
+                this.me.style.top = top + "px";
+                this.me.style.right = right + "px";
+                this.me.style.borderTopLeftRadius = 0.5*this.r + "px";
+                this.me.style.borderTopRightRadius = 0.5*this.r + "px";
+                this.me.style.borderBottomRightRadius = 0.5*this.r + "px";
+                this.me.style.borderBottomLeftRadius = 0.5*this.r + "px";
             }
         }
 
         var cirList = [
-            new cirObj()
+            new cirObj(70, 70, 10, 10, 3, 3), 
+            // new cirObj(40, 40, 10, 10, 2, 1)
         ];
 
         var active = false;
         var runner = 0;
-        var moveSpeed = 1; //ms per pixel shift
-        var ySpeed = 1;
-        var xSpeed = 1;
-        var bumpIn = false;
-        var bumpOut = false;
-        var move = true;
-        var bumpTimer = 0;
-        var ease = 1;
-        var cir = document.getElementById("cir");
-        var cirStyle = getComputedStyle(cir);
-        var r = cirStyle.height;
-        var bumpRY = Math.round((0.7*parseInt(r))/ySpeed)*ySpeed;
+        var moveSpeed = 10; //ms per pixel shift
         document.addEventListener("scroll", function() {
             if (!active) {
                 if (window.scrollY>400 && window.scrollY<2000) {
                     active = true;
                     runner = setInterval(function() {
-                        console.log(bumpTimer, ease);
-                        if (bumpTimer>0) {
-                            if (bumpTimer%Math.floor(ease)==0) {
-                                cir.style.top = (parseInt(cirStyle.top) + ySpeed).toString() + "px";
-                                move = true;
+                        cirList.forEach(cir => {
+                            if (cir.bumpTimerY>0) {
+                                if (cir.bumpTimerX>0) {
+                                    //MOVE FOR BOTH MAKE SURE TO IMPLEMENT THIS
+                                }
+                                else if (cir.bumpTimerY%Math.floor(cir.easeY)==0) {
+                                    if (!(cir.UBumpIn || cir.UBumpOut)) {
+                                        cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
+                                    }
+                                    cir.moveY = true;
+                                }
+                                else {
+                                    cir.moveY = false;
+                                }
+                                cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
+                            }
+                            else if (cir.bumpTimerX>0) {
+                                if (cir.bumpTimerX%Math.floor(cir.easeX)==0) {
+                                    if (!(cir.RBumpIn || cir.RBumpOut)) {
+                                        cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
+                                    }
+                                    cir.moveX = true;
+                                }
+                                else {
+                                    cir.moveX = false;
+                                }
+                                cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
                             }
                             else {
-                                move = false;
-                                cir.style.right = (parseInt(cirStyle.right) + xSpeed).toString() + "px";
+                                cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
+                                cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
                             }
-                        }
-                        else {
-                            cir.style.top = (parseInt(cirStyle.top) + ySpeed).toString() + "px";
-                            cir.style.right = (parseInt(cirStyle.right) + xSpeed).toString() + "px";
-                        }
-                        if (bumpIn || bumpOut || parseInt(cirStyle.top)>parseInt(getComputedStyle(cir.parentElement).height)-parseInt(cirStyle.height)) {
-                            bumpTimer++;
-                            if (!(bumpIn || bumpOut)) bumpIn = true;
-                            else if (bumpIn && move) {
-                                cir.style.height = (parseInt(cirStyle.height) - ySpeed).toString() + "px";
-                                cir.style.width = (parseInt(cirStyle.width) + ySpeed).toString() + "px";
-                                cir.style.borderBottomRightRadius = (parseInt(cirStyle.borderBottomRightRadius) - ySpeed).toString() + "px";
-                                cir.style.borderBottomLeftRadius = (parseInt(cirStyle.borderBottomLeftRadius) - ySpeed).toString() + "px";
-                                ease += 0.25;
-                                if (parseInt(cirStyle.height) == bumpRY) {
-                                    bumpIn = false;
-                                    bumpOut = true;
-                                    ySpeed*=-1;
+                            if (cir.DBumpIn || cir.DBumpOut || parseInt(cir.myStyle.top) >= parseInt(getComputedStyle(cir.me.parentElement).height)-parseInt(cir.myStyle.height)) {
+                                cir.bumpTimerY++;
+                                if (!(cir.DBumpIn || cir.DBumpOut)) cir.DBumpIn = true;
+                                else if (cir.DBumpIn && cir.moveY) {
+                                    cir.me.style.height = (parseInt(cir.myStyle.height) - cir.ySpeed).toString() + "px";
+                                    cir.me.style.width = (parseInt(cir.myStyle.width) + cir.ySpeed).toString() + "px";
+                                    cir.me.style.borderBottomRightRadius = (parseInt(cir.myStyle.borderBottomRightRadius) - cir.ySpeed).toString() + "px";
+                                    cir.me.style.borderBottomLeftRadius = (parseInt(cir.myStyle.borderBottomLeftRadius) - cir.ySpeed).toString() + "px";
+                                    cir.easeY += 0.25;
+                                    if (parseInt(cir.myStyle.height) <= cir.bumpRY) {
+                                        cir.DBumpIn = false;
+                                        cir.DBumpOut = true;
+                                        cir.ySpeed*=-1;
+                                    }
+                                }
+                                else if (cir.DBumpOut && cir.moveY) {
+                                    cir.me.style.height = (parseInt(cir.myStyle.height) - cir.ySpeed).toString() + "px";
+                                    cir.me.style.width = (parseInt(cir.myStyle.width) + cir.ySpeed).toString() + "px";
+                                    cir.me.style.borderBottomRightRadius = (parseInt(cir.myStyle.borderBottomRightRadius) - cir.ySpeed).toString() + "px";
+                                    cir.me.style.borderBottomLeftRadius = (parseInt(cir.myStyle.borderBottomLeftRadius) - cir.ySpeed).toString() + "px";
+                                    cir.easeY -= 0.25;
+                                    if (parseInt(cir.myStyle.height) >= cir.r) {
+                                        cir.DBumpOut = false;
+                                        cir.bumpTimerY = 0;
+                                    }
                                 }
                             }
-                            else if (bumpOut && move) {
-                                cir.style.height = (parseInt(cirStyle.height) - ySpeed).toString() + "px";
-                                cir.style.width = (parseInt(cirStyle.width) + ySpeed).toString() + "px";
-                                cir.style.borderBottomRightRadius = (parseInt(cirStyle.borderBottomRightRadius) - ySpeed).toString() + "px";
-                                cir.style.borderBottomLeftRadius = (parseInt(cirStyle.borderBottomLeftRadius) - ySpeed).toString() + "px";
-                                ease -= 0.25;
-                                if (cirStyle.height === r) {
-                                    bumpOut = false;
-                                    bumpTimer = 0;
+                            else if (cir.UBumpIn || cir.UBumpOut || parseInt(cir.myStyle.top)<=0) {
+                                cir.bumpTimerY++;
+                                if (!(cir.UBumpIn || cir.UBumpOut)) cir.UBumpIn = true;
+                                else if (cir.UBumpIn && cir.moveY) {
+                                    cir.me.style.height = (parseInt(cir.myStyle.height) + cir.ySpeed).toString() + "px";
+                                    cir.me.style.width = (parseInt(cir.myStyle.width) - cir.ySpeed).toString() + "px";
+                                    cir.me.style.borderTopRightRadius = (parseInt(cir.myStyle.borderTopRightRadius) + cir.ySpeed).toString() + "px";
+                                    cir.me.style.borderTopLeftRadius = (parseInt(cir.myStyle.borderTopLeftRadius) + cir.ySpeed).toString() + "px";
+                                    cir.easeY += 0.25;
+                                    if (parseInt(cir.myStyle.height) <= cir.bumpRY) {
+                                        cir.UBumpIn = false;
+                                        cir.UBumpOut = true;
+                                        cir.ySpeed*=-1;
+                                    }
+                                }
+                                else if (cir.UBumpOut && cir.moveY) {
+                                    cir.me.style.height = (parseInt(cir.myStyle.height) + cir.ySpeed).toString() + "px";
+                                    cir.me.style.width = (parseInt(cir.myStyle.width) - cir.ySpeed).toString() + "px";
+                                    cir.me.style.borderTopRightRadius = (parseInt(cir.myStyle.borderTopRightRadius) + cir.ySpeed).toString() + "px";
+                                    cir.me.style.borderTopLeftRadius = (parseInt(cir.myStyle.borderTopLeftRadius) + cir.ySpeed).toString() + "px";
+                                    cir.easeY -= 0.25;
+                                    if (parseInt(cir.myStyle.height) >= cir.r) {
+                                        cir.UBumpOut = false;
+                                        cir.bumpTimerY = 0;
+                                    }
                                 }
                             }
-                            // console.log(cir.getAnimations());
-                            // cirStyle.animation = cirStyle.substring(0,cirStyle.length-2) + 
-                        }
-                        if (parseInt(cirStyle.top)<0) {
-                            ySpeed *= -1;
-                            document.getElementById("cir").className = "u-squish";
-                        }
-                        if (parseInt(cirStyle.right)>parseInt(getComputedStyle(cir.parentElement).width)-parseInt(cirStyle.width)) {
-                            xSpeed*=-1;
-                            document.getElementById("cir").className = "l-squish";
-                        }
-                        if (parseInt(cirStyle.right)<0) {
-                            xSpeed *= -1;
-                            document.getElementById("cir").className = "r-squish";
-                        }
+                            if (cir.LBumpIn || cir.LBumpOut || parseInt(cir.myStyle.right) >= parseInt(getComputedStyle(cir.me.parentElement).width)-parseInt(cir.myStyle.width)) {
+                                cir.bumpTimerX++;
+                                if (!(cir.LBumpIn || cir.LBumpOut)) cir.LBumpIn = true;
+                                else if (cir.LBumpIn && cir.moveX) {
+                                    cir.me.style.height = (parseInt(cir.myStyle.height) + cir.xSpeed).toString() + "px";
+                                    cir.me.style.width = (parseInt(cir.myStyle.width) - cir.xSpeed).toString() + "px";
+                                    cir.me.style.borderTopLeftRadius = (parseInt(cir.myStyle.borderTopLeftRadius) - cir.xSpeed).toString() + "px";
+                                    cir.me.style.borderBottomLeftRadius = (parseInt(cir.myStyle.borderBottomLeftRadius) - cir.xSpeed).toString() + "px";
+                                    cir.easeX += 0.25;
+                                    if (parseInt(cir.myStyle.width) <= cir.bumpRX) {
+                                        cir.LBumpIn = false;
+                                        cir.LBumpOut = true;
+                                        cir.xSpeed*=-1;
+                                    }
+                                }
+                                else if (cir.LBumpOut && cir.moveX) {
+                                    cir.me.style.height = (parseInt(cir.myStyle.height) + cir.xSpeed).toString() + "px";
+                                    cir.me.style.width = (parseInt(cir.myStyle.width) - cir.xSpeed).toString() + "px";
+                                    cir.me.style.borderTopLeftRadius = (parseInt(cir.myStyle.borderTopLeftRadius) - cir.xSpeed).toString() + "px";
+                                    cir.me.style.borderBottomLeftRadius = (parseInt(cir.myStyle.borderBottomLeftRadius) - cir.xSpeed).toString() + "px";
+                                    cir.easeX -= 0.25;
+                                    if (parseInt(cir.myStyle.width) >= cir.r) {
+                                        cir.LBumpOut = false;
+                                        cir.bumpTimerX = 0;
+                                    }
+                                }
+                            }
+                            else if (cir.RBumpIn || cir.RBumpOut || parseInt(cir.myStyle.right)<=0) {
+                                cir.bumpTimerX++;
+                                if (!(cir.RBumpIn || cir.RBumpOut)) cir.RBumpIn = true;
+                                else if (cir.RBumpIn && cir.moveY) {
+                                    cir.me.style.height = (parseInt(cir.myStyle.height) - cir.xSpeed).toString() + "px";
+                                    cir.me.style.width = (parseInt(cir.myStyle.width) + cir.xSpeed).toString() + "px";
+                                    cir.me.style.borderTopRightRadius = (parseInt(cir.myStyle.borderTopRightRadius) + cir.xSpeed).toString() + "px";
+                                    cir.me.style.borderBottomRightRadius = (parseInt(cir.myStyle.borderBottomRightRadius) + cir.xSpeed).toString() + "px";
+                                    cir.easeX += 0.25;
+                                    if (parseInt(cir.myStyle.width) <= cir.bumpRY) {
+                                        cir.RBumpIn = false;
+                                        cir.RBumpOut = true;
+                                        cir.xSpeed*=-1;
+                                    }
+                                }
+                                else if (cir.RBumpOut && cir.moveY) {
+                                    cir.me.style.height = (parseInt(cir.myStyle.height) - cir.xSpeed).toString() + "px";
+                                    cir.me.style.width = (parseInt(cir.myStyle.width) + cir.xSpeed).toString() + "px";
+                                    cir.me.style.borderTopRightRadius = (parseInt(cir.myStyle.borderTopRightRadius) + cir.xSpeed).toString() + "px";
+                                    cir.me.style.borderBottomRightRadius = (parseInt(cir.myStyle.borderBottomRightRadius) + cir.xSpeed).toString() + "px";
+                                    cir.easeX -= 0.25;
+                                    if (parseInt(cir.myStyle.width) >= cir.r) {
+                                        cir.RBumpOut = false;
+                                        cir.bumpTimerX = 0;
+                                    }
+                                }
+                            }
+                        });
                     }, moveSpeed);
                 }
             }
