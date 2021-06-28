@@ -57,6 +57,7 @@
         observer.observe(document.querySelector("#top-of-site-pixel-anchor"));
         }
     </script> -->
+    </script>
     <div id="header" class="dark-mode">
         <span id="firstname">\Brayden</span><span id="lastname">Cheek</span><span class="blinking-cursor">_</span>
         <ul id="topnav" class="dark-mode">
@@ -82,8 +83,6 @@
             </div>
             <script>
                 if (window.innerWidth > 770) document.getElementById("option-page").classList.toggle("long");
-                console.log(window.innerWidth);
-                console.log(window.innerHeight);
             </script>
         </label>
         <script>
@@ -113,7 +112,7 @@
                     }
                 }
                 document.getElementById("theme-btn").classList.toggle("disabled");
-                window.setTimeout(function() {
+                setTimeout(function() {
                     document.getElementById("theme-btn").classList.toggle("disabled");
                 }, 1000);
             }
@@ -135,9 +134,6 @@
         Overview
         <div class="underline dark-mode"></div>
     </div>
-    <div class="sect-content">
-        <img src="https://media-exp1.licdn.com/dms/image/C561BAQHRF3ANePBm9A/company-background_10000/0/1551215180620?e=2159024400&v=beta&t=BbDNKWvNXDp_00uJL6P2VyI2ldv8NdN162kjLkGgxNU">
-    </div>
     <div id="abt-me" class="sect-head dark-mode">
         <div id="am" class="anchor"></div>
         About Me
@@ -153,23 +149,170 @@
         Experience
         <div class="scroll underline dark-mode"></div>
     </div>
+    <div class="sect-content dark-mode">
+        <!-- <img src="https://media-exp1.licdn.com/dms/image/C561BAQHRF3ANePBm9A/company-background_10000/0/1551215180620?e=2159024400&v=beta&t=BbDNKWvNXDp_00uJL6P2VyI2ldv8NdN162kjLkGgxNU"> -->
+        <img id="iso-logo" src="https://media-exp3.licdn.com/dms/image/C4E0BAQEefxwwtRx5yg/company-logo_200_200/0/1551453606381?e=2159024400&v=beta&t=-Pwfw_jqJPfRkHpkAZcnHWawNLEoRaCqNsCwbXsPAPw">
+        <span id="ISO Group - Supply Chain Partner" class="content-head"></span>
+        <!-- <img id="myID" src="meSticker.png"> -->
+        <div id="cir"></div>
+    </div>
     <div id="edu" class="sect-head dark-mode">
         <div id="ed" class="anchor"></div>
         Education
         <div class="scroll underline dark-mode"></div>
     </div>
     <script>
-        // set underline widths
+        // set underline widths, dynamic content appears
         document.addEventListener("scroll", function() {
             var elements = document.getElementsByClassName("scroll underline");
             for (var i=0; i<elements.length; i++) {
                 var parentStyle = getComputedStyle(elements[i].parentElement);
-                var topBuffer = 40;
+                var topBuffer = 100;
                 var underlineLoadRange = 300;
                 var loadEndPos = parseInt(parentStyle.top)-(parseInt(parentStyle.height)+topBuffer);
                 var loadStartPos = loadEndPos - underlineLoadRange;
-                if ((window.scrollY-loadStartPos) > 0) elements[i].style.width = (100*((window.scrollY-loadStartPos)/underlineLoadRange).toString() + "%");
+                if ((window.scrollY-loadStartPos) > 0) {
+                    elements[i].style.width = (100*((window.scrollY-loadStartPos)/underlineLoadRange).toString() + "%");
+                    if (!elements[i].parentElement.classList.contains("full-bar") && (window.scrollY-loadStartPos) > underlineLoadRange) {
+                        elements[i].parentElement.className += " full-bar";
+                        var typeText = elements[i].parentElement.nextElementSibling;
+                        typeText = findClass(typeText, "content-head");
+                        if (typeText !== null) setTimeout(function() {
+                            writeText(typeText, typeText.id);
+                        }, 1000);
+                    }
+                }
                 else elements[i].style.width = 0;
+            }
+        });
+
+        function findClass(typeText, classTarget) {
+            if (typeText.classList.contains(classTarget)) return typeText;
+            if (typeText.children.length>0) return findClass(typeText.children[0], classTarget);
+            if (typeText.nextElementSibling !== null) return findClass(typeText.nextElementSibling, classTarget);
+            return null;
+        }
+
+        function writeText(typeText, textStore) {
+            setTimeout(function() {
+                typeText.innerHTML = typeText.innerHTML.substring(0,typeText.innerHTML.length-1);
+                typeText.innerHTML += textStore[0] + "|";
+                if (textStore.length>1) writeText(typeText, textStore.substring(1));
+                else {
+                    setTimeout(function() {
+                        typeText.innerHTML = typeText.innerHTML.substring(0,typeText.innerHTML.length-1);
+                    }, 500);
+                }
+            }, Math.random()*130);
+        }
+
+    </script>
+    <script>
+        class cirObj {
+            constructor(width, height, top, right, xSpeed, ySpeed) {
+                this.width = width;
+                this.height = height;
+                this.top = top;
+                this.right = right;
+                this.ySpeed = ySpeed;
+                this.xSpeed = xSpeed;
+                this.bumpIn = false;
+                this.bumpOut = false;
+                this.move = true;
+                this.bumpTimer = 0;
+                this.ease = 1;
+            }
+
+            init() {
+                document.getElementsByClassName("sect-content")[0].innerHTML += "<div class=\"cir\"></div>";
+            }
+        }
+
+        var cirList = [
+            new cirObj()
+        ];
+
+        var active = false;
+        var runner = 0;
+        var moveSpeed = 1; //ms per pixel shift
+        var ySpeed = 1;
+        var xSpeed = 1;
+        var bumpIn = false;
+        var bumpOut = false;
+        var move = true;
+        var bumpTimer = 0;
+        var ease = 1;
+        var cir = document.getElementById("cir");
+        var cirStyle = getComputedStyle(cir);
+        var r = cirStyle.height;
+        var bumpRY = Math.round((0.7*parseInt(r))/ySpeed)*ySpeed;
+        document.addEventListener("scroll", function() {
+            if (!active) {
+                if (window.scrollY>400 && window.scrollY<2000) {
+                    active = true;
+                    runner = setInterval(function() {
+                        console.log(bumpTimer, ease);
+                        if (bumpTimer>0) {
+                            if (bumpTimer%Math.floor(ease)==0) {
+                                cir.style.top = (parseInt(cirStyle.top) + ySpeed).toString() + "px";
+                                move = true;
+                            }
+                            else {
+                                move = false;
+                                cir.style.right = (parseInt(cirStyle.right) + xSpeed).toString() + "px";
+                            }
+                        }
+                        else {
+                            cir.style.top = (parseInt(cirStyle.top) + ySpeed).toString() + "px";
+                            cir.style.right = (parseInt(cirStyle.right) + xSpeed).toString() + "px";
+                        }
+                        if (bumpIn || bumpOut || parseInt(cirStyle.top)>parseInt(getComputedStyle(cir.parentElement).height)-parseInt(cirStyle.height)) {
+                            bumpTimer++;
+                            if (!(bumpIn || bumpOut)) bumpIn = true;
+                            else if (bumpIn && move) {
+                                cir.style.height = (parseInt(cirStyle.height) - ySpeed).toString() + "px";
+                                cir.style.width = (parseInt(cirStyle.width) + ySpeed).toString() + "px";
+                                cir.style.borderBottomRightRadius = (parseInt(cirStyle.borderBottomRightRadius) - ySpeed).toString() + "px";
+                                cir.style.borderBottomLeftRadius = (parseInt(cirStyle.borderBottomLeftRadius) - ySpeed).toString() + "px";
+                                ease += 0.25;
+                                if (parseInt(cirStyle.height) == bumpRY) {
+                                    bumpIn = false;
+                                    bumpOut = true;
+                                    ySpeed*=-1;
+                                }
+                            }
+                            else if (bumpOut && move) {
+                                cir.style.height = (parseInt(cirStyle.height) - ySpeed).toString() + "px";
+                                cir.style.width = (parseInt(cirStyle.width) + ySpeed).toString() + "px";
+                                cir.style.borderBottomRightRadius = (parseInt(cirStyle.borderBottomRightRadius) - ySpeed).toString() + "px";
+                                cir.style.borderBottomLeftRadius = (parseInt(cirStyle.borderBottomLeftRadius) - ySpeed).toString() + "px";
+                                ease -= 0.25;
+                                if (cirStyle.height === r) {
+                                    bumpOut = false;
+                                    bumpTimer = 0;
+                                }
+                            }
+                            // console.log(cir.getAnimations());
+                            // cirStyle.animation = cirStyle.substring(0,cirStyle.length-2) + 
+                        }
+                        if (parseInt(cirStyle.top)<0) {
+                            ySpeed *= -1;
+                            document.getElementById("cir").className = "u-squish";
+                        }
+                        if (parseInt(cirStyle.right)>parseInt(getComputedStyle(cir.parentElement).width)-parseInt(cirStyle.width)) {
+                            xSpeed*=-1;
+                            document.getElementById("cir").className = "l-squish";
+                        }
+                        if (parseInt(cirStyle.right)<0) {
+                            xSpeed *= -1;
+                            document.getElementById("cir").className = "r-squish";
+                        }
+                    }, moveSpeed);
+                }
+            }
+            else if (window.scrollY<400 || window.scrollY>2000) {
+                clearInterval(runner);
+                active = false;
             }
         });
     </script>

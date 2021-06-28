@@ -212,7 +212,7 @@ body.header-not-at-top #firstname {
     border: none;
     position: fixed;
     top: 129px;
-    right: 37px;
+    right: 2.1%;
 }
 
 #theme-btn.disabled {
@@ -220,12 +220,12 @@ body.header-not-at-top #firstname {
 }
 
 #theme-btn.dark-mode {
-    background-color: #1e1e1e;
+    background-color: transparent;
     transition: .4s;
 }
 
 #theme-btn.light-mode {
-    background-color: white;
+    background-color: transparent;
     transition: .4s;
 }
 
@@ -243,9 +243,9 @@ body.header-not-at-top #firstname {
 }
 
 #theme-switch {
-    position: fixed;
-    top: 137px;
-    right: 44.5px;
+    position: absolute;
+    top: 7.5px;
+    right: 7.5px;
     font-size: 35px;
     transition: none;
 }
@@ -300,7 +300,7 @@ body.header-not-at-top #firstname {
 }
 
 #edu {
-    top: 1640px;
+    top: 2500px;
 }
 
 .underline {
@@ -330,6 +330,80 @@ body.header-not-at-top #firstname {
     0% {width: 0;}
     50% {width: 0;}
     100% {width: 384.06px;}
+}
+
+.sect-content {
+    width: 95.833%;
+    height: auto;
+    position: absolute;
+    margin-left: 2.058%;
+}
+
+.sect-content.dark-mode {
+    background-color: #2e2e2e;
+}
+
+.sect-content.light-mode {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+}
+
+#cir {
+    height: 50px;
+    width: 50px;
+    background-color: #E50914;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.content-head {
+    font-size: 3em;
+    position: absolute;
+    margin-left: 20px;
+}
+
+#overview + .sect-content {
+
+}
+
+#personal-proj + .sect-content {
+
+}
+
+#exp + .sect-content {
+    height: 680px;
+    top: 1370px;
+    /* background-image: linear-gradient(to right, #E50914, #1e1e1e); */
+}
+
+#exp + .sect-content img {
+    opacity: 0;
+}
+
+#exp.full-bar + .sect-content img {
+    opacity: 1;
+    transition: 1s;
+}
+
+#exp + .sect-content .content-head {
+    top: 39px;
+}
+
+#exp.full-bar + .sect-content .type-container {
+    visibility: visible;
+}
+
+#iso-logo {
+    width: auto;
+    height: 20%;
+}
+
+#edu + .sect-content {
 }
 
 #contact-info {
@@ -364,7 +438,7 @@ body.header-not-at-top #firstname {
     height: .01em;
     width: 100%;
     position: absolute;
-    bottom: -103em;
+    bottom: -200em;
 }
 
 @media screen and (max-width: 1300px) { /*add dimensions for smaller pc/laptop not moile*/ 
