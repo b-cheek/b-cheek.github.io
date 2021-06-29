@@ -210,8 +210,12 @@
         class cirObj {
             constructor(width, height, top, right, xSpeed, ySpeed) {
                 cirObj.numInstances = (cirObj.numInstances || 0) + 1;
-                document.getElementsByClassName("sect-content")[0].innerHTML += "<div id=\"cir" + cirObj.numInstances + "\" class=\"cir\"></div>";
-                this.me = document.getElementById("cir" + cirObj.numInstances);
+                var el = document.createElement("div");
+                el.id = "cir" + (cirObj.numInstances-1);
+                el.className = "cir";
+                el.innerHTML += "<img src=dvd.png>";
+                document.getElementsByClassName("sect-content")[0].appendChild(el);
+                this.me = document.getElementById("cir" + (cirObj.numInstances-1));
                 this.myParent = this.me.parentElement;
                 this.myStyle = getComputedStyle(this.me);
                 this.r = width;
@@ -235,6 +239,7 @@
                 this.bumpTimerX = 0;
                 this.easeY = 1;
                 this.easeX = 1;
+                this.corner = false;
 
                 this.me.style.width = width + "px";
                 this.me.style.height = height + "px";
@@ -247,28 +252,63 @@
             }
         }
 
-        var cirList = [
-            new cirObj(70, 70, 10, 3, -3, 3), 
-            new cirObj(70, 70, 10, 3, -3, 3), 
-            new cirObj(70, 70, 10, 3, -3, 3), 
-            // new cirObj(40, 40, 10, 10, 2, -1)
-        ];
+        var cirList = [];
+
+        function randRangeInt(min, max) {
+            return Math.floor(Math.random()*(max-min)+min);
+        }
+
+        function addRandCir(parent) {
+            var con = getComputedStyle(parent);
+            var r = randRangeInt(parseInt(con.width)*0.001, parseInt(con.width)*0.1);
+            var top = randRangeInt(0, parseInt(con.height)-r);
+            var right = randRangeInt(0, parseInt(con.width)-r);
+            var xSpeed = Math.sign(Math.random()-0.5) * randRangeInt(1, 4);
+            var ySpeed = Math.sign(Math.random()-0.5) * randRangeInt(1, 4);
+            return new cirObj(r, r, top, right, xSpeed, ySpeed);
+        }
+
+        // cirList.push(addRandCir(document.getElementsByClassName("sect-content")[0]));
+        // cirList.push(addRandCir(document.getElementsByClassName("sect-content")[0]));
+        // cirList.push(addRandCir(document.getElementsByClassName("sect-content")[0]));
+        // cirList.push(addRandCir(document.getElementsByClassName("sect-content")[0]));
+        // cirList.push(addRandCir(document.getElementsByClassName("sect-content")[0]));
+        cirList.push(new cirObj(100, 100, 560, 30, 1, 1))
 
         var active = false;
         var runner = 0;
-        var moveSpeed = 10; //ms per pixel shift
+        var moveSpeed = 1; //ms per pixel shift
+        var friction = [true, false];
         document.addEventListener("scroll", function() {
             if (!active) {
                 if (window.scrollY>400 && window.scrollY<2000) {
                     active = true;
                     runner = setInterval(function() {
                         // cirList.forEach(cir => {
-                        for (let i=0; i<cirList.length; i++) {
+                        for (var i=0; i<cirList.length; i++) {
                             var cir = cirList[i];
-                            console.log(cir, cir.moveX, cir.moveY);
+                            console.log(cir.me.style.right, cir.myStyle.height, cir.easeY);
                             if (cir.bumpTimerY>0) {
                                 if (cir.bumpTimerX>0) {
-                                    //MOVE FOR BOTH MAKE SURE TO IMPLEMENT THIS
+                                    cir.corner = true;
+                                    console.log("DVD!");
+                                    if (cir.UBumpIn || cir.UBumpOut) cir.me.style.top = "1px";
+                                    else if (cir.DBumpIn || cir.DBumpOut) cir.me.style.top = (parseInt(getComputedStyle(cir.myParent).height) - cir.r-1).toString() + "px";
+                                    if (cir.RBumpIn || cir.RBumpOut) cir.me.style.right = "1px";
+                                    else if (cir.LBumpIn || cir.LBumpOut) cir.me.style.right = (parseInt(getComputedStyle(cir.myParent).width) - cir.r-1).toString() + "px";
+                                    cir.xSpeed*=-1;
+                                    cir.ySpeed*=-1;
+                                    console.log(cir.myStyle.top, cir.myStyle.right);
+                                    cir.bumpTimerX = -10;
+                                    cir.bumpTimerY = -10;
+                                    cir.UBumpIn = cir.UBumpOut = cir.DBumpIn = cir.DBumpOut = cir.LBumpIn = cir.LBumpOut = cir.RBumpIn = cir.RBumpOut = false;
+                                    cir.me.classList.toggle("dvd");
+                                    cir.me.firstChild.style.width = (cir.r) + "px";
+                                    cir.me.firstChild.style.height = (cir.r) + "px";
+                                    cir.me.style.width = (cir.r) + "px";
+                                    cir.me.style.height = (cir.r) + "px";
+                                    cir.me.style.backgroundColor = "transparent";
+                                    break;
                                 }
                                 else if (cir.bumpTimerY%Math.floor(cir.easeY)==0) {
                                     if (!(cir.UBumpIn || cir.UBumpOut)) {
@@ -279,7 +319,6 @@
                                 else {
                                     cir.moveY = false;
                                 }
-                                cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
                             }
                             else if (cir.bumpTimerX>0) {
                                 if (cir.bumpTimerX%Math.floor(cir.easeX)==0) {
@@ -291,18 +330,23 @@
                                 else {
                                     cir.moveX = false;
                                 }
-                                cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
                             }
                             else {
                                 cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
                                 cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
                             }
                             if (cir.DBumpIn || cir.DBumpOut || parseInt(cir.myStyle.top) >= parseInt(getComputedStyle(cir.myParent).height)-parseInt(cir.myStyle.height)) {
+                                if (cir.me.classList.contains("dvd")) {
+                                    cir.ySpeed*=-1;
+                                    break;
+                                }
                                 cir.bumpTimerY++;
                                 if (!(cir.DBumpIn || cir.DBumpOut)) cir.DBumpIn = true;
-                                else if (cir.DBumpIn && cir.moveY) {
+                                else if (cir.moveY) cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
+                                else if (friction[cir.bumpTimerY%friction.length]) cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
+                                if (cir.DBumpIn && cir.moveY) {
                                     cir.me.style.height = (parseInt(cir.myStyle.height) - cir.ySpeed).toString() + "px";
-                                    cir.me.style.width = (parseInt(cir.myStyle.width) + cir.ySpeed).toString() + "px";
+                                    if (!cir.corner) cir.me.style.width = (parseInt(cir.myStyle.width) + cir.ySpeed).toString() + "px";
                                     cir.me.style.borderBottomRightRadius = (parseInt(cir.myStyle.borderBottomRightRadius) - cir.ySpeed).toString() + "px";
                                     cir.me.style.borderBottomLeftRadius = (parseInt(cir.myStyle.borderBottomLeftRadius) - cir.ySpeed).toString() + "px";
                                     cir.easeY += 0.25;
@@ -314,7 +358,7 @@
                                 }
                                 else if (cir.DBumpOut && cir.moveY) {
                                     cir.me.style.height = (parseInt(cir.myStyle.height) - cir.ySpeed).toString() + "px";
-                                    cir.me.style.width = (parseInt(cir.myStyle.width) + cir.ySpeed).toString() + "px";
+                                    if (!cir.corner) cir.me.style.width = (parseInt(cir.myStyle.width) + cir.ySpeed).toString() + "px";
                                     cir.me.style.borderBottomRightRadius = (parseInt(cir.myStyle.borderBottomRightRadius) - cir.ySpeed).toString() + "px";
                                     cir.me.style.borderBottomLeftRadius = (parseInt(cir.myStyle.borderBottomLeftRadius) - cir.ySpeed).toString() + "px";
                                     cir.easeY -= 0.25;
@@ -325,11 +369,17 @@
                                 }
                             }
                             else if (cir.UBumpIn || cir.UBumpOut || parseInt(cir.myStyle.top)<=0) {
+                                if (cir.me.classList.contains("dvd")) {
+                                    cir.ySpeed*=-1;
+                                    break;
+                                }
                                 cir.bumpTimerY++;
                                 if (!(cir.UBumpIn || cir.UBumpOut)) cir.UBumpIn = true;
-                                else if (cir.UBumpIn && cir.moveY) {
+                                else if (cir.moveY) cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
+                                else if (friction[cir.bumpTimerY%friction.length]) cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
+                                if (cir.UBumpIn && cir.moveY) {
                                     cir.me.style.height = (parseInt(cir.myStyle.height) + cir.ySpeed).toString() + "px";
-                                    cir.me.style.width = (parseInt(cir.myStyle.width) - cir.ySpeed).toString() + "px";
+                                    if (!cir.corner) cir.me.style.width = (parseInt(cir.myStyle.width) - cir.ySpeed).toString() + "px";
                                     cir.me.style.borderTopRightRadius = (parseInt(cir.myStyle.borderTopRightRadius) + cir.ySpeed).toString() + "px";
                                     cir.me.style.borderTopLeftRadius = (parseInt(cir.myStyle.borderTopLeftRadius) + cir.ySpeed).toString() + "px";
                                     cir.easeY += 0.25;
@@ -341,7 +391,7 @@
                                 }
                                 else if (cir.UBumpOut && cir.moveY) {
                                     cir.me.style.height = (parseInt(cir.myStyle.height) + cir.ySpeed).toString() + "px";
-                                    cir.me.style.width = (parseInt(cir.myStyle.width) - cir.ySpeed).toString() + "px";
+                                    if (!cir.corner) cir.me.style.width = (parseInt(cir.myStyle.width) - cir.ySpeed).toString() + "px";
                                     cir.me.style.borderTopRightRadius = (parseInt(cir.myStyle.borderTopRightRadius) + cir.ySpeed).toString() + "px";
                                     cir.me.style.borderTopLeftRadius = (parseInt(cir.myStyle.borderTopLeftRadius) + cir.ySpeed).toString() + "px";
                                     cir.easeY -= 0.25;
@@ -352,10 +402,16 @@
                                 }
                             }
                             if (cir.LBumpIn || cir.LBumpOut || parseInt(cir.myStyle.right) >= parseInt(getComputedStyle(cir.myParent).width)-parseInt(cir.myStyle.width)) {
+                                if (cir.me.classList.contains("dvd")) {
+                                    cir.xSpeed*=-1;
+                                    break;
+                                }
                                 cir.bumpTimerX++;
                                 if (!(cir.LBumpIn || cir.LBumpOut)) cir.LBumpIn = true;
-                                else if (cir.LBumpIn && cir.moveX) {
-                                    cir.me.style.height = (parseInt(cir.myStyle.height) + cir.xSpeed).toString() + "px";
+                                else if (cir.moveX) cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
+                                else if (friction[cir.bumpTimerX%friction.length]) cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
+                                if (cir.LBumpIn && cir.moveX) {
+                                    if (!cir.corner) cir.me.style.height = (parseInt(cir.myStyle.height) + cir.xSpeed).toString() + "px";
                                     cir.me.style.width = (parseInt(cir.myStyle.width) - cir.xSpeed).toString() + "px";
                                     cir.me.style.borderTopLeftRadius = (parseInt(cir.myStyle.borderTopLeftRadius) - cir.xSpeed).toString() + "px";
                                     cir.me.style.borderBottomLeftRadius = (parseInt(cir.myStyle.borderBottomLeftRadius) - cir.xSpeed).toString() + "px";
@@ -367,7 +423,7 @@
                                     }
                                 }
                                 else if (cir.LBumpOut && cir.moveX) {
-                                    cir.me.style.height = (parseInt(cir.myStyle.height) + cir.xSpeed).toString() + "px";
+                                    if (!cir.corner) cir.me.style.height = (parseInt(cir.myStyle.height) + cir.xSpeed).toString() + "px";
                                     cir.me.style.width = (parseInt(cir.myStyle.width) - cir.xSpeed).toString() + "px";
                                     cir.me.style.borderTopLeftRadius = (parseInt(cir.myStyle.borderTopLeftRadius) - cir.xSpeed).toString() + "px";
                                     cir.me.style.borderBottomLeftRadius = (parseInt(cir.myStyle.borderBottomLeftRadius) - cir.xSpeed).toString() + "px";
@@ -379,10 +435,16 @@
                                 }
                             }
                             else if (cir.RBumpIn || cir.RBumpOut || parseInt(cir.myStyle.right)<=0) {
+                                if (cir.me.classList.contains("dvd")) {
+                                    cir.xSpeed*=-1;
+                                    break;
+                                }
                                 cir.bumpTimerX++;
                                 if (!(cir.RBumpIn || cir.RBumpOut)) cir.RBumpIn = true;
-                                else if (cir.RBumpIn && cir.moveX) {
-                                    cir.me.style.height = (parseInt(cir.myStyle.height) - cir.xSpeed).toString() + "px";
+                                else if (cir.moveX) cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
+                                else if (friction[cir.bumpTimerX%friction.length]) cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
+                                if (cir.RBumpIn && cir.moveX) {
+                                    if (!cir.corner) cir.me.style.height = (parseInt(cir.myStyle.height) - cir.xSpeed).toString() + "px";
                                     cir.me.style.width = (parseInt(cir.myStyle.width) + cir.xSpeed).toString() + "px";
                                     cir.me.style.borderTopRightRadius = (parseInt(cir.myStyle.borderTopRightRadius) + cir.xSpeed).toString() + "px";
                                     cir.me.style.borderBottomRightRadius = (parseInt(cir.myStyle.borderBottomRightRadius) + cir.xSpeed).toString() + "px";
@@ -394,7 +456,7 @@
                                     }
                                 }
                                 else if (cir.RBumpOut && cir.moveX) {
-                                    cir.me.style.height = (parseInt(cir.myStyle.height) - cir.xSpeed).toString() + "px";
+                                    if (!cir.corner) cir.me.style.height = (parseInt(cir.myStyle.height) - cir.xSpeed).toString() + "px";
                                     cir.me.style.width = (parseInt(cir.myStyle.width) + cir.xSpeed).toString() + "px";
                                     cir.me.style.borderTopRightRadius = (parseInt(cir.myStyle.borderTopRightRadius) + cir.xSpeed).toString() + "px";
                                     cir.me.style.borderBottomRightRadius = (parseInt(cir.myStyle.borderBottomRightRadius) + cir.xSpeed).toString() + "px";

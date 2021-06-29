@@ -350,12 +350,28 @@ body.header-not-at-top #firstname {
 
 .cir {
     background-color: #E50914;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    border-bottom-left-radius: 25px;
+    border-radius: 50%;
     position: absolute;
 }
+
+.cir img {
+    width: 0;
+    height: auto;
+    transition: none !important;
+}
+
+/* .cir.dvd {
+    background-image: url(dvd.png);
+    background-size: 200px 120px;
+    border-radius: 0 !important;
+    height: 120px !important;
+    width: 200px !important;
+    background-color: transparent !important;
+    top: 100px !important;
+    right: 100px !important;
+    transform: rotate(360deg);
+    transition: 1s;
+} */
 
 .content-head {
     font-size: 3em;
