@@ -59,7 +59,7 @@ a:active {
 }
 
 #header {
-    z-index: 1;
+    z-index: 2;
     width: 100%;
     height: 2.3em;
     padding: 0.412em 1em;
@@ -337,10 +337,15 @@ body.header-not-at-top #firstname {
     height: auto;
     position: absolute;
     margin-left: 2.058%;
+    transition: 1s;
 }
 
 .sect-content.dark-mode {
     background-color: #2e2e2e;
+}
+
+.sect-content :not(.cir) {
+    z-index: 1;
 }
 
 .sect-content.light-mode {
@@ -349,9 +354,23 @@ body.header-not-at-top #firstname {
 }
 
 .cir {
-    background-color: #E50914;
     border-radius: 50%;
     position: absolute;
+    transition: background-color 1s;
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.cir.dvd {
+    filter: blur(5px) !important;
+}
+
+.cir.dark-mode {
+    background-color: #E50914;
+}
+
+.cir.light-mode {
+    background-color: #DB4437;
 }
 
 .cir img {
@@ -398,6 +417,7 @@ body.header-not-at-top #firstname {
 }
 
 #exp.full-bar + .sect-content img {
+    position: relative;
     opacity: 1;
     transition: 1s;
 }
@@ -419,7 +439,6 @@ body.header-not-at-top #firstname {
 }
 
 #contact-info {
-    z-index: 0;
     width: 100%;
     height: 50px;
     position: fixed;
@@ -484,7 +503,7 @@ body.header-not-at-top #firstname {
     }
 
     #nav-lbl .options-bar {
-        z-index: 3;
+        z-index: 4;
         height: 10px;
         width: 50px;
         background: white;
@@ -507,7 +526,7 @@ body.header-not-at-top #firstname {
     }
 
     #option-page {
-        z-index: 2;
+        z-index: 3;
         cursor: initial;
         width: 100%;
         height: 0;
