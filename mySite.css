@@ -362,7 +362,7 @@ body.header-not-at-top #firstname {
 }
 
 .cir.dvd {
-    filter: blur(5px) !important;
+    /* filter: blur(5px) !important; */
 }
 
 .cir.dark-mode {
