@@ -343,7 +343,7 @@
 
         var connSpeed = navigator.connection.downlink;
         console.log(connSpeed);
-        for (var i=0; i<Math.floor(connSpeed*2); i++) {
+        for (var i=0; i<Math.floor(connSpeed*3); i++) {
             cirList.push(addRandCir(document.getElementsByClassName("sect-content")[0]));
         }
 
@@ -351,7 +351,7 @@
 
         var active = false;
         var runner = 0;
-        var moveSpeed = 30; //ms per pixel shift
+        var moveSpeed = 1; //ms per pixel shift
         var friction = [true, false, false];
         document.addEventListener("scroll", function() {
             if (!active) {
@@ -364,7 +364,6 @@
                             console.log(cir.myStyle.width, cir.moveX, cir.easeX);
                             if (cir.bumpTimerY>0) {
                                 if (cir.bumpTimerX>0) {
-                                    console.log(Date.now()%100);
                                     if (Date.now()%1000==0) {
                                         console.log("DVD!");
                                         if (cir.UBumpIn || cir.UBumpOut) cir.me.style.top = "1px";
