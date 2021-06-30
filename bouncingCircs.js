@@ -36,8 +36,6 @@ class cirObj {
         this.easeY = 1;
         this.easeX = 1;
         this.corner = false;
-        this.xCorner = false;
-        this.yCorner = false;
 
         this.me.style.width = width + "px";
         this.me.style.height = height + "px";
@@ -47,7 +45,7 @@ class cirObj {
         this.me.style.borderTopRightRadius = 0.5*this.r + "px";
         this.me.style.borderBottomRightRadius = 0.5*this.r + "px";
         this.me.style.borderBottomLeftRadius = 0.5*this.r + "px";
-        // this.me.style.filter = "blur(" + (this.r/10) + "px)";
+        this.me.style.filter = "blur(" + (this.r/10) + "px)";
     }
     changeColor() {
         var newColor;
@@ -63,7 +61,7 @@ var cirList = [];
 
 function addRandCir(parent) {
     var con = getComputedStyle(parent);
-    var r = randRangeInt(parseInt(con.width)*0.01, parseInt(con.width)*0.1);
+    var r = randRangeInt(parseInt(con.width)*0.001, parseInt(con.width)*0.1);
     var top = randRangeInt(0, parseInt(con.height)-r);
     var right = randRangeInt(0, parseInt(con.width)-r);
     var xSpeed = Math.sign(Math.random()-0.5) * randRangeInt(1, 4);
@@ -133,11 +131,9 @@ function addRandCir(parent) {
 
 var connSpeed = navigator.connection.downlink;
 console.log(connSpeed);
-for (var i=0; i<Math.floor(connSpeed*2); i++) {
+for (var i=0; i<Math.floor(connSpeed*3); i++) {
     cirList.push(addRandCir(document.getElementsByClassName("sect-content")[0]));
 }
-
-// cirList.push(new cirObj(100, 100, 10, 20, -1, -1))
 
 var active = false;
 var runner = 0;
@@ -151,49 +147,27 @@ document.addEventListener("scroll", function() {
                 // cirList.forEach(cir => {
                 for (var i=0; i<cirList.length; i++) {
                     var cir = cirList[i];
-                    console.log(cir.myStyle.width, cir.moveX, cir.easeX);
                     if (cir.bumpTimerY>0) {
                         if (cir.bumpTimerX>0) {
-                            console.log(Date.now()%100);
-                            if (Date.now()%1000==0) {
-                                console.log("DVD!");
-                                if (cir.UBumpIn || cir.UBumpOut) cir.me.style.top = "1px";
-                                else if (cir.DBumpIn || cir.DBumpOut) cir.me.style.top = (parseInt(getComputedStyle(cir.myParent).height) - cir.r-1).toString() + "px";
-                                if (cir.RBumpIn || cir.RBumpOut) cir.me.style.right = "1px";
-                                else if (cir.LBumpIn || cir.LBumpOut) cir.me.style.right = (parseInt(getComputedStyle(cir.myParent).width) - cir.r-1).toString() + "px";
-                                cir.xSpeed*=-1;
-                                cir.ySpeed*=-1;
-                                cir.bumpTimerX = -10;
-                                cir.bumpTimerY = -10;
-                                cir.UBumpIn = cir.UBumpOut = cir.DBumpIn = cir.DBumpOut = cir.LBumpIn = cir.LBumpOut = cir.RBumpIn = cir.RBumpOut = false;
-                                cir.me.classList.toggle("dvd");
-                                cir.me.firstChild.style.width = (cir.r) + "px";
-                                cir.me.style.width = (cir.r) + "px";
-                                cir.me.style.height = cir.me.firstChild.style.height;
-                                cir.me.style.backgroundColor = "transparent";
-                                break;
-                            }
-                            else {
-                                if (!cir.corner) {
-                                    cir.yCorner = (cir.bumpTimerY>cir.bumpTimerX) ? true : false;
-                                    cir.xCorner = !cir.yCorner;
-                                }
-                                cir.corner = true;
-                                if (cir.bumpTimerY%Math.min(3, Math.floor(cir.easeY))==0) {
-                                    if (!(cir.UBumpIn || cir.UBumpOut)) cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
-                                    cir.moveY = true;
-                                }
-                                else cir.moveY = false;
-
-
-                                if (cir.bumpTimerX%Math.min(3, Math.floor(cir.easeX))==0) {
-                                    if (!(cir.RBumpIn || cir.RBumpOut)) cir.me.style.right = (parseInt(cir.myStyle.top) + cir.xSpeed).toString() + "px";
-                                    cir.moveX = true;
-                                }
-                                else cir.moveX = false;
-                            }
+                            cir.corner = true;
+                            console.log("DVD!");
+                            if (cir.UBumpIn || cir.UBumpOut) cir.me.style.top = "1px";
+                            else if (cir.DBumpIn || cir.DBumpOut) cir.me.style.top = (parseInt(getComputedStyle(cir.myParent).height) - cir.r-1).toString() + "px";
+                            if (cir.RBumpIn || cir.RBumpOut) cir.me.style.right = "1px";
+                            else if (cir.LBumpIn || cir.LBumpOut) cir.me.style.right = (parseInt(getComputedStyle(cir.myParent).width) - cir.r-1).toString() + "px";
+                            cir.xSpeed*=-1;
+                            cir.ySpeed*=-1;
+                            cir.bumpTimerX = -10;
+                            cir.bumpTimerY = -10;
+                            cir.UBumpIn = cir.UBumpOut = cir.DBumpIn = cir.DBumpOut = cir.LBumpIn = cir.LBumpOut = cir.RBumpIn = cir.RBumpOut = false;
+                            cir.me.classList.toggle("dvd");
+                            cir.me.firstChild.style.width = (cir.r) + "px";
+                            cir.me.style.width = (cir.r) + "px";
+                            cir.me.style.height = cir.me.firstChild.style.height;
+                            cir.me.style.backgroundColor = "transparent";
+                            break;
                         }
-                        else if (cir.bumpTimerY%Math.min(3, Math.floor(cir.easeY))==0) {
+                        else if (cir.bumpTimerY%Math.floor(cir.easeY)==0) {
                             if (!(cir.UBumpIn || cir.UBumpOut)) {
                                 cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
                             }
@@ -202,10 +176,9 @@ document.addEventListener("scroll", function() {
                         else {
                             cir.moveY = false;
                         }
-                        if (cir.corner && cir.xCorner) cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
                     }
                     else if (cir.bumpTimerX>0) {
-                        if (cir.bumpTimerX%Math.min(3, Math.floor(cir.easeX))==0) {
+                        if (cir.bumpTimerX%Math.floor(cir.easeX)==0) {
                             if (!(cir.RBumpIn || cir.RBumpOut)) {
                                 cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
                             }
@@ -214,17 +187,10 @@ document.addEventListener("scroll", function() {
                         else {
                             cir.moveX = false;
                         }
-                        if (cir.corner && cir.yCorner) cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
                     }
                     else {
                         cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
                         cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
-                        if (parseInt(cir.myStyle.borderTopRightRadius)!==0.5*cir.r) cir.me.style.borderTopRightRadius = (parseInt(cir.myStyle.borderTopRightRadius) + Math.sign(0.5*cir.r - parseInt(cir.myStyle.borderTopRightRadius))).toString() + "px";
-                        if (parseInt(cir.myStyle.borderTopLeftRadius)!==0.5*cir.r) cir.me.style.borderTopLeftRadius = (parseInt(cir.myStyle.borderTopLeftRadius) + Math.sign(0.5*cir.r - parseInt(cir.myStyle.borderTopLeftRadius))).toString() + "px";
-                        if (parseInt(cir.myStyle.borderBottomRightRadius)!==0.5*cir.r) cir.me.style.borderBottomRightRadius = (parseInt(cir.myStyle.borderBottomRightRadius) + Math.sign(0.5*cir.r - parseInt(cir.myStyle.borderBottomRightRadius))).toString() + "px";
-                        if (parseInt(cir.myStyle.borderBottomLeftRadius)!==0.5*cir.r) cir.me.style.borderBottomLeftRadius = (parseInt(cir.myStyle.borderBottomLeftRadius) + Math.sign(0.5*cir.r - parseInt(cir.myStyle.borderBottomLeftRadius))).toString() + "px";
-                        if (parseInt(cir.myStyle.width)!==cir.r) cir.me.style.width = (parseInt(cir.myStyle.width) + Math.sign(cir.r - parseInt(cir.myStyle.width))).toString() + "px";
-                        if (parseInt(cir.myStyle.height)!==cir.r) cir.me.style.height = (parseInt(cir.myStyle.height) + Math.sign(cir.r - parseInt(cir.myStyle.height))).toString() + "px";
                     }
                     if (cir.DBumpIn || cir.DBumpOut || parseInt(cir.myStyle.top) >= parseInt(getComputedStyle(cir.myParent).height)-parseInt(cir.myStyle.height)) {
                         if (cir.me.classList.contains("dvd")) {
@@ -234,8 +200,8 @@ document.addEventListener("scroll", function() {
                         }
                         cir.bumpTimerY++;
                         if (!(cir.DBumpIn || cir.DBumpOut)) cir.DBumpIn = true;
-                        else if (cir.moveY && !cir.corner) cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
-                        else if (friction[cir.bumpTimerY%friction.length] && !cir.corner) cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
+                        else if (cir.moveY) cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
+                        else if (friction[cir.bumpTimerY%friction.length]) cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
                         if (cir.DBumpIn && cir.moveY) {
                             cir.me.style.height = (parseInt(cir.myStyle.height) - cir.ySpeed).toString() + "px";
                             if (!cir.corner) cir.me.style.width = (parseInt(cir.myStyle.width) + cir.ySpeed).toString() + "px";
@@ -257,7 +223,6 @@ document.addEventListener("scroll", function() {
                             if (parseInt(cir.myStyle.height) >= cir.r) {
                                 cir.DBumpOut = false;
                                 cir.bumpTimerY = 0;
-                                cir.corner = false;
                             }
                         }
                     }
@@ -269,8 +234,8 @@ document.addEventListener("scroll", function() {
                         }
                         cir.bumpTimerY++;
                         if (!(cir.UBumpIn || cir.UBumpOut)) cir.UBumpIn = true;
-                        else if (cir.moveY && !cir.corner) cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
-                        else if (friction[cir.bumpTimerY%friction.length] && !cir.corner) cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
+                        else if (cir.moveY) cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
+                        else if (friction[cir.bumpTimerY%friction.length]) cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
                         if (cir.UBumpIn && cir.moveY) {
                             cir.me.style.height = (parseInt(cir.myStyle.height) + cir.ySpeed).toString() + "px";
                             if (!cir.corner) cir.me.style.width = (parseInt(cir.myStyle.width) - cir.ySpeed).toString() + "px";
@@ -292,7 +257,6 @@ document.addEventListener("scroll", function() {
                             if (parseInt(cir.myStyle.height) >= cir.r) {
                                 cir.UBumpOut = false;
                                 cir.bumpTimerY = 0;
-                                if (!(cir.RBumpIn || cir.RBumpOut)) cir.corner = false;
                             }
                         }
                     }
@@ -304,8 +268,8 @@ document.addEventListener("scroll", function() {
                         }
                         cir.bumpTimerX++;
                         if (!(cir.LBumpIn || cir.LBumpOut)) cir.LBumpIn = true;
-                        else if (cir.moveX && !cir.corner) cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
-                        else if (friction[cir.bumpTimerX%friction.length] && !cir.corner) cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
+                        else if (cir.moveX) cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
+                        else if (friction[cir.bumpTimerX%friction.length]) cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
                         if (cir.LBumpIn && cir.moveX) {
                             if (!cir.corner) cir.me.style.height = (parseInt(cir.myStyle.height) + cir.xSpeed).toString() + "px";
                             cir.me.style.width = (parseInt(cir.myStyle.width) - cir.xSpeed).toString() + "px";
@@ -327,7 +291,6 @@ document.addEventListener("scroll", function() {
                             if (parseInt(cir.myStyle.width) >= cir.r) {
                                 cir.LBumpOut = false;
                                 cir.bumpTimerX = 0;
-                                cir.corner = false;
                             }
                         }
                     }
@@ -339,8 +302,8 @@ document.addEventListener("scroll", function() {
                         }
                         cir.bumpTimerX++;
                         if (!(cir.RBumpIn || cir.RBumpOut)) cir.RBumpIn = true;
-                        else if (cir.moveX && !cir.corner) cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
-                        else if (friction[cir.bumpTimerX%friction.length] && !cir.corner) cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
+                        else if (cir.moveX) cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
+                        else if (friction[cir.bumpTimerX%friction.length]) cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
                         if (cir.RBumpIn && cir.moveX) {
                             if (!cir.corner) cir.me.style.height = (parseInt(cir.myStyle.height) - cir.xSpeed).toString() + "px";
                             cir.me.style.width = (parseInt(cir.myStyle.width) + cir.xSpeed).toString() + "px";
@@ -362,7 +325,6 @@ document.addEventListener("scroll", function() {
                             if (parseInt(cir.myStyle.width) >= cir.r) {
                                 cir.RBumpOut = false;
                                 cir.bumpTimerX = 0;
-                                if (!(cir.UBumpIn || cir.UBumpOut)) cir.corner = false;
                             }
                         }
                     }
