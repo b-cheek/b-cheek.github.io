@@ -246,6 +246,8 @@
                 this.easeY = 1;
                 this.easeX = 1;
                 this.corner = false;
+                this.cornerEvasionDepth = 5*this.r;
+                this.evasionChoice = true;
 
                 this.me.style.width = width + "px";
                 this.me.style.height = height + "px";
@@ -341,20 +343,21 @@
 
         var connSpeed = navigator.connection.downlink;
         console.log(connSpeed);
-        for (var i=0; i<Math.floor(connSpeed*3); i++) {
+        for (var i=0; i<1; i++) {//Math.floor(connSpeed*3); i++) {
             cirList.push(addRandCir(document.getElementsByClassName("sect-content")[0]));
         }
 
+        var time = 0;
         var active = false;
         var runner = 0;
-        var moveSpeed = 30; //ms per pixel shift
+        var moveSpeed = 1; //ms per pixel shift
         var friction = [true, false, false];
         document.addEventListener("scroll", function() {
             if (!active) {
                 if (window.scrollY>400 && window.scrollY<2000) {
                     active = true;
                     runner = setInterval(function() {
-                        // cirList.forEach(cir => {
+                        time++;
                         for (var i=0; i<cirList.length; i++) {
                             var cir = cirList[i];
                             if (cir.bumpTimerY>0) {
@@ -401,6 +404,19 @@
                             else {
                                 cir.me.style.top = (parseInt(cir.myStyle.top) + cir.ySpeed).toString() + "px";
                                 cir.me.style.right = (parseInt(cir.myStyle.right) + cir.xSpeed).toString() + "px";
+                                if (!cir.corner && (parseInt(cir.myStyle.top) + cir.cornerEvasionDepth*cir.ySpeed > parseInt(getComputedStyle(cir.myParent).height) - parseInt(cir.myStyle.height) || parseInt(cir.myStyle.top) + cir.cornerEvasionDepth*cir.ySpeed < 0)) {
+                                    if (parseInt(cir.myStyle.right) + cir.cornerEvasionDepth*cir.xSpeed > parseInt(getComputedStyle(cir.myParent).width) - parseInt(cir.myStyle.width) || parseInt(cir.myStyle.right) + cir.cornerEvasionDepth*cir.xSpeed < 0)  {
+                                        if (Math.abs(cir.xSpeed)>Math.abs(cir.ySpeed)) {
+                                            cir.me.style.top = (parseInt(cir.myStyle) + Math.sign(cir.ySpeed)).toString() + "px";
+                                            cir.me.style.right = (parseInt(cir.myStyle.right) - Math.sign(cir.xSpeed)).toString() + "px";
+                                        }
+                                        else {
+                                            cir.me.style.right = (parseInt(cir.myStyle.right) + Math.sign(cir.xSpeed)).toString() + "px";
+                                            cir.me.style.top = (parseInt(cir.myStyle) - Math.sign(cir.ySpeed)).toString() + "px";
+                                        }
+                                        console.log("evade");
+                                    }
+                                } 
                             }
                             if (cir.DBumpIn || cir.DBumpOut || parseInt(cir.myStyle.top) >= parseInt(getComputedStyle(cir.myParent).height)-parseInt(cir.myStyle.height)) {
                                 if (cir.me.classList.contains("dvd")) {
@@ -433,6 +449,7 @@
                                     if (parseInt(cir.myStyle.height) >= cir.r) {
                                         cir.DBumpOut = false;
                                         cir.bumpTimerY = 0;
+                                        cir.evasionChoice = !cir.evasionChoice;
                                     }
                                 }
                             }
@@ -467,6 +484,7 @@
                                     if (parseInt(cir.myStyle.height) >= cir.r) {
                                         cir.UBumpOut = false;
                                         cir.bumpTimerY = 0;
+                                        cir.evasionChoice = !cir.evasionChoice;
                                     }
                                 }
                             }
@@ -501,6 +519,7 @@
                                     if (parseInt(cir.myStyle.width) >= cir.r) {
                                         cir.LBumpOut = false;
                                         cir.bumpTimerX = 0;
+                                        cir.evasionChoice = !cir.evasionChoice;
                                     }
                                 }
                             }
@@ -535,10 +554,10 @@
                                     if (parseInt(cir.myStyle.width) >= cir.r) {
                                         cir.RBumpOut = false;
                                         cir.bumpTimerX = 0;
+                                        cir.evasionChoice = !cir.evasionChoice;
                                     }
                                 }
                             }
-                        // });
                         }
                     }, moveSpeed);
                 }
