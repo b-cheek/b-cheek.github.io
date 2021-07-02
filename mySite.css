@@ -265,6 +265,8 @@ body.header-not-at-top #firstname {
     left: 0.5em;
     font-family: 'Courier New', Courier, monospace;
     font-size: 5em;
+    font-weight: initial;
+    margin: 0;
     transition: 1s;
 }
 
@@ -449,6 +451,7 @@ body.header-not-at-top #firstname {
     display: flex;
     justify-content: center;
     transition: 1s;
+    z-index: 2;
 }
 
 #contact-info.dark-mode {
@@ -634,6 +637,7 @@ body.header-not-at-top #firstname {
     #contact-info {
         height: 100px;
         font-size: 2em;
+        z-index: 2;
     }
 
     #contact-info span {
