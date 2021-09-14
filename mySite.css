@@ -1,3 +1,11 @@
+:root {
+    --dark-bg-color: #1e1e1e;
+    --light-bg-color: white;
+    --dark-text-color: white;
+    --light-text-color: black;
+    --light-link-color: #4285f4;    
+}
+
 * {
     box-sizing: border-box;
 }
@@ -45,9 +53,17 @@ body.light-mode p, body.light-mode span {
 
 a {
     text-decoration: none;
-    color: #1a73e8;
     padding: 3px;
     background-color: transparent;
+    transition: 1s;
+}
+
+a.light-mode {
+    color: #4285f4;
+}
+    
+a.dark-mode {
+    color: #00a1f1;
 }
 
 a:hover {
@@ -258,10 +274,17 @@ body.header-not-at-top #firstname {
     color: #4285F4;
 }
 
+section {
+    position: relative;
+}
+
 .sect-head {
     width: auto;
     height: 1.1em;
     position: absolute;
+    /* each section needs to be positioned absolute from the top
+    so that the scrolling underline can reference that value with
+    the  scrollY property of the window object*/
     left: 0.5em;
     font-family: 'Courier New', Courier, monospace;
     font-size: 5em;
@@ -285,24 +308,45 @@ body.header-not-at-top #firstname {
     bottom: 180px;
 }
 
-#overview {
+#overview-sect {
     top: 97px;
 }
 
-#abt-me {
-    top: 500px;
+#overview {
+    top: 0px;
 }
 
-#personal-proj {
-    top: 880px;
+#edu-sect {
+    top: 1000px;
+} 
+
+#edu {
+    top: 0px;
+}
+
+#exp-sect {
+    position: relative;
+    top: 2000px;
 }
 
 #exp {
-    top: 1260px;
+    top: 0px;
 }
 
-#edu {
-    top: 2500px;
+#personal-proj-sect {
+    top: 3000px;
+} 
+
+#personal-proj {
+    top: 0px;
+}
+
+#abt-me-sect {
+    top: 4000px;
+}
+
+#abt-me {
+    top: 0px;
 }
 
 .underline {
@@ -338,6 +382,7 @@ body.header-not-at-top #firstname {
     width: 95.833%;
     height: auto;
     position: absolute;
+    top: 110px;
     margin-left: 2.058%;
     transition: 1s;
 }
@@ -397,25 +442,88 @@ body.header-not-at-top #firstname {
 .content-head {
     font-size: 3em;
     position: absolute;
-    margin-left: 20px;
+    /* margin-left: 20px; */
+    top: 20px;
+    left: 224px;
+}
+
+.sect-content .content-date {
+    position: absolute;
+    opacity: 0;
+    /* margin-left: 20px; */
+    top: 78px;
+    left: 224px;
+    font-size: 2em;
+    color: #ccc;
+}
+
+.sect-content img {
+    opacity: 0;
+}
+
+.sect-content p {
+    margin: 10px 15px 10px 15px;
+    font-size: 2em;
+    opacity: 0;
 }
 
 #overview + .sect-content {
-
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#personal-proj + .sect-content {
+#construction-img {
+    opacity: 1;
+}
 
+#overview + .sect-content img {
+}
+
+#edu + .sect-content {
+    height: 680px;
+}
+
+#edu.full-bar + .sect-content img {
+    position: relative;
+    opacity: 1;
+    transition: 1s;
+}
+
+#edu.full-bar + .sect-content #ws-logo {
+    transition: 1s 5s
+}
+
+#edu.full-bar + .sect-content p, #edu.full-bar + .sect-content .content-date {
+    animation: text-fill 1s 1s forwards;
+}
+
+#edu.full-bar + .sect-content #ws-text, #edu.full-bar + .sect-content #ws-date {
+    animation: text-fill 1s 6s forwards;
+}
+
+#uf-logo {
+    width: auto;
+    height: 20%;
+}
+
+#ws-logo {
+    width: auto;
+    height: 20%;
+}
+
+#ws-logo + .content-head {
+    top: 332px;
+}
+
+#ws-date {
+    top: 390px;
 }
 
 #exp + .sect-content {
     height: 680px;
-    top: 1370px;
     /* background-image: linear-gradient(to right, #E50914, #1e1e1e); */
-}
-
-#exp + .sect-content img {
-    opacity: 0;
 }
 
 #exp.full-bar + .sect-content img {
@@ -424,8 +532,12 @@ body.header-not-at-top #firstname {
     transition: 1s;
 }
 
-#exp + .sect-content .content-head {
-    top: 39px;
+#exp.full-bar + .sect-content p, #exp.full-bar + .sect-content .content-date {
+    animation: text-fill 1s 1s forwards;
+}
+
+@keyframes text-fill {
+    to {opacity: 1;}
 }
 
 #exp.full-bar + .sect-content .type-container {
@@ -437,7 +549,12 @@ body.header-not-at-top #firstname {
     height: 20%;
 }
 
-#edu + .sect-content {
+#personal-proj + .sect-content {
+
+}
+
+#abt-me + .sect-content {
+
 }
 
 #contact-info {
@@ -472,7 +589,7 @@ body.header-not-at-top #firstname {
     height: .01em;
     width: 100%;
     position: absolute;
-    bottom: -200em;
+    bottom: -4000px;
 }
 
 @media screen and (max-width: 1300px) { /*add dimensions for smaller pc/laptop not moile*/ 

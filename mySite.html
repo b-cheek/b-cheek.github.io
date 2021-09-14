@@ -31,10 +31,10 @@
         <nav>
             <ul id="topnav" class="dark-mode">
                 <li><a class="active" href="#ov">Overview</a></li>
-                <li><a class="" href="#am">About Me</a></li>
-                <li><a class="" href="#pp">Personal Projects</a></li>
-                <li><a class="" href="#ex">Experience</a></li>
                 <li><a class="" href="#ed">Education</a></li>
+                <li><a class="" href="#ex">Experience</a></li>
+                <li><a class="" href="#pp">Personal Projects</a></li>
+                <li><a class="" href="#am">About Me</a></li>
             </ul>
         </nav>
         <label id="nav-lbl" class="dark-mode">
@@ -66,28 +66,35 @@
         <script src="themeSwitch.js"></script>
         <script src="topNavActivation.js"></script>
     </div>
-    <section>
+    <section id="overview-sect">
         <h2 id="overview" class="sect-head dark-mode">
             <div id="ov" class="anchor"></div>
             Overview
             <div class="underline dark-mode"></div>
         </h2>
+        <div class="sect-content dark-mode">
+            <img id="construction-img" alt="under construction">
+            <script src="randomConstruction.js"></script>
+        </div>
     </section>
-    <section>
-        <h2 id="abt-me" class="sect-head dark-mode">
-            <div id="am" class="anchor"></div>
-            About Me
+    <section id="edu-sect">
+        <h2 id="edu" class="sect-head dark-mode">
+            <div id="ed" class="anchor"></div>
+            Education
             <div class="scroll underline dark-mode"></div>
         </h2>
+        <div class="sect-content dark-mode">
+            <img id="uf-logo" alt="University of Florida logo" src="https://cdn.freebiesupply.com/images/large/2x/florida-gators-logo-png-transparent.png">
+            <span id="University of Florida - BSE Computer Science" class="content-head type-text"></span>
+            <span id="uf-date" class="content-date">August 2021 - Present</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu consequat ac felis donec. Pellentesque habitant morbi tristique senectus et netus. Eget nunc lobortis mattis aliquam faucibus purus in massa tempor. Non curabitur gravida arcu ac tortor</p>
+            <img id="ws-logo" alt="West Shore Jr./Sr. High logo" src="https://d2mkojm4rk40ta.cloudfront.net/us-east-1-src/prod/clientUploads/2021-05/04/1/45662/6075f8df-2ae5-4428-aa42-828b1564f828-bGKyYL.png">
+            <span id="West Shore Jr./Sr. High - High School Diploma" class="content-head type-text"></span>
+            <span id="ws-date" class="content-date">August 2015 - May 2021</span>
+            <p id="ws-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu consequat ac felis donec. Pellentesque habitant morbi tristique senectus et netus. Eget nunc lobortis mattis aliquam faucibus purus in massa tempor. Non curabitur gravida arcu ac tortor</p>
+        </div>
     </section>
-    <section>
-        <h2 id="personal-proj" class="sect-head dark-mode">
-            <div id="pp" class="anchor"></div>
-            Personal Projects
-            <div class="scroll underline dark-mode"></div>
-        </h2>
-    </section>
-    <section>
+    <section id="exp-sect">
         <h2 id="exp" class="sect-head dark-mode">
             <div id="ex" class="anchor"></div>
             Experience
@@ -95,23 +102,32 @@
         </h2>
         <div class="sect-content dark-mode">
             <!-- <img src="https://media-exp1.licdn.com/dms/image/C561BAQHRF3ANePBm9A/company-background_10000/0/1551215180620?e=2159024400&v=beta&t=BbDNKWvNXDp_00uJL6P2VyI2ldv8NdN162kjLkGgxNU"> -->
-            <img id="iso-logo" alt="iso-group company logo" src="https://media-exp3.licdn.com/dms/image/C4E0BAQEefxwwtRx5yg/company-logo_200_200/0/1551453606381?e=2159024400&v=beta&t=-Pwfw_jqJPfRkHpkAZcnHWawNLEoRaCqNsCwbXsPAPw">
-            <span id="ISO Group - Supply Chain Partner" class="content-head"></span>
+            <img id="iso-logo" alt="ISO-group company logo" src="https://media-exp1.licdn.com/dms/image/C4E0BAQEefxwwtRx5yg/company-logo_200_200/0/1551453606381?e=2159024400&v=beta&t=-Pwfw_jqJPfRkHpkAZcnHWawNLEoRaCqNsCwbXsPAPw">
+            <span id="ISO Group - Information Technology Intern" class="content-head type-text"></span>
+            <span id="iso-date" class="content-date">June - August 2021</span>
             <!-- <img id="myID" src="meSticker.png"> -->
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et ultrices neque ornare aenean euismod elementum nisi. Eu nisl nunc mi ipsum faucibus vitae aliquet. Sit amet dictum sit amet justo donec enim diam vulputate. Dui ut ornare lectus sit. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Urna porttitor rhoncus dolor purus non enim praesent elementum facilisis. Ultricies mi eget mauris pharetra et ultrices. Ultrices tincidunt arcu non sodales neque sodales. Urna porttitor rhoncus dolor purus. Gravida rutrum quisque non tellus orci.</p>
         </div>
     </section>
-    <section>
-        <h2 id="edu" class="sect-head dark-mode">
-            <div id="ed" class="anchor"></div>
-            Education
+    <section id="personal-proj-sect">
+        <h2 id="personal-proj" class="sect-head dark-mode">
+            <div id="pp" class="anchor"></div>
+            Personal Projects
+            <div class="scroll underline dark-mode"></div>
+        </h2>
+    </section>
+    <section id="abt-me-sect">
+        <h2 id="abt-me" class="sect-head dark-mode">
+            <div id="am" class="anchor"></div>
+            About Me
             <div class="scroll underline dark-mode"></div>
         </h2>
     </section>
     <script src="scrollEvents.js"></script>
     <!-- <script src="bouncingCircs.js"></script> -->
     <footer id="contact-info" class="dark-mode">
-        <span>Email: <a href="mailto:bwc1024@hotmail.com">bwc1024@hotmail.com</a></span>
-        <span>Phone: <a href="tel:13213129592">+1 (321) 312-9592</a></span>
+        <span>Email: <a class="dark-mode" href="mailto:bwc1024@hotmail.com">bwc1024@hotmail.com</a></span>
+        <span>Phone: <a class="dark-mode" href="tel:13213129592">+1 (321) 312-9592</a></span>
     </footer>
     <div class="whitespace"></div>
 
