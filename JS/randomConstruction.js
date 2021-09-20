@@ -942,5 +942,4 @@ let constructionGifs = [
 "http://www.textfiles.com/underconstruction/thefirepoliceunder_construction2.gif"
 ];
 
-console.log("GIFS:", constructionGifs);
 document.getElementById("construction-img").src = constructionGifs[Math.floor(Math.random() * 941)];

@@ -16,6 +16,7 @@ document.addEventListener("scroll", function() {
                 var section = elements[i].parentElement.nextElementSibling;
                 if (section !== null) {
                     var typeText = findClass(section, "type-text", []);
+                    // console.log(typeText);
                     let wait = 1;
                     for (let i of typeText) {
                         setTimeout(function() {
@@ -48,7 +49,9 @@ document.addEventListener("scroll", function() {
 });
 
 function findClass(typeText, classTarget, elements) {
+    console.log(typeText);
     if (typeText.classList.contains(classTarget)) elements.push(typeText);
+    if (typeText.nextElementSibling !== null) return findClass(typeText.nextElementSibling, classTarget, elements);
     if (typeText.children.length>0) return findClass(typeText.children[0], classTarget, elements);
     if (typeText.nextElementSibling !== null) return findClass(typeText.nextElementSibling, classTarget, elements);
     return elements;

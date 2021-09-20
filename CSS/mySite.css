@@ -3,6 +3,7 @@
     --light-bg-color: white;
     --dark-text-color: white;
     --light-text-color: black;
+    --dark-link-color: #00a1f1;
     --light-link-color: #4285f4;    
 }
 
@@ -36,19 +37,54 @@ body.light-mode {
     background-color: white;
 }
 
-p, span {
+p, span, h3 {
     font-family: 'Montserrat';
     margin: 0;
     opacity: 1;
     transition: 1s;
 }
 
-body.dark-mode p, body.dark-mode span {
+body.dark-mode p, body.dark-mode span, body.dark-mode h3 {
     color: white;
 }
 
-body.light-mode p, body.light-mode span {
+body.light-mode p, body.light-mode span, body.light-mode h3 {
     color: black;
+}
+
+.tech-exp {
+    transition: 0s;
+}
+
+.tech-exp:hover {
+    background-size: auto 86%, 100%;
+    background-position: bottom 50% right 5px, 0;
+    background-repeat: no-repeat;
+    transition: 0s;
+}
+
+.cpp-exp {
+    background: linear-gradient(45deg, rgba(99,155,211,0.5) 0%, rgba(55,130,188,0.5) 50%, rgba(4,77,141,0.5) 100%);
+}
+
+.cpp-exp:hover {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png"), linear-gradient(45deg, rgba(99,155,211,0.5) 0%, rgba(55,130,188,0.5) 50%, rgba(4,77,141,0.5) 100%);
+}
+
+.java-exp {
+    background: linear-gradient(45deg, rgba(241,137,37,0.5) 0%, rgba(83,122,151,0.5) 100%);
+}
+
+.java-exp:hover {
+    background-image: url("http://assets.stickpng.com/images/58480979cef1014c0b5e4901.png"), linear-gradient(45deg, rgba(241,137,37,0.5) 0%, rgba(83,122,151,0.5) 100%);
+}
+
+.py-exp {
+    background: linear-gradient(45deg, rgba(252,214,67,0.5) 0%, rgba(52,116,167,0.5) 100%);    
+}
+
+.py-exp:hover {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/2048px-Python-logo-notext.svg.png"), linear-gradient(45deg, rgba(252,214,67,0.5) 0%, rgba(52,116,167,0.5) 100%);    
 }
 
 a {
@@ -450,20 +486,55 @@ section {
 .sect-content .content-date {
     position: absolute;
     opacity: 0;
+    height: auto;
     /* margin-left: 20px; */
     top: 78px;
     left: 224px;
     font-size: 2em;
+}
+
+.sect-content.dark-mode .content-date {
     color: #ccc;
+}
+
+.sect-content.light-mode .content-date {
+    color: #333;
 }
 
 .sect-content img {
     opacity: 0;
 }
 
-.sect-content p {
-    margin: 10px 15px 10px 15px;
+.sect-content .content-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.sect-content h3 {
+    margin: 10px 0 0 0;
+    font-size: 2.2em;
+    justify-self: center;
+    opacity: 0;
+}
+
+.sect-content li {
+    margin: 8px;
     font-size: 2em;
+    font-family: Montserrat;
+    opacity: 0;
+}
+
+.sect-content.dark-mode li {
+    color: white;
+}
+
+.sect-content.light-mode li {
+    color: black;
+}
+
+.sect-content p {
+    padding: 5px 5px 5px 5px;
+    border-radius: 10px;
     opacity: 0;
 }
 
@@ -482,7 +553,7 @@ section {
 }
 
 #edu + .sect-content {
-    height: 680px;
+    height: auto;
 }
 
 #edu.full-bar + .sect-content img {
@@ -495,30 +566,63 @@ section {
     transition: 1s 5s
 }
 
-#edu.full-bar + .sect-content p, #edu.full-bar + .sect-content .content-date {
+#edu.full-bar + .sect-content p, #edu.full-bar + .sect-content .content-date, #edu.full-bar + .sect-content h3, #edu.full-bar +.sect-content li {
     animation: text-fill 1s 1s forwards;
 }
 
-#edu.full-bar + .sect-content #ws-text, #edu.full-bar + .sect-content #ws-date {
+#edu.full-bar + .sect-content #ws-date, 
+#edu.full-bar + .sect-content #ws-honors, 
+#edu.full-bar + .sect-content #ws-courses, 
+#edu.full-bar + .sect-content #ws-courses-list li,
+#edu.full-bar + .sect-content #ws-honors-list li,
+#edu.full-bar + .sect-content #ws-courses-list p, 
+#edu.full-bar + .sect-content #ws-honors-list p {
     animation: text-fill 1s 6s forwards;
 }
 
 #uf-logo {
     width: auto;
-    height: 20%;
+    height: 136px;
+}
+
+#uf-honors, #ws-honors {
+    grid-column-start: 1;
+    grid-row-start: 1
+}
+
+#uf-honors-list, #ws-honors-list {
+    grid-column-start: 1;
+    grid-row-start: 2
+}
+
+#uf-courses, #ws-courses {
+    grid-column-start: 2;
+    grid-row-start: 1
+}
+
+#uf-courses-list, #ws-courses-list {
+    grid-column-start: 2;
+    grid-row-start: 2
+}
+
+#cpp-logo {
+    height: 40px;
+    width: auto;
+    position: relative;
+    top: 7px;
 }
 
 #ws-logo {
     width: auto;
-    height: 20%;
+    height: 136px;
 }
 
 #ws-logo + .content-head {
-    top: 332px;
+    top: 442px;
 }
 
 #ws-date {
-    top: 390px;
+    top: 500px;
 }
 
 #exp + .sect-content {
