@@ -64,27 +64,27 @@ body.light-mode p, body.light-mode span, body.light-mode h3 {
 }
 
 .cpp-exp {
-    background: linear-gradient(45deg, rgba(99,155,211,0.5) 0%, rgba(55,130,188,0.5) 50%, rgba(4,77,141,0.5) 100%);
+    background: linear-gradient(45deg, rgba(99,155,211,0.5) 0%, rgba(55,130,188,0.5) 30%, rgba(4,77,141,0.5) 60%, rgba(4,77,141,0) 100%);
 }
 
 .cpp-exp:hover {
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png"), linear-gradient(45deg, rgba(99,155,211,0.5) 0%, rgba(55,130,188,0.5) 50%, rgba(4,77,141,0.5) 100%);
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png"), linear-gradient(45deg, rgba(99,155,211,0.5) 0%, rgba(55,130,188,0.5) 30%, rgba(4,77,141,0.5) 60%, rgba(4,77,141,0) 100%);
 }
 
 .java-exp {
-    background: linear-gradient(45deg, rgba(241,137,37,0.5) 0%, rgba(83,122,151,0.5) 100%);
+    background: linear-gradient(45deg, rgba(241,137,37,0.5) 0%, rgba(83,122,151,0.5) 60%, rgba(83,122,151,0) 100%);
 }
 
 .java-exp:hover {
-    background-image: url("http://assets.stickpng.com/images/58480979cef1014c0b5e4901.png"), linear-gradient(45deg, rgba(241,137,37,0.5) 0%, rgba(83,122,151,0.5) 100%);
+    background-image: url("http://assets.stickpng.com/images/58480979cef1014c0b5e4901.png"), linear-gradient(45deg, rgba(241,137,37,0.5) 0%, rgba(83,122,151,0.5) 60%, rgba(83,122,151,0) 100%);
 }
 
 .py-exp {
-    background: linear-gradient(45deg, rgba(252,214,67,0.5) 0%, rgba(52,116,167,0.5) 100%);    
+    background: linear-gradient(45deg, rgba(252,214,67,0.5) 0%, rgba(52,116,167,0.5) 60%, rgba(52,116,167,0) 100%);    
 }
 
 .py-exp:hover {
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/2048px-Python-logo-notext.svg.png"), linear-gradient(45deg, rgba(252,214,67,0.5) 0%, rgba(52,116,167,0.5) 100%);    
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/2048px-Python-logo-notext.svg.png"), linear-gradient(45deg, rgba(252,214,67,0.5) 0%, rgba(52,116,167,0.5) 60%, rgba(52,116,167, 0) 100%);
 }
 
 a {
