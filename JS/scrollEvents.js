@@ -46,10 +46,13 @@ document.addEventListener("scroll", function() {
         }
         else elements[i].style.width = 0;
     }
+
+    console.log("SCROLL");
+    
+
 });
 
 function findClass(typeText, classTarget, elements) {
-    console.log(typeText);
     if (typeText.classList.contains(classTarget)) elements.push(typeText);
     if (typeText.nextElementSibling !== null) return findClass(typeText.nextElementSibling, classTarget, elements);
     if (typeText.children.length>0) return findClass(typeText.children[0], classTarget, elements);
