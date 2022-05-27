@@ -325,6 +325,14 @@ section {
     position: relative;
 }
 
+.lg-view {
+    display: inline-block;
+}
+
+.sm-view {
+    display: none;
+}
+
 .sect-head {
     width: auto;
     height: 1.1em;
@@ -494,6 +502,14 @@ section {
     left: 224px;
 }
 
+.sm-view.content-head.sm-view.first-load {
+    opacity: 0
+}
+
+.sm-view.content-head.sm-view {
+    opacity: 1
+}
+
 .sect-content .content-date {
     position: absolute;
     opacity: 0;
@@ -502,6 +518,7 @@ section {
     top: 78px;
     left: 224px;
     font-size: 2em;
+    transition: 0s;
 }
 
 .sect-content.dark-mode .content-date {
@@ -577,7 +594,11 @@ section {
     transition: 1s 5s
 }
 
-#edu.full-bar + .sect-content p, #edu.full-bar + .sect-content .content-date, #edu.full-bar + .sect-content h3, #edu.full-bar +.sect-content li {
+#edu.full-bar + .sect-content p,
+#edu.full-bar + .sect-content .content-date, 
+#edu.full-bar + .sect-content h3, 
+#edu.full-bar + .sect-content li, 
+#edu.full-bar + .sect-content .sm-view.first-load {
     animation: text-fill 1s 1s forwards;
 }
 
@@ -587,7 +608,8 @@ section {
 #edu.full-bar + .sect-content #ws-courses-list li,
 #edu.full-bar + .sect-content #ws-honors-list li,
 #edu.full-bar + .sect-content #ws-courses-list p, 
-#edu.full-bar + .sect-content #ws-honors-list p {
+#edu.full-bar + .sect-content #ws-honors-list p,
+#edu.full-bar + .sect-content #ws-head.first-load {
     animation: text-fill 1s 6s forwards;
 }
 
@@ -628,7 +650,7 @@ section {
     height: 136px;
 }
 
-#ws-logo + .content-head {
+#ws-logo + .content-head, #ws-logo + .content-head + .content-head {
     top: 442px;
 }
 
@@ -866,22 +888,25 @@ section {
         font-size: 70px;
     } */
 
-
-    /* this is trying to fix text overflowing onto the date on narrower screens. Not totally sure what to do though */
-    span[id='University of Florida- BSE Computer Science'] {
-        font-size: 2em; /*this isn't working*/
+    .sm-view {
+        display: inline-block;
     }
 
-    #uf-date {
-
+    .lg-view {
+        display: none;
     }
 
-    span[id='West Shore Jr./Sr. High - High School Diploma'] {
-        font-size: 2em;
+    #exp-sect {
+        position: relative;
+        top: 2078.4px;
+    }
+
+    #ws-logo + .content-head, #ws-logo + .content-head + .content-head {
+        top: 520.4px;
     }
 
     #ws-date {
-
+        top: 578.4px;
     }
 
     #contact-info {
