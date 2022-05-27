@@ -518,7 +518,6 @@ section {
     top: 78px;
     left: 224px;
     font-size: 2em;
-    transition: 0s;
 }
 
 .sect-content.dark-mode .content-date {
@@ -652,10 +651,12 @@ section {
 
 #ws-logo + .content-head, #ws-logo + .content-head + .content-head {
     top: 442px;
+    left: 182.91px;
 }
 
 #ws-date {
     top: 500px;
+    left: 182.91px;
 }
 
 #exp + .sect-content {
@@ -669,6 +670,7 @@ section {
     transition: 1s;
 }
 
+#exp.full-bar + .sect-content p, #exp.full-bar + .sect-content .sm-view.first-load,
 #exp.full-bar + .sect-content p, #exp.full-bar + .sect-content .content-date {
     animation: text-fill 1s 1s forwards;
 }
@@ -684,6 +686,10 @@ section {
 #iso-logo {
     width: auto;
     height: 20%;
+}
+
+#iso-date, #iso-logo + .content-head, #iso-logo + .content-head + .content-head {
+    left: 155.62px;
 }
 
 #personal-proj + .sect-content {
