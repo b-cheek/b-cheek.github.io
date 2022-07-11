@@ -567,9 +567,9 @@ section {
 
 #overview + .sect-content {
     height: 700px;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 }
 
 #construction-img {
@@ -577,6 +577,32 @@ section {
 }
 
 #overview + .sect-content img {
+    width: 136px;
+    height: auto;
+    opacity: 1;
+    margin: 10px;
+    border-radius: 50%;
+    transition: 1s;
+}
+
+#headshot.dark-mode {
+    border: 5px solid var(--dark-bg-color);
+}
+
+#headshot.light-mode {
+    border: 5px solid var(--light-bg-color);
+}
+
+#ov-head {
+    font-size: 4em;
+    position: absolute;
+    left: 224px;
+}
+
+#elevator-pitch {
+    opacity: 1;
+    font-size: 3em;
+    margin: 20px;
 }
 
 #edu + .sect-content {
