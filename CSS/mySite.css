@@ -576,7 +576,7 @@ section {
     opacity: 1;
 }
 
-#overview + .sect-content img {
+#headshot {
     width: 136px;
     height: auto;
     opacity: 1;
@@ -599,6 +599,14 @@ section {
     position: absolute;
     left: 224px;
     top: 60px;
+}
+
+#overview-sect .skill-img {
+    height: 15%;
+    width: auto;
+    opacity: 1;
+    position: relative;
+    bottom: 10px;
 }
 
 #elevator-pitch {
