@@ -9,7 +9,7 @@ document.addEventListener("scroll", function() {
         var n = 0;
         var loadEndPos = parseInt(grandParentStyle.top)-(parseInt(parentStyle.height)+topBuffer);
         var loadStartPos = loadEndPos - underlineLoadRange;
-        console.log(elements)
+        // console.log(elements)
         if ((window.scrollY-loadStartPos) > 0) {
             elements[i].style.width = (100*((window.scrollY-loadStartPos)/underlineLoadRange).toString() + "%");
             if (!elements[i].parentElement.classList.contains("full-bar") && (window.scrollY-loadStartPos) > underlineLoadRange) {
@@ -54,7 +54,7 @@ document.addEventListener("scroll", function() {
         else elements[i].style.width = 0;
     }
 
-    console.log("SCROLL");
+    // console.log("SCROLL");
     
 
 });

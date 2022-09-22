@@ -601,6 +601,15 @@ section {
     top: 60px;
 }
 
+#skills-container {
+    height: 10vw;
+    width: 96%;
+    margin: 2%;
+    /* background-color: red; */
+    position: absolute;
+    bottom: 0;
+}
+
 #overview-sect .skill-img {
     height: 15%;
     width: auto;
@@ -939,7 +948,7 @@ section {
     }
 
     #elevator-pitch {
-        font-size: 4vh
+        font-size: 4vmin;
     }
 
     #exp-sect {

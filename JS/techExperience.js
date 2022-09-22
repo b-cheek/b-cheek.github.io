@@ -1,1 +1,0 @@
-let techExp = document.getElementsByClassName("tech-exp");
