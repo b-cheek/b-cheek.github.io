@@ -611,11 +611,11 @@ section {
 }
 
 #overview-sect .skill-img {
-    height: 15%;
+    /* height: 20%; */
     width: auto;
     opacity: 1;
-    position: relative;
-    bottom: 10px;
+    position: absolute;
+    /* bottom: 10px; */
 }
 
 #elevator-pitch {
