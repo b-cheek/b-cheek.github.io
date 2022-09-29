@@ -6,6 +6,12 @@ function randRangeDec(min, max, precision) { //Can return min up to but not incl
     return Math.floor((10**precision)*(Math.random()*(max-min)+min))/(10**precision);
 }
 
+// function generateAnimation(frames, size) {
+//     let res = [];
+//     for (let i=0; i<frames; i++) res.push(size*(3*(1-(i/frames))*Math.pow(i/frames, 2)+Math.pow(i/frames, 3)) + "%"); //Generates size multiplier for ease function
+//     return [...res, ...new Array(Math.floor(frames/10)).fill(size + "%"), ...res.reverse()]; //Leaves a little time at max size
+// }
+
 class SkillImage {
     constructor(name, src) {
         SkillImage.skillConfidenceRank = (SkillImage.skillConfidenceRank || 0) + 1; //Can't do 0 indexing because then the or statement will always put out -1
@@ -18,7 +24,17 @@ class SkillImage {
         this.confidenceRank = SkillImage.skillConfidenceRank - 1;
         this.position;
         this.size = Math.ceil(80 - (61/23)*this.confidenceRank); // equally divides the range of 20-80 based on confidence, 
-        this.el.style.height = this.size + "%";
+        this.el.style.height = "0%";
+    }
+
+    animate(animationSpeed, animationSmoothness) { //Smoothness is the number of sample points in the cubic
+        let easeArray = generateAnimation(animationSmoothness, this.size);
+        let animationIndex = 0;
+        let animation = setInterval(function(obj) {
+            obj.el.style.height = easeArray[animationIndex];
+            animationIndex++;
+            if (animationIndex>2*animationSmoothness+3) clearInterval(animation)
+        }, animationSpeed, this) //Using this inside of setInterval is referring to the window not the parent object
     }
 }
 
@@ -62,23 +78,21 @@ let possibleCoordinate;
 let possibleImage;
 let curWindowHeight;
 
-let renderSpeed = 30;
+let renderSpeed = 10;
 const skillGraphicLoader = setInterval(function() {
     if (loadedGraphics.length<totalSkills) {
-        console.log(loadedGraphics)
+        // console.log(loadedGraphics);
         curWindowHeight = parseInt(getComputedStyle(document.getElementById("skills-container")).height); // For intersection checking
         intersect = false;
         do {possibleImage = skillsArr[Math.floor(totalSkills*Math.pow(Math.random(), 3))]} //randomly (weighted towards more confident skills) selects an image to add 
         while (loadedGraphics.indexOf(possibleImage)!=-1); //stops from trying to add images that are already on the graphic
         possibleCoordinate = [randRangeInt(1, parseInt(getComputedStyle(document.getElementById("skills-container")).width)-(0.01*possibleImage.size*curWindowHeight)), randRangeInt(1, parseInt(getComputedStyle(document.getElementById("skills-container")).height)-(0.01*possibleImage.size*curWindowHeight))]; //finding a coordinate to place the image that won't put it outside the boundaries
-        console.log(possibleCoordinate, possibleImage.name, possibleImage.confidenceRank); 
         // imgSizePx = (loadedGraphics.length>0) ? (parseInt(getComputedStyle(loadedGraphics[0].el).height)) : 0; 
         for (let i=0; i<loadedGraphics.length; i++) { 
-            console.log("COLLISION DETECTION", possibleCoordinate[0], loadedGraphics[i].position[0], possibleImage.size, loadedGraphics[i].size); 
-            if ((possibleCoordinate[0]-loadedGraphics[i].position[0] > -(0.01*possibleImage.size*curWindowHeight) && possibleCoordinate[0]-loadedGraphics[i].position[0] < (0.01*loadedGraphics[i].size*curWindowHeight))
-             && (possibleCoordinate[1]-loadedGraphics[i].position[1] > -(0.01*possibleImage.size*curWindowHeight) && possibleCoordinate[1]-loadedGraphics[i].position[1] < (0.01*loadedGraphics[i].size*curWindowHeight))) { //Checking for intersections of width or height
+            if ((possibleCoordinate[0]-loadedGraphics[i].position[0] > -(0.01*possibleImage.size*curWindowHeight+20) && possibleCoordinate[0]-loadedGraphics[i].position[0] < (0.01*loadedGraphics[i].size*curWindowHeight+20)) //adding 20px margin of error for intersection
+             && (possibleCoordinate[1]-loadedGraphics[i].position[1] > -(0.01*possibleImage.size*curWindowHeight+20) && possibleCoordinate[1]-loadedGraphics[i].position[1] < (0.01*loadedGraphics[i].size*curWindowHeight+20))) { //Checking for intersections of width or height
                 intersect = true;
-                console.log("INTERSECT");
+                // console.log("INTERSECT");
                 break;
             }
         }
@@ -86,8 +100,21 @@ const skillGraphicLoader = setInterval(function() {
             possibleImage.position = possibleCoordinate;
             document.getElementById("skills-container").appendChild(possibleImage.el);
             loadedGraphics.push(possibleImage);
-            possibleImage.el.style.left = possibleCoordinate[0] + "px";
-            possibleImage.el.style.bottom = possibleCoordinate[1] + "px";
+            // possibleImage.el.style.left = possibleCoordinate[0] + "px" + (possibleImage.size*0.01*curWindowHeight); //Adjusting for centered scaling 
+            // possibleImage.el.style.bottom = possibleCoordinate[1] + "px" + (possibleImage.size*0.01*curWindowHeight);
+            randSpeed = 10000 + (totalSkills-possibleImage.confidenceRank)*(10000/totalSkills) + randRangeInt(-2000, 2000);
+            console.log(possibleImage.name, randSpeed);
+            // possibleImage.animate(randSpeed, 100);
+            possibleImage.el.animate(
+                [ { easing: 'ease-out', height: "0%", left: possibleCoordinate[0] + (possibleImage.size*0.01*curWindowHeight)/2 + "px", bottom: possibleCoordinate[1] + (possibleImage.size*0.01*curWindowHeight)/2 + "px", opacity:0 },
+                  { easing: 'ease-out', height: possibleImage.size + "%", left: possibleCoordinate[0] + "px", bottom: possibleCoordinate[1] + "px", opacity: 1 },
+                  { easing: 'ease-in', height: possibleImage.size + "%", left: possibleCoordinate[0] + "px", bottom: possibleCoordinate[1] + "px", opacity: 1 },
+                  { easing: 'ease-in', height: "0%", left: possibleCoordinate[0] + (possibleImage.size*0.01*curWindowHeight)/2 + "px", bottom: possibleCoordinate[1] + (possibleImage.size*0.01*curWindowHeight)/2 + "px", opacity: 0 } ],
+                randSpeed);
+            const removeFromArr = setTimeout(function(image) {
+                console.log(loadedGraphics.map(i => i.name))
+                loadedGraphics.splice(loadedGraphics.indexOf(image), 1);
+            }, randSpeed + 1000, possibleImage)
         }
     }
 }, renderSpeed)
