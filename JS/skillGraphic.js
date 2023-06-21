@@ -70,7 +70,7 @@ skillsArr.push(new SkillImage("MS-Azure", "https://upload.wikimedia.org/wikipedi
 // }
 
 let totalSkills = skillsArr.length;
-console.log(parseInt(getComputedStyle(document.getElementById("skills-container")).height))
+// console.log(parseInt(getComputedStyle(document.getElementById("skills-container")).height))
 
 let loadedGraphics = [];
 let intersect = false;
@@ -103,7 +103,7 @@ const skillGraphicLoader = setInterval(function() {
             // possibleImage.el.style.left = possibleCoordinate[0] + "px" + (possibleImage.size*0.01*curWindowHeight); //Adjusting for centered scaling 
             // possibleImage.el.style.bottom = possibleCoordinate[1] + "px" + (possibleImage.size*0.01*curWindowHeight);
             randSpeed = 10000 + (totalSkills-possibleImage.confidenceRank)*(10000/totalSkills) + randRangeInt(-2000, 2000);
-            console.log(possibleImage.name, randSpeed);
+            // console.log(possibleImage.name, randSpeed);
             // possibleImage.animate(randSpeed, 100);
             possibleImage.el.animate(
                 [ { easing: 'ease-out', height: "0%", left: possibleCoordinate[0] + (possibleImage.size*0.01*curWindowHeight)/2 + "px", bottom: possibleCoordinate[1] + (possibleImage.size*0.01*curWindowHeight)/2 + "px", opacity:0 },
@@ -112,7 +112,7 @@ const skillGraphicLoader = setInterval(function() {
                   { easing: 'ease-in', height: "0%", left: possibleCoordinate[0] + (possibleImage.size*0.01*curWindowHeight)/2 + "px", bottom: possibleCoordinate[1] + (possibleImage.size*0.01*curWindowHeight)/2 + "px", opacity: 0 } ],
                 randSpeed);
             const removeFromArr = setTimeout(function(image) {
-                console.log(loadedGraphics.map(i => i.name))
+                // console.log(loadedGraphics.map(i => i.name))
                 loadedGraphics.splice(loadedGraphics.indexOf(image), 1);
             }, randSpeed + 1000, possibleImage)
         }

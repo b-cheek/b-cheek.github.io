@@ -42,6 +42,7 @@ p, span, h3 {
     margin: 0;
     opacity: 1;
     transition: 1s;
+    overflow-wrap: break-word;
 }
 
 body.dark-mode p, body.dark-mode span, body.dark-mode h3 {
@@ -716,7 +717,8 @@ section {
 }
 
 #exp.full-bar + .sect-content p, #exp.full-bar + .sect-content .sm-view.first-load,
-#exp.full-bar + .sect-content p, #exp.full-bar + .sect-content .content-date {
+#exp.full-bar + .sect-content p, #exp.full-bar + .sect-content .content-date,
+#exp.full-bar + .sect-content li {
     animation: text-fill 1s 1s forwards;
 }
 
@@ -737,6 +739,25 @@ section {
     left: 155.62px;
 }
 
+#exp-container {
+    display: inline-block;
+    /* background-color: grey; */
+    height: 350px;
+    width: 96%;
+    margin: 2%
+}
+
+#iso-list {
+    font-size: 0.9em;
+}
+
+#globe-img {
+    width: auto;
+    height: 65%;
+    margin-left: 2em;
+    float: right;
+}
+
 #personal-proj + .sect-content {
 
 }
@@ -755,7 +776,7 @@ section {
     /* opacity: 0.5; */
     display: flex;
     justify-content: center;
-    transition: 1s;
+    transition: 0s;
     z-index: 2;
 }
 
@@ -771,6 +792,7 @@ section {
 
 #contact-info span {
     margin: 15px;
+    transition: 0s;
 }
 
 .whitespace {
