@@ -706,7 +706,7 @@ section {
 }
 
 #exp + .sect-content {
-    height: 680px;
+    height: 715px;
     /* background-image: linear-gradient(to right, #E50914, #1e1e1e); */
 }
 
@@ -714,6 +714,10 @@ section {
     position: relative;
     opacity: 1;
     transition: 1s;
+}
+
+#exp.full-bar + .sect-content #globe-img {
+    transition: 1s 1s;
 }
 
 #exp.full-bar + .sect-content p, #exp.full-bar + .sect-content .sm-view.first-load,
@@ -748,13 +752,13 @@ section {
 }
 
 #iso-list {
-    font-size: 0.9em;
+    font-size: 1em;
 }
 
 #globe-img {
     width: auto;
     height: 65%;
-    margin-left: 2em;
+    margin: 16px 0 0 2em;
     float: right;
 }
 
