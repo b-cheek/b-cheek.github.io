@@ -96,6 +96,14 @@ body.light-mode p, body.light-mode span, body.light-mode h3 {
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/2/21/Matlab_Logo.png"), linear-gradient(45deg, rgba(223,104,15,0.5) 0%, rgba(106,196,186,0.5) 60%, rgba(0,0,0,0) 100%);/* rgba(252,249,11,0) 100%);*/
 }
 
+.go-exp {
+    background: linear-gradient(45deg, rgba(246,210,162,0.5) 0%, rgba(105,215,226,0.5) 60%, rgb(255,255,255,0) 100%);
+}
+
+.go-exp:hover {
+    background-image: url("https://cdn.worldvectorlogo.com/logos/gopher.svg"), linear-gradient(45deg, rgba(246,210,162,0.5) 0%, rgba(105,215,226,0.5) 60%, rgb(255,255,255,0) 100%);
+}
+
 a {
     text-decoration: none;
     padding: 3px;
@@ -688,21 +696,6 @@ section {
     width: auto;
     position: relative;
     top: 7px;
-}
-
-#ws-logo {
-    width: auto;
-    height: 136px;
-}
-
-#ws-logo + .content-head, #ws-logo + .content-head + .content-head {
-    top: 442px;
-    left: 182.91px;
-}
-
-#ws-date {
-    top: 500px;
-    left: 182.91px;
 }
 
 #exp + .sect-content {
