@@ -398,7 +398,7 @@ section {
 }
 
 #personal-proj-sect {
-    top: 3000px;
+    top: 3500px;
 } 
 
 #personal-proj {
@@ -699,7 +699,7 @@ section {
 }
 
 #exp + .sect-content {
-    height: 715px;
+    height: 1215px;
     /* background-image: linear-gradient(to right, #E50914, #1e1e1e); */
 }
 
@@ -729,7 +729,7 @@ section {
 
 #iso-logo {
     width: auto;
-    height: 20%;
+    height: 143px;
 }
 
 #iso-date, #iso-logo + .content-head, #iso-logo + .content-head + .content-head {
@@ -754,6 +754,29 @@ section {
     margin: 16px 0 0 2em;
     float: right;
 }
+
+#l3h-logo {
+    width: auto;
+    height: 143px;
+    left: 10px;
+}
+
+#l3h-date, #l3h-logo + .content-head, #l3h-logo + .content-head + .content-head {
+    left: 160px;
+}
+
+#l3h-date {
+    top: 628px;
+}
+
+#l3h-logo + .content-head {
+    top: 570px;
+}
+
+#l3h-logo + .content-head + .content-head {
+    top: 710px;
+}
+
 
 #personal-proj + .sect-content {
 
@@ -972,7 +995,7 @@ section {
 
     #exp-sect {
         position: relative;
-        top: 2078.4px;
+        top: 2200px;
     }
 
     #ws-logo + .content-head, #ws-logo + .content-head + .content-head {
@@ -981,6 +1004,19 @@ section {
 
     #ws-date {
         top: 578.4px;
+    }
+
+    #l3h-logo {
+        top: 100px;
+        left: 10px;
+    }
+
+    #l3h-logo + .content-head + .content.head {
+        top: 750px;
+    }
+
+    #l3h-date {
+        top: 768px;
     }
 
     #contact-info {

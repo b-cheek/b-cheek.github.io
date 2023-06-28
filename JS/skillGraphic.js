@@ -71,7 +71,7 @@ skillsArr.push(new SkillImage("MATLAB", "https://upload.wikimedia.org/wikipedia/
 skillsArr.push(new SkillImage("C#", "https://pluralsight.imgix.net/paths/path-icons/csharp-e7b8fcd4ce.png"));
 skillsArr.push(new SkillImage("Docker", "https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png"));
 skillsArr.push(new SkillImage("Microsoft-SQL-Server", "https://www.sqlservertutorial.net/wp-content/uploads/sql-server-tutorial.svg"));
-skillsArr.push(new SkillImage("Sass", "https://sass-lang.com/assets/img/styleguide/seal-color-aef0354c.png"));
+skillsArr.push(new SkillImage("Sass", "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sass_Logo_Color.svg/768px-Sass_Logo_Color.svg.png?20150315202757"));
 skillsArr.push(new SkillImage("jQuery", "https://seeklogo.com/images/J/jquery-logo-CFE6ECE363-seeklogo.com.png"));
 skillsArr.push(new SkillImage("MS-Azure", "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/1200px-Microsoft_Azure.svg.png"));
 
