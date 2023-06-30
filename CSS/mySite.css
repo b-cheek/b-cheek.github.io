@@ -730,19 +730,19 @@ section {
     width: 0;
     height: 20%;
     border-radius: 5px;
-    transition: width 1s ease-in-out 1s;
+    transition: width 2s ease-in-out 5s;
 }
 
 .lang-bar.cpp {
-    background: linear-gradient(45deg, rgba(4,77,141,0) 0%, rgba(4,77,141,0.5) 30%, rgba(55,130,188,0.5) 60%, rgba(99,155,211,0.5) 100%);
+    background: linear-gradient(45deg, rgba(4,77,141) 0%, rgba(4,77,141) 30%, rgba(55,130,188) 60%, rgba(255, 255, 255) 100%);
 }
 
 .lang-bar.py {
-    background: linear-gradient(45deg, rgba(52,116,167,0) 0%, rgba(52,116,167,0.5) 60%, rgba(252,214,67,0.5) 100%);
+    background: linear-gradient(45deg, rgba(52,116,167) 0%, rgba(52,116,167) 60%, rgba(252,214,67) 100%);
 }
 
 .lang-bar.java {
-    background: linear-gradient(45deg, rgba(83,122,151,0) 0%, rgba(241,137,37,0.5) 80%, rgba(83,122,151,0.5) 100%);
+    background: linear-gradient(45deg, rgba(83,122,151) 25%, rgba(241,137,37) 50%, rgba(83,122,151) 100%);
 }
 
 #edu.full-bar + .sect-content #lang-display .lang-bar {
@@ -836,8 +836,15 @@ section {
     top: 628px;
 }
 
-#exp.full-bar + .sect-content #l3h-date, #exp.full-bar + .sect-content #l3h-logo {
-    animation: text-fill 1s 5s forwards;
+#exp + .sect-content #l3h-logo, #exp.sect-head + .sect-content #l3h-date {
+    animation: none;
+    opacity: 0;
+    transition: opacity 1s 5s;
+}
+
+#exp.full-bar + .sect-content #l3h-logo, #exp.full-bar + .sect-content #l3h-date {
+    opacity: 1;
+    transition: opacity 1s 5s;
 }
 
 #l3h-logo + .content-head {
@@ -1094,7 +1101,7 @@ section {
     #edu.sect-head + .sect-content #lang-display .lang-bar {
         width: 20%;
         height: 0;
-        transition: height 1s 1s;
+        transition: height 2s ease-in-out 5s;
     }
 
     #edu.full-bar + .sect-content #lang-display .lang-bar {
@@ -1108,8 +1115,9 @@ section {
 
     #exp.full-bar + .sect-content #l3h-logo {
         top: 690px;
+        animation: text-fill 1s 1s forwards;
     }
-
+    
     #l3h-logo + .content-head + .content.head {
         top: 750px;
     }
