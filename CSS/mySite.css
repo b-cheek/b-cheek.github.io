@@ -698,6 +698,7 @@ section {
     position: absolute;
     bottom: 5%;
     left: 2%;
+    opacity: 0;
     display: grid;
     grid-template-columns: 13% 5% 82%;
     grid-template-rows: 33.33% 33.33% 33.33%;
@@ -802,6 +803,10 @@ section {
     margin: 2%
 }
 
+.iso-text {
+    font-size: 2em;
+}
+
 #iso-list {
     font-size: 1em;
 }
@@ -813,12 +818,12 @@ section {
     float: right;
 }
 
-/* #l3h-logo {
+#l3h-logo {
     width: auto;
     height: 143px;
     position: absolute;
     left: 10px;
-} */
+}
 
 #exp.full-bar + .sect-content #l3h-logo {
     width: auto;
@@ -1128,6 +1133,11 @@ section {
 
     #exp.full-bar + .sect-content #l3h-date {
         animation: text-fill 1s 1s forwards;
+    }
+
+    #personal-proj-sect {
+        position: relative;
+        top: 3570px;
     }
 
     #contact-info {
