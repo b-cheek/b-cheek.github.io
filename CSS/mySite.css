@@ -628,9 +628,13 @@ section {
 }
 
 #elevator-pitch {
+    margin: 20px;
+}
+
+#elevator-pitch li {
     opacity: 1;
     font-size: 2.5vw;
-    margin: 20px;
+    margin-bottom: 0.5em;
 }
 
 #edu + .sect-content {
@@ -1072,8 +1076,9 @@ section {
         display: none;
     }
 
-    #elevator-pitch {
+    #elevator-pitch li{
         font-size: 4vmin;
+        margin-bottom: 1.5em;
     }
 
     #alg-class {

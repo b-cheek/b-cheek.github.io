@@ -41,7 +41,7 @@ class SkillImage {
 }
 
 let skillsArr = []
-skillsArr.push(new SkillImage("C++ logo", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png"));
+skillsArr.push(new SkillImage("C++", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png"));
 skillsArr.push(new SkillImage("Python", "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/2048px-Python-logo-notext.svg.png"));
 skillsArr.push(new SkillImage("vsCode", "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/2048px-Visual_Studio_Code_1.35_icon.svg.png"));
 skillsArr.push(new SkillImage("Git", "https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png"));
