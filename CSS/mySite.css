@@ -104,6 +104,23 @@ body.light-mode p, body.light-mode span, body.light-mode h3 {
     background-image: url("https://cdn.worldvectorlogo.com/logos/gopher.svg"), linear-gradient(45deg, rgba(246,210,162,0.5) 20%, rgba(105,215,226,0.5) 60%, rgb(255,255,255,0) 100%);
 }
 
+.arm-exp {
+    background: linear-gradient(45deg, rgba(0,146,190,0.5) 20%, rgba(255, 255, 255, 0.5) 60%, rgba(0, 0, 0, 0) 100%);
+}
+
+.arm-exp:hover {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Arm_logo_2017.svg/330px-Arm_logo_2017.svg.png"), linear-gradient(45deg, rgba(0,146,190,0.5) 20%, rgba(255, 255, 255, 0.5) 60%, rgba(0, 0, 0, 0) 100%);
+}
+
+.mysql-exp {
+    background: linear-gradient(45deg, rgba(236,162,50, 0.5) 20%, rgba(172,172,172, 0.5) 60%, rgba(0, 0, 0, 0) 100%);
+}
+
+.mysql-exp:hover {
+    background-image: url("https://www.mysql.com/common/logos/logo-mysql-170x115.png"), linear-gradient(45deg, rgba(236,162,50, 0.5) 20%, rgba(172,172,172, 0.5) 60%, rgba(0, 0, 0, 0) 100%);
+
+}
+
 a {
     text-decoration: none;
     padding: 3px;
@@ -587,7 +604,7 @@ section {
 
 #headshot {
     width: 136px;
-    height: auto;
+    height: 136px;
     opacity: 1;
     margin: 10px;
     border-radius: 50%;
@@ -750,8 +767,16 @@ section {
     background: linear-gradient(45deg, rgba(83,122,151) 25%, rgba(241,137,37) 50%, rgba(83,122,151) 100%);
 }
 
-#edu.full-bar + .sect-content #lang-display .lang-bar {
+#edu.full-bar + .sect-content #lang-display .lang-bar.cpp {
     width: 90%;
+}
+
+#edu.full-bar + .sect-content #lang-display .lang-bar.java {
+    width: 50%;
+}
+
+#edu.full-bar + .sect-content #lang-display .lang-bar.py {
+    width: 25%;
 }
 
 #cpp-logo {
@@ -1108,16 +1133,26 @@ section {
         height: 2px;
     }
 
-    #edu.sect-head + .sect-content #lang-display .lang-bar {
+    #edu.sect-head + .sect-content #lang-display .lang-bar.py, 
+    #edu.sect-head + .sect-content #lang-display .lang-bar.java, 
+    #edu.sect-head + .sect-content #lang-display .lang-bar.cpp {
         width: 20%;
         height: 0;
         transition: height 2s ease-in-out 5s;
     }
 
-    #edu.full-bar + .sect-content #lang-display .lang-bar {
+    #edu.full-bar + .sect-content #lang-display .lang-bar.cpp {
         height: 90%;
     }
 
+    #edu.full-bar + .sect-content #lang-display .lang-bar.java {
+        height: 50%;
+    }
+
+    #edu.full-bar + .sect-content #lang-display .lang-bar.py {
+        height: 25%;
+    }
+    
     #exp-sect {
         position: relative;
         top: 2200px;
