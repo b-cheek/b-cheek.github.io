@@ -1,4 +1,13 @@
-const request = new Request("https://api.github.com/users/b-cheek/repos");
+const token = "";
+const url = "https://api.github.com/users/b-cheek/repos";
+const headers = new Headers({
+  "Authorization": `Bearer ${token}`
+});
+
+const request = new Request(url, {
+  method: "GET",
+  // headers: headers
+});
 
 fetch(request)
   .then((response) => {

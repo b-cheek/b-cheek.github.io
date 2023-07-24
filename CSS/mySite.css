@@ -415,7 +415,7 @@ section {
 }
 
 #personal-proj-sect {
-    top: 3500px;
+    top: 3700px;
 } 
 
 #personal-proj {
@@ -423,7 +423,7 @@ section {
 }
 
 #abt-me-sect {
-    top: 4000px;
+    top: 4500px;
 }
 
 #abt-me {
@@ -787,7 +787,7 @@ section {
 }
 
 #exp + .sect-content {
-    height: 1215px;
+    height: 1175px;
     /* background-image: linear-gradient(to right, #E50914, #1e1e1e); */
 }
 
@@ -832,7 +832,7 @@ section {
     margin: 2%
 }
 
-.iso-text {
+.content-text {
     font-size: 2em;
 }
 
@@ -870,13 +870,15 @@ section {
     top: 628px;
 }
 
-#exp + .sect-content #l3h-logo, #exp.sect-head + .sect-content #l3h-date {
+#exp + .sect-content #l3h-logo, #exp.sect-head + .sect-content #l3h-date,
+#exp + .sect-content #l3h-container p, #exp + .sect-content #l3h-container ul {
     animation: none;
     opacity: 0;
     transition: opacity 1s 5s;
 }
 
-#exp.full-bar + .sect-content #l3h-logo, #exp.full-bar + .sect-content #l3h-date {
+#exp.full-bar + .sect-content #l3h-logo, #exp.full-bar + .sect-content #l3h-date,
+#exp.full-bar + .sect-content #l3h-container p, #exp.full-bar + .sect-content #l3h-container ul {
     opacity: 1;
     transition: opacity 1s 5s;
 }
@@ -889,6 +891,13 @@ section {
     top: 710px;
 }
 
+#l3h-container {
+    position: absolute;
+    bottom: 0;
+    width: 96%;
+    height: auto;
+    margin: 2%;
+}
 
 #personal-proj + .sect-content {
 
@@ -1158,6 +1167,10 @@ section {
         top: 2200px;
     }
 
+    #exp + .sect-content {
+        height: 1350px;
+    }
+
     #exp.full-bar + .sect-content #l3h-logo {
         top: 690px;
         animation: text-fill 1s 1s forwards;
@@ -1177,7 +1190,7 @@ section {
 
     #personal-proj-sect {
         position: relative;
-        top: 3570px;
+        top: 3750px;
     }
 
     #contact-info {
