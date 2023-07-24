@@ -899,9 +899,39 @@ section {
     margin: 2%;
 }
 
-#personal-proj + .sect-content {
+#l3h-list {
 
 }
+
+#personal-proj.full-bar + .sect-content img {
+    opacity: 1;
+}
+
+#personal-proj + .sect-content .content-head {
+    position: relative;
+    top: unset;
+    bottom: 50px;
+    left: 10px;
+}
+
+#personal-proj + .sect-content {
+    
+}
+
+#personal-proj.full-bar + .sect-content p {
+    animation: text-fill 1s forwards;
+}
+
+#cc-logo {
+    height: 140px;
+    width: auto;
+}
+
+#ecol-logo {
+    height: 140px;
+    width: auto;
+}
+
 
 #abt-me + .sect-content {
 
