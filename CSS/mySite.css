@@ -540,6 +540,7 @@ section {
     position: absolute;
     opacity: 0;
     height: auto;
+    max-width: 60vw;
     /* margin-left: 20px; */
     top: 78px;
     left: 224px;
@@ -815,17 +816,48 @@ section {
     visibility: visible;
 }
 
+#exp + .sect-content #iso-logo, #exp.sect-head + .sect-content #iso-date,
+#exp + .sect-content #iso-logo ~ .content-head, #exp + .sect-content #exp-container * { /*, #exp + .sect-content #iso-logo + .content-head + .content-head,
+#exp + .sect-content #exp-container {*/
+    animation: none;
+    opacity: 0;
+    transition: opacity 1s 5s;
+}
+
+#exp.full-bar + .sect-content #iso-logo, #exp.full-bar + .sect-content #iso-date,
+#exp.full-bar + .sect-content #iso-logo ~ .content-head, #exp.full-bar + .sect-content #exp-container * { /*, #exp + .sect-content #iso-logo + .content-head + .content-head {*/
+    opacity: 1;
+    transition: opacity 1s 5s;
+}
+
+/* #exp.full-bar + .sect-content #iso-logo, #exp.full-bar + .sect-content #exp-container .content-text,
+#exp.full-bar + .sect-content #exp-container li {
+    opacity: 1;
+    transition: 1s 5s;
+} */
+
 #iso-logo {
     width: auto;
     height: 143px;
 }
 
-#iso-date, #iso-logo + .content-head, #iso-logo + .content-head + .content-head {
-    left: 155.62px;
+#iso-date, #iso-logo + .content-head, .content-head.sm-view { /*#iso-logo + .content-head + .content-head {*/
+    position: relative;
+    left: 8px; /* I had to add a &nbsp; to fix a formatting error when no text in the type-text span */
+    top: revert;
+    bottom: 70px;
+}
+
+#iso-date {
+    display: block;
+    left: 168px;
+    bottom: 72px;
 }
 
 #exp-container {
     display: inline-block;
+    position: relative;
+    bottom: 60px;
     /* background-color: grey; */
     height: 350px;
     width: 96%;
@@ -850,53 +882,50 @@ section {
 #l3h-logo {
     width: auto;
     height: 143px;
-    position: absolute;
-    left: 10px;
+    position: static;
+    display: block;
+    margin: 20px 0 0 10px;
+    opacity: 0;
 }
 
 #exp.full-bar + .sect-content #l3h-logo {
-    width: auto;
-    height: 143px;
-    position: absolute;
-    left: 10px;
-    top: 550px;
+    opacity: 1;
+    transition: 1s;
 }
 
 #l3h-date, #l3h-logo + .content-head, #l3h-logo + .content-head + .content-head {
-    left: 160px;
-}
-
-#l3h-date {
-    top: 628px;
-}
-
-#exp + .sect-content #l3h-logo, #exp.sect-head + .sect-content #l3h-date,
-#exp + .sect-content #l3h-container p, #exp + .sect-content #l3h-container ul {
-    animation: none;
-    opacity: 0;
-    transition: opacity 1s 5s;
-}
-
-#exp.full-bar + .sect-content #l3h-logo, #exp.full-bar + .sect-content #l3h-date,
-#exp.full-bar + .sect-content #l3h-container p, #exp.full-bar + .sect-content #l3h-container ul {
-    opacity: 1;
-    transition: opacity 1s 5s;
-}
-
-#l3h-logo + .content-head {
-    top: 570px;
+    left: 170px;
 }
 
 #l3h-logo + .content-head + .content-head {
-    top: 710px;
+    position: absolute;
+    top: 40px;
+    bottom: unset;
+}
+
+#l3h-date {
+    top: 98px;
+}
+
+#exp.sect-head + .sect-content #l3h-date,
+#exp + .sect-content #l3h-container p, #exp + .sect-content #l3h-container ul {
+    opacity: 0;
+}
+
+#exp.full-bar + .sect-content #l3h-date,
+#exp.full-bar + .sect-content #l3h-container p, #exp.full-bar + .sect-content #l3h-container ul {
+    animation: text-fill 1s 1s forwards;
+}
+
+#l3h-logo + .content-head {
+    top: 40px;
+}
+
+#l3h-logo + .content-head + .content-head {
 }
 
 #l3h-container {
-    position: absolute;
-    bottom: 0;
-    width: 96%;
-    height: auto;
-    margin: 2%;
+    margin: 2% 0 2% 2%;
 }
 
 #l3h-list {
@@ -1202,16 +1231,16 @@ section {
     }
 
     #exp.full-bar + .sect-content #l3h-logo {
-        top: 690px;
+        /* top: 690px; */
         animation: text-fill 1s 1s forwards;
     }
     
     #l3h-logo + .content-head + .content.head {
-        top: 750px;
+        /* top: 750px; */
     }
 
     #l3h-date {
-        top: 768px;
+        /* top: 768px; */
     }
 
     #exp.full-bar + .sect-content #l3h-date {
