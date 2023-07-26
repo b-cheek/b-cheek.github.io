@@ -475,8 +475,16 @@ section {
     left: 47%;
     font-family: 'Montserrat';
     font-size: 6em;
-    color: white;
+    color: black;
     animation: arrow-flash 1s infinite alternate-reverse;
+}
+
+.sect-content.dark-mode::after {
+    color: white;
+}
+
+.sect-content.light-mode::after {
+    color: black;
 }
 
 @keyframes arrow-flash {
@@ -972,15 +980,28 @@ section {
 }
 
 #cc-logo {
-    height: 140px;
+    height: 120px;
     width: auto;
+    margin-left: 10px;
+}
+
+#misc-die {
+    height: 100px;
+    width: auto;
+    margin-left: 20px;
+    transition: 1s;
 }
 
 #ecol-logo {
-    height: 140px;
+    height: 120px;
     width: auto;
+    margin-left: 10px;
+    transition: 1s;
 }
 
+#ecol-logo.dark-mode, #misc-die.dark-mode {
+    filter: invert(1);
+}
 
 #abt-me + .sect-content {
 
