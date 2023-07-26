@@ -468,6 +468,26 @@ section {
     transition: 1s;
 }
 
+.sect-content::after {
+    content: "\2193";
+    position: absolute;
+    bottom: 5px;
+    left: 47%;
+    font-family: 'Montserrat';
+    font-size: 6em;
+    color: white;
+    animation: arrow-flash 1s infinite alternate-reverse;
+}
+
+@keyframes arrow-flash {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.sect-head.full-bar + .sect-content::after {
+    content: none;
+}
+
 .sect-content.dark-mode {
     background-color: #2e2e2e;
 }
