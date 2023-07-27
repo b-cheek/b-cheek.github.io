@@ -953,11 +953,23 @@ section {
 }
 
 #l3h-container {
-    margin: 2% 0 2% 2%;
+    margin: 2% 0 4% 2%;
 }
 
 #l3h-list {
 
+}
+
+#l3h-container #sda-logo {
+    height: 15em;
+    width: auto;
+    margin-right: 2%;
+    float: right;
+    transition: filter 1s, opacity 1s 1s;
+}
+
+#sda-logo.light-mode {
+    filter: invert(1);
 }
 
 #personal-proj.full-bar + .sect-content img {

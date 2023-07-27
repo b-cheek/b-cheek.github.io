@@ -65,7 +65,7 @@ skillsArr.push(new SkillImage("Postman", "https://res.cloudinary.com/postman/ima
 skillsArr.push(new SkillImage("Powershell", "https://upload.wikimedia.org/wikipedia/commons/2/2f/PowerShell_5.0_icon.png"));
 skillsArr.push(new SkillImage("Swagger", "https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png"));
 skillsArr.push(new SkillImage("ActiveMQ", "https://activemq.apache.org/assets/img/activemq_logo_icon.png"));
-skillsArr.push(new SkillImage("Burp-Suite", "../Resources/burp-suite-professional.svg"));
+skillsArr.push(new SkillImage("Burp-Suite", "./Resources/burp-suite-professional.svg"));
 skillsArr.push(new SkillImage(".NET", "https://upload.wikimedia.org/wikipedia/commons/7/7d/Microsoft_.NET_logo.svg"))
 skillsArr.push(new SkillImage("MATLAB", "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Matlab_Logo.png/667px-Matlab_Logo.png"));
 skillsArr.push(new SkillImage("C#", "https://pluralsight.imgix.net/paths/path-icons/csharp-e7b8fcd4ce.png"));
