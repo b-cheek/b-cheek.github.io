@@ -423,7 +423,7 @@ section {
 }
 
 #abt-me-sect {
-    top: 4500px;
+    top: 5000px;
 }
 
 #abt-me {
@@ -971,8 +971,8 @@ section {
     left: 10px;
 }
 
-#personal-proj + .sect-content {
-    
+#personal-proj + .sect-content * {
+    transition: 1s;
 }
 
 #personal-proj.full-bar + .sect-content p {
@@ -1004,7 +1004,11 @@ section {
 }
 
 #abt-me + .sect-content {
+    height: 1000px;
+}
 
+#abt-me.full-bar + .sect-content * {
+    opacity: 1;
 }
 
 #contact-info {
