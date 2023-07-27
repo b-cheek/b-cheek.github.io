@@ -979,8 +979,8 @@ section {
 #personal-proj + .sect-content .content-head {
     position: relative;
     top: unset;
-    bottom: 50px;
-    left: 10px;
+    bottom: 35px;
+    left: 12px;
 }
 
 #personal-proj + .sect-content * {
@@ -991,23 +991,43 @@ section {
     animation: text-fill 1s forwards;
 }
 
+#personal-proj + .sect-content .content-text {
+    margin-left: 2%;
+}
+
 #cc-logo {
     height: 120px;
     width: auto;
-    margin-left: 10px;
+    margin: 15px 0 0 10px;
+}
+
+#die-btn {
+    all: unset;
 }
 
 #misc-die {
     height: 100px;
     width: auto;
-    margin-left: 20px;
+    margin: 35px 0 0 20px;
     transition: 1s;
+}
+
+#misc-die.animate {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0% {transform: rotate(0deg);}
+    25% {transform: rotate(15deg);}
+    50% {transform: rotate(-15deg);}
+    75% {transform: rotate(15deg);}
+    100% {transform: rotate(0deg);}
 }
 
 #ecol-logo {
     height: 120px;
     width: auto;
-    margin-left: 10px;
+    margin: 35px 0 0 10px;
     transition: 1s;
 }
 
