@@ -995,6 +995,10 @@ section {
     margin-left: 2%;
 }
 
+#linesOfCode-container {
+    
+}
+
 #cc-logo {
     height: 120px;
     width: auto;
@@ -1045,6 +1049,7 @@ section {
 }
 
 #my-content {
+    padding-top: 2em;
     display: grid;
     grid-template-areas: 
     "music run"
@@ -1068,14 +1073,6 @@ section {
 
 #surf {
     grid-area: surf;
-}
-
-#song {
-    padding: 10px;
-    grid-area: song;
-    justify-self: start;
-    align-self: start;
-    font-size: 3em;
 }
 
 #contact-info {
