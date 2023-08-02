@@ -1001,6 +1001,15 @@ section {
 
 #linesOfCode-content {
     opacity: 0;
+    display: block;
+    font-size: 2em;
+    text-align: center;
+    margin: 1rem 0 1rem 0;
+}
+
+#bytesOfCode {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2em;
 }
 
 #cc-logo {
@@ -1009,8 +1018,15 @@ section {
     margin: 15px 0 0 10px;
 }
 
-#die-btn {
+#die-btn, #die-btn0 {
     all: unset;
+}
+
+#die-btn0 {
+    display: inline-flex;
+    position: relative;
+    top: 0.1em;
+    left: 0.2em;
 }
 
 #misc-die {
@@ -1020,7 +1036,13 @@ section {
     transition: 1s;
 }
 
-#misc-die.animate {
+#misc-die0 {
+    height: 1em;
+    width: auto;
+    transition: 1s;
+}
+
+#misc-die.animate, #misc-die0.animate {
     animation: shake 0.5s;
 }
 
@@ -1039,7 +1061,7 @@ section {
     transition: 1s;
 }
 
-#ecol-logo.dark-mode, #misc-die.dark-mode {
+#ecol-logo.dark-mode, #misc-die.dark-mode, #misc-die0.dark-mode {
     filter: invert(1);
 }
 

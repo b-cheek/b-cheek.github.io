@@ -108,19 +108,19 @@ const loadLang = () => {
   console.log("loadLang");
   let randIndex = Math.floor(Math.random() * keysArray.length);
   let bytes = langMap.get(keysArray[randIndex]);
-  let updateVals = []
+  let updateVals = [0, 1, 2, 3, 4, 5, 7, 9]
   // For ease out, start fast end slow
   // let fullBytes = bytes;
   // let decrement = 1;
-  // while (fullBytes >= 0) {
+  // while (fullBytes >= 10) {
   //   updateVals.push(fullBytes);
   //   fullBytes -= decrement;
   //   decrement += 1 //(Math.round(bytes/5000));
   // }
   // For ease in out, start slow end slow
-  updateValsRight = [];
-  let fullBytesLeft = 0;
-  let fullBytesRight = bytes;
+  updateValsRight = [bytes-8, bytes-6, bytes-4, bytes-3, bytes-2, bytes-1, bytes];
+  let fullBytesLeft = 11;
+  let fullBytesRight = bytes-10;
   let delta = 1;
   while (fullBytesLeft < fullBytesRight) {
     updateVals.push(fullBytesLeft);
@@ -131,19 +131,21 @@ const loadLang = () => {
   }
   updateVals = updateVals.concat(updateValsRight).reverse();
   console.log(updateVals)
-  let time = 3;
+  let time = 2;
   let exp = 3;
+  let extraWait = 0;
   for (let num=0; num<bytes+1; num++) {
     if (num==updateVals[updateVals.length-1]) {
       updateVals.pop();
+      if (updateVals.length < 20) extraWait += (20 - (updateVals.length))*7;
       setTimeout(function() {
         document.getElementById("bytesOfCode").innerHTML = num.toLocaleString();
-        console.log((4*time*(Math.pow((num/bytes)-0.5, 3)) + time/2)*1000, num);
+        console.log((Math.pow(2, exp-1)*time*(Math.pow((num/bytes)-0.5, exp)) + time/2)*1000 + extraWait, num);
       // }, 0);
       // }, (4*(1/(1+Math.exp(-5*((num-0.0054)/bytes))))-1.973)*1000); sigmoid function, start slow go fast
       // }, 2*Math.pow((num/bytes), 3)*1000); quadratic function, start fast go slow
       // }, (-time*Math.pow(1-(Math.pow((num/bytes), 2)), 0.5)+time)*1000); curve of oval, start fast end slow
-      }, (Math.pow(2, exp-1)*time*(Math.pow((num/bytes)-0.5, exp)) + time/2)*1000); // cubic function, ease in out
+      }, (Math.pow(2, exp-1)*time*(Math.pow((num/bytes)-0.5, exp)) + time/2)*1000 + extraWait); // cubic function, ease in out
     }
   }
   // setTimeout(() => {
@@ -165,3 +167,14 @@ let classWatcher = new ClassWatcher(document.getElementById("personal-proj"), "f
 if (document.getElementById("personal-proj").classList.contains("full-bar")) {
   loadLang();
 }
+
+document.getElementById("die-btn0").addEventListener("click", function(event) {
+    let dieElement = event.currentTarget.firstChild;
+    if (dieElement.classList.contains("animate")) return;
+    dieElement.classList.add("animate");
+    loadLang();
+    setTimeout(function() {
+        dieElement.classList.remove("animate");
+    }
+    , 3000);
+});
