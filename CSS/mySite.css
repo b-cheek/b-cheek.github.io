@@ -999,12 +999,16 @@ section {
     
 }
 
+body.dark-mode span.emphasize {
+    font-weight: bolder;
+}
+
 #linesOfCode-content {
     opacity: 0;
     display: block;
     font-size: 2em;
     text-align: center;
-    margin: 1rem 0 1rem 0;
+    margin: 1.5rem 0 0.5rem 0;
 }
 
 #bytesOfCode {
@@ -1052,6 +1056,12 @@ section {
     50% {transform: rotate(-15deg);}
     75% {transform: rotate(15deg);}
     100% {transform: rotate(0deg);}
+}
+
+.gh-link {
+    display: inline-flex;
+    position: relative;
+    top: 0.2em;
 }
 
 #ecol-logo {

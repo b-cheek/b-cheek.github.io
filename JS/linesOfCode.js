@@ -107,6 +107,9 @@ const keysArray = Array.from(langMap.keys());
 const loadLang = () => {
   console.log("loadLang");
   let randIndex = Math.floor(Math.random() * keysArray.length);
+  while (keysArray[randIndex] == document.getElementById("codeLang").innerHTML) {
+    randIndex = Math.floor(Math.random() * keysArray.length);
+  }
   let bytes = langMap.get(keysArray[randIndex]);
   let updateVals = [0, 1, 2, 3, 4, 5, 7, 9]
   // For ease out, start fast end slow
@@ -131,7 +134,7 @@ const loadLang = () => {
   }
   updateVals = updateVals.concat(updateValsRight).reverse();
   console.log(updateVals)
-  let time = 2;
+  let time = 1.5;
   let exp = 3;
   let extraWait = 0;
   for (let num=0; num<bytes+1; num++) {
@@ -176,5 +179,5 @@ document.getElementById("die-btn0").addEventListener("click", function(event) {
     setTimeout(function() {
         dieElement.classList.remove("animate");
     }
-    , 3000);
+    , 2000);
 });
