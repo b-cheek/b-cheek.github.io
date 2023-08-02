@@ -58,20 +58,110 @@ fetch(request)
     console.error(error);
   });
 
-console.log(langMap);
-const keysArray = Array.from(langMap.keys());
-let randIndex = Math.floor(Math.random() * keysArray.length);
-let bytes = langMap.get(keysArray[randIndex]);
-for (let num=0; num<bytes-2; num++) {
-  if (num%(Math.round(bytes/100)) == 0 || num == bytes-1) {
-    setTimeout(function() {
-      document.getElementById("bytesOfCode").innerHTML = num.toLocaleString();
-      console.log(2*Math.pow((num/bytes), 2)*1000);
-    // }, 0);
-    // }, (4*(1/(1+Math.exp(-5*((num-0.0054)/bytes))))-1.973)*1000); sigmoid function, start slow go fast
-    }, 2*Math.pow((num/bytes), 3)*1000); // quadratic function, start fast go slow
-  }
+class ClassWatcher {
+
+    constructor(targetNode, classToWatch, classAddedCallback, classRemovedCallback) {
+        this.targetNode = targetNode
+        this.classToWatch = classToWatch
+        this.classAddedCallback = classAddedCallback
+        this.classRemovedCallback = classRemovedCallback
+        this.observer = null
+        this.lastClassState = targetNode.classList.contains(this.classToWatch)
+
+        this.init()
+    }
+
+    init() {
+        this.observer = new MutationObserver(this.mutationCallback)
+        this.observe()
+    }
+
+    observe() {
+        this.observer.observe(this.targetNode, { attributes: true })
+    }
+
+    disconnect() {
+        this.observer.disconnect()
+    }
+
+    mutationCallback = mutationsList => {
+        for(let mutation of mutationsList) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                let currentClassState = mutation.target.classList.contains(this.classToWatch)
+                if(this.lastClassState !== currentClassState) {
+                    this.lastClassState = currentClassState
+                    if(currentClassState) {
+                        this.classAddedCallback()
+                    }
+                    else {
+                        this.classRemovedCallback()
+                    }
+                }
+            }
+        }
+    }
 }
 
-document.getElementById("codeLang").innerHTML = keysArray[randIndex];
+const keysArray = Array.from(langMap.keys());
 
+const loadLang = () => {
+  console.log("loadLang");
+  let randIndex = Math.floor(Math.random() * keysArray.length);
+  let bytes = langMap.get(keysArray[randIndex]);
+  let updateVals = []
+  // For ease out, start fast end slow
+  // let fullBytes = bytes;
+  // let decrement = 1;
+  // while (fullBytes >= 0) {
+  //   updateVals.push(fullBytes);
+  //   fullBytes -= decrement;
+  //   decrement += 1 //(Math.round(bytes/5000));
+  // }
+  // For ease in out, start slow end slow
+  updateValsRight = [];
+  let fullBytesLeft = 0;
+  let fullBytesRight = bytes;
+  let delta = 1;
+  while (fullBytesLeft < fullBytesRight) {
+    updateVals.push(fullBytesLeft);
+    updateValsRight.unshift(fullBytesRight);
+    fullBytesLeft += delta;
+    fullBytesRight -= delta;
+    delta += 1;
+  }
+  updateVals = updateVals.concat(updateValsRight).reverse();
+  console.log(updateVals)
+  let time = 3;
+  let exp = 3;
+  for (let num=0; num<bytes+1; num++) {
+    if (num==updateVals[updateVals.length-1]) {
+      updateVals.pop();
+      setTimeout(function() {
+        document.getElementById("bytesOfCode").innerHTML = num.toLocaleString();
+        console.log((4*time*(Math.pow((num/bytes)-0.5, 3)) + time/2)*1000, num);
+      // }, 0);
+      // }, (4*(1/(1+Math.exp(-5*((num-0.0054)/bytes))))-1.973)*1000); sigmoid function, start slow go fast
+      // }, 2*Math.pow((num/bytes), 3)*1000); quadratic function, start fast go slow
+      // }, (-time*Math.pow(1-(Math.pow((num/bytes), 2)), 0.5)+time)*1000); curve of oval, start fast end slow
+      }, (Math.pow(2, exp-1)*time*(Math.pow((num/bytes)-0.5, exp)) + time/2)*1000); // cubic function, ease in out
+    }
+  }
+  // setTimeout(() => {
+  //   console.log("STARTING SECOND LOOP")
+  //   for (let num=bytes-99; num<bytes+1; num++) {
+  //     setTimeout(function() {
+  //       document.getElementById("bytesOfCode").innerHTML = num.toLocaleString();
+  //       console.log(2*Math.pow((num/bytes), 2)*1000);
+  //     }, 2*Math.pow((num/bytes), 3)*1000);
+  //   }
+  // }, 2)
+  document.getElementById("codeLang").innerHTML = keysArray[randIndex];
+}
+
+let classWatcher = new ClassWatcher(document.getElementById("personal-proj"), "full-bar", () => {
+  loadLang();
+})
+
+if (document.getElementById("personal-proj").classList.contains("full-bar")) {
+  loadLang();
+}

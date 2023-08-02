@@ -987,7 +987,7 @@ section {
     transition: 1s;
 }
 
-#personal-proj.full-bar + .sect-content p {
+#personal-proj.full-bar + .sect-content p, #personal-proj.full-bar + .sect-content span {
     animation: text-fill 1s forwards;
 }
 
@@ -997,6 +997,10 @@ section {
 
 #linesOfCode-container {
     
+}
+
+#linesOfCode-content {
+    opacity: 0;
 }
 
 #cc-logo {
