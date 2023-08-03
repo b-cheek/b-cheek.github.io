@@ -41,31 +41,31 @@ class SkillImage {
 }
 
 let skillsArr = []
-skillsArr.push(new SkillImage("C++ logo", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png"));
+skillsArr.push(new SkillImage("C++", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png"));
 skillsArr.push(new SkillImage("Python", "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/2048px-Python-logo-notext.svg.png"));
 skillsArr.push(new SkillImage("vsCode", "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/2048px-Visual_Studio_Code_1.35_icon.svg.png"));
 skillsArr.push(new SkillImage("Git", "https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png"));
 skillsArr.push(new SkillImage("Javascript", "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"));
+skillsArr.push(new SkillImage("Java", "http://assets.stickpng.com/images/58480979cef1014c0b5e4901.png"));
 skillsArr.push(new SkillImage("Go", "https://cdn.worldvectorlogo.com/logos/gopher.svg"));
 skillsArr.push(new SkillImage("HTML", "https://www.w3.org/html/logo/downloads/HTML5_Logo_256.png"));
 skillsArr.push(new SkillImage("CSS", "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/1200px-CSS3_logo_and_wordmark.svg.png"));
 skillsArr.push(new SkillImage("Typescript", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png"))
 skillsArr.push(new SkillImage("Bootstrap", "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/512px-Bootstrap_logo.svg.png"));
-skillsArr.push(new SkillImage("Visual-Studio", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Visual_Studio_Icon_2019.svg/1200px-Visual_Studio_Icon_2019.svg.png"));
-skillsArr.push(new SkillImage("Java", "http://assets.stickpng.com/images/58480979cef1014c0b5e4901.png"));
+skillsArr.push(new SkillImage("Vue", "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png"));
 skillsArr.push(new SkillImage("React", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png"));
 skillsArr.push(new SkillImage("Eclipse", "https://cdn.freebiesupply.com/logos/large/2x/eclipse-11-logo-png-transparent.png"));
 skillsArr.push(new SkillImage("Node.js", "https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg"));
 skillsArr.push(new SkillImage("Vite", "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Vitejs-logo.svg/1039px-Vitejs-logo.svg.png"));
 skillsArr.push(new SkillImage("Linux", "https://upload.wikimedia.org/wikipedia/commons/a/af/Tux.png"));
-skillsArr.push(new SkillImage("Vue", "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png"));
 skillsArr.push(new SkillImage("Gin", "https://raw.githubusercontent.com/gin-gonic/logo/master/color.png"))
 skillsArr.push(new SkillImage("Angular", "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png"));
 skillsArr.push(new SkillImage("Postman", "https://res.cloudinary.com/postman/image/upload/t_team_logo/v1629869194/team/2893aede23f01bfcbd2319326bc96a6ed0524eba759745ed6d73405a3a8b67a8"));
+skillsArr.push(new SkillImage("Visual-Studio", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Visual_Studio_Icon_2019.svg/1200px-Visual_Studio_Icon_2019.svg.png"));
 skillsArr.push(new SkillImage("Powershell", "https://upload.wikimedia.org/wikipedia/commons/2/2f/PowerShell_5.0_icon.png"));
 skillsArr.push(new SkillImage("Swagger", "https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png"));
 skillsArr.push(new SkillImage("ActiveMQ", "https://activemq.apache.org/assets/img/activemq_logo_icon.png"));
-skillsArr.push(new SkillImage("Burp-Suite", "../Resources/burp-suite-professional.svg"));
+skillsArr.push(new SkillImage("Burp-Suite", "./Resources/burp-suite-professional.svg"));
 skillsArr.push(new SkillImage(".NET", "https://upload.wikimedia.org/wikipedia/commons/7/7d/Microsoft_.NET_logo.svg"))
 skillsArr.push(new SkillImage("MATLAB", "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Matlab_Logo.png/667px-Matlab_Logo.png"));
 skillsArr.push(new SkillImage("C#", "https://pluralsight.imgix.net/paths/path-icons/csharp-e7b8fcd4ce.png"));

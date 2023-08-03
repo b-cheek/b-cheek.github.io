@@ -46,10 +46,10 @@
             </span>
             <nav id="option-page">
                 <div><a class="active" href="#ov" onclick="uncheckPage()">Overview</a></div>
-                <div><a class="" href="#am" onclick="uncheckPage()">About Me</a></div>
-                <div><a class="" href="#pp" onclick="uncheckPage()">Personal Projects</a></div>
-                <div><a class="" href="#ex" onclick="uncheckPage()">Experience</a></div>
                 <div><a class="" href="#ed" onclick="uncheckPage()">Education</a></div>
+                <div><a class="" href="#ex" onclick="uncheckPage()">Experience</a></div>
+                <div><a class="" href="#pp" onclick="uncheckPage()">Personal Projects</a></div>
+                <div><a class="" href="#am" onclick="uncheckPage()">About Me</a></div>
             </nav>
             <script>
                 if (window.innerWidth > 770) document.getElementById("option-page").classList.toggle("long");
@@ -68,17 +68,22 @@
     </div>
     <!-- <script src="JS/techExperience.js"></script> -->
     <section id="overview-sect">
-        <h2 id="overview" class="sect-head dark-mode">
+        <h2 id="overview" class="sect-head dark-mode full-bar">
             <div id="ov" class="anchor"></div>
             Overview
             <div class="underline dark-mode"></div>
         </h2>
         <div class="sect-content dark-mode">
-            <img id="headshot" class="dark-mode" alt="Brayden Cheek" src="Resources/me.jpg">
+            <span id="headshot-wrapper"><img id="headshot" class="dark-mode" alt="Brayden Cheek" src="Resources/harrisSelfie.jpg"></span>
             <span id="ov-head">Hi, I'm Brayden</span>
             <!-- <img id="construction-img" alt="under construction"> -->
             <!-- <script src="JS/randomConstruction.js"></script> -->
-            <p id="elevator-pitch">I've <u>learned</u> at UF and during my summer internship at ISO Group.<br><br>I <u>work</u> on data structure/algorithm problems and personal projects.<br><br>Here are some of the things I'm familiar with:</p>
+            <ul id="elevator-pitch">
+                <li>I've <strong>studied</strong> the fundamentals of computer science at the University of Florida<br></li>
+                <li>I've <strong>applied</strong> and <strong>expanded</strong> my skills at L3Harris and ISO Group</li>
+                <li>I love to <strong>learn</strong> and <strong>improve</strong> with personal projects</li>
+                <li>Here are some of the things I'm familiar with:</li>
+            </ul>
             <div id="skills-container"></div>
             <script src="JS/skillGraphic.js"></script>
         </div>
@@ -118,12 +123,12 @@
                 <ul id="uf-courses-list" class="content-list">
                     <li><p class="tech-exp java-exp dark-mode">Programming Fundamentals 1</p></li>
                     <li><p class="tech-exp cpp-exp dark-mode">Programming Fundamentals 2</p></li>
-                    <li><p class="tech-exp cpp-exp dark-mode">Computer Organization</p></li>
+                    <li><p class="tech-exp arm-exp dark-mode">Computer Organization</p></li>
                     <li><p class="tech-exp matlab-exp dark-mode">Computational Linear Algebra</p></li>
                     <li><p class="tech-exp cpp-exp dark-mode">Data Structures and Algorithms</p></li>
                     <li><p id="alg-class" class="tech-exp cpp-exp dark-mode">Algorithm Abstraction and Design</p></li>
                     <li><p class="tech-exp go-exp dark-mode">Intro to Software Engineering</p></li>
-                    <li><p class="tech-exp cpp-exp dark-mode">Intro to Databases</p></li>
+                    <li><p class="tech-exp mysql-exp dark-mode">Information and Database Systems</p></li>
                     <li><p class="tech-exp dark-mode">Enterprise Software Engineering Practices</p></li>
                     </li>
                     <!-- <li><p class="tech-exp dark-mode">Discrete Math</p></li> -->
@@ -138,34 +143,61 @@
             <div class="scroll underline dark-mode"></div>
         </h2>
         <div class="sect-content dark-mode">
-            <!-- <img src="https://media-exp1.licdn.com/dms/image/C561BAQHRF3ANePBm9A/company-background_10000/0/1551215180620?e=2159024400&v=beta&t=BbDNKWvNXDp_00uJL6P2VyI2ldv8NdN162kjLkGgxNU"> -->
-            <img id="iso-logo" alt="ISO-group company logo" src="https://media-exp1.licdn.com/dms/image/C4E0BAQEefxwwtRx5yg/company-logo_200_200/0/1551453606381?e=2159024400&v=beta&t=-Pwfw_jqJPfRkHpkAZcnHWawNLEoRaCqNsCwbXsPAPw">
-            <span id="ISO Group - Information Technology Intern" class="lg-view content-head type-text"></span>
-            <span class="sm-view content-head first-load">ISO Group - IT Intern</span>
-            <span id="iso-date" class="content-date">June - August 2021</span>
-            <!-- <img id="myID" src="meSticker.png"> -->
-            <!-- <p>TEST</p> -->
-            <div id="exp-container", class="content-container">
-                <img id="globe-img" alt="WebGL Globe Image" src="Resources/globe-image.png">
-                <ul id="iso-list">
-                    <li>Developed and deployed a web page with an informational graphic on the company's internal site</li>
-                    <li>Identified web vulnerabilities in company websites</li>
-                    <li>Read and wrote vulnerability reports, worked with coworkers to patch issues</li>
-                    <li>Collaborated with the export compliance department to automate data entry (SQL, Microsoft Azure)</li>
-                </ul>
-            </div>
             <img id="l3h-logo" alt="L3Harris company logo" src="https://companieslogo.com/img/orig/LHX-2a0d9867.png?t=1648848858">
             <span id="L3Harris - Software Engineering Intern" class="lg-view content-head type-text"></span>
             <span class="sm-view content-head first-load">L3Harris - SWE Intern</span>
             <span id="l3h-date" class="content-date">June - August 2023</span>
+            <div id="l3h-container">
+                <p class="content-text">At L3Harris I learned about some things that come with being part of a large team:</p>
+                <img id="sda-logo" class="dark-mode" alt="Space Development Agency Logo" src="Resources/sda.png">
+                <ul id="l3h-list">
+                    <li>Conducting a trade study</li>
+                    <li>Creating diagrams, models</li>
+                    <li>Presenting to stakeholders</li>
+                    <li>Reading lots of code</li>
+                    <li>Peer reviews</li>
+                </ul>
+                <p class="content-text">My work at L3Harris exposed me to many new technologies and business processes, and familiarized me with working in a highly structured and standardized environment.</p>
+            </div>
+            <!-- <img src="https://media-exp1.licdn.com/dms/image/C561BAQHRF3ANePBm9A/company-background_10000/0/1551215180620?e=2159024400&v=beta&t=BbDNKWvNXDp_00uJL6P2VyI2ldv8NdN162kjLkGgxNU"> -->
+            <img id="iso-logo" alt="ISO-group company logo" src="https://media-exp1.licdn.com/dms/image/C4E0BAQEefxwwtRx5yg/company-logo_200_200/0/1551453606381?e=2159024400&v=beta&t=-Pwfw_jqJPfRkHpkAZcnHWawNLEoRaCqNsCwbXsPAPw">
+            <span id="ISO Group - Information Technology Intern" class="lg-view content-head type-text">&nbsp;</span> <!-- &nbsp; is added to fix a formatting error when no letters in span -->
+            <span class="sm-view content-head first-load">&nbsp;ISO Group - IT Intern</span>
+            <span id="iso-date" class="content-date">June - August 2021</span>
+            <div id="exp-container", class="content-container">
+                <img id="globe-img" alt="WebGL Globe Image" src="Resources/globe-image.png">
+                <p class="content-text">Working at a smaller company allowed me to have ownership of a variety of projects from start to finish:</p>
+                <ul id="iso-list">
+                    <li>Developing a website</li>
+                    <li>Finding and fixing cybersecurity vulnerabilities</li>
+                </ul>
+                <p class="content-text">but also called for communication between departments, and frequent collaboration within IT.</p>
+            </div>
         </div>
     </section>
+    <script src="JS/LinesOfCode.js" defer></script>
     <section id="personal-proj-sect">
         <h2 id="personal-proj" class="sect-head dark-mode">
             <div id="pp" class="anchor"></div>
             Personal Projects
             <div class="scroll underline dark-mode"></div>
         </h2>
+        <div class="sect-content dark-mode">
+            <div id="linesOfCode-container">
+                <span id="linesOfCode-content">I've written <span id="bytesOfCode">46,533</span> bytes of <span id="codeLang" class="emphasize">JavaScript</span> on GitHub
+                <button id="die-btn0"><img id="misc-die0" class="dark-mode" alt="dice shuffle icon" src="./Resources/misc-die.svg"></button></span>
+            </div>
+            <img id="cc-logo" alt="ChordCaptain Logo" src="./Resources/ChordCaptain_logo.svg">
+            <span id="ChordCaptain" class="content-head type-text"></span>
+            <p class="content-text">A Progressive Web App (PWA) to teach the fundamentals of jazz improvisation. This is a passion project inspired by collaboration between me and one of my mentors in the UF jazz program. v2.0 coming soon!</p>
+            <script src="JS/shufflePy.js" defer></script>
+            <button id="die-btn"><img id="misc-die" class="dark-mode" alt="dice shuffle icon" src="./Resources/misc-die.svg"></button>
+            <span id="Miscellaneous Python Scripts" class="content-head type-text"></span>
+            <p id="miscPy-content" class="content-text"></p>
+            <img id="ecol-logo" class="dark-mode" alt="E-Colosseum Logo" src="./Resources/ecol-logo.svg">
+            <span id="E-Colosseum" class="content-head type-text"></span>
+            <p class="content-text">A platform for synchronous competition in reflexes, memory games, etc. This was a group project for a class, and taught me a lot about collaboration and group dynamics.</p>
+        </div>
     </section>
     <section id="abt-me-sect">
         <h2 id="abt-me" class="sect-head dark-mode">
@@ -173,6 +205,16 @@
             About Me
             <div class="scroll underline dark-mode"></div>
         </h2>
+        <div class="sect-content dark-mode">
+            <p class="content-text">
+                I grew up on Florida's Space Coast, and I love to play trombone, run, and surf.
+            </p>
+            <div id="my-content">
+                <iframe id="music" width="560" height="315" src="https://www.youtube-nocookie.com/embed/pTmwYiVtR0w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe id="run" height='454' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/21959715/latest-rides/36b5010859ebafd0e860beb67293b87b5e7e5070'></iframe>
+                <iframe id="surf" width="560" height="315" src="https://www.youtube-nocookie.com/embed/8XHZTziXDeA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
     </section>
     <script src="JS/scrollEvents.js"></script>
     <!-- <script src="JS/bouncingCircs.js"></script> -->
@@ -180,7 +222,9 @@
         <span>Email: <a class="dark-mode" href="mailto:bwc1024@hotmail.com">cheekbw@gmail.com</a></span>
         <span>Phone: <a class="dark-mode" href="tel:13213129592">+1 (321) 312-9592</a></span>
     </footer>
-    <div class="whitespace"></div>
+    <div class="whitespace">
+        <!-- <span>You've reached the end, thanks for reading!</span> -->
+    </div>
 
 </body>
 </html>

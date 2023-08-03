@@ -104,6 +104,23 @@ body.light-mode p, body.light-mode span, body.light-mode h3 {
     background-image: url("https://cdn.worldvectorlogo.com/logos/gopher.svg"), linear-gradient(45deg, rgba(246,210,162,0.5) 20%, rgba(105,215,226,0.5) 60%, rgb(255,255,255,0) 100%);
 }
 
+.arm-exp {
+    background: linear-gradient(45deg, rgba(0,146,190,0.5) 20%, rgba(255, 255, 255, 0.5) 60%, rgba(0, 0, 0, 0) 100%);
+}
+
+.arm-exp:hover {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Arm_logo_2017.svg/330px-Arm_logo_2017.svg.png"), linear-gradient(45deg, rgba(0,146,190,0.5) 20%, rgba(255, 255, 255, 0.5) 60%, rgba(0, 0, 0, 0) 100%);
+}
+
+.mysql-exp {
+    background: linear-gradient(45deg, rgba(236,162,50, 0.5) 20%, rgba(172,172,172, 0.5) 60%, rgba(0, 0, 0, 0) 100%);
+}
+
+.mysql-exp:hover {
+    background-image: url("https://www.mysql.com/common/logos/logo-mysql-170x115.png"), linear-gradient(45deg, rgba(236,162,50, 0.5) 20%, rgba(172,172,172, 0.5) 60%, rgba(0, 0, 0, 0) 100%);
+
+}
+
 a {
     text-decoration: none;
     padding: 3px;
@@ -381,7 +398,7 @@ section {
 }
 
 #edu-sect {
-    top: 1000px;
+    top: 997px;
 } 
 
 #edu {
@@ -390,7 +407,7 @@ section {
 
 #exp-sect {
     position: relative;
-    top: 2000px;
+    top: 1984.2px;
 }
 
 #exp {
@@ -398,7 +415,7 @@ section {
 }
 
 #personal-proj-sect {
-    top: 3500px;
+    top: 3316.2px;
 } 
 
 #personal-proj {
@@ -406,7 +423,7 @@ section {
 }
 
 #abt-me-sect {
-    top: 4000px;
+    top: 4394.2px;
 }
 
 #abt-me {
@@ -449,6 +466,34 @@ section {
     top: 110px;
     margin-left: 2.058%;
     transition: 1s;
+}
+
+.sect-content::after {
+    content: "\2193";
+    position: absolute;
+    bottom: 5px;
+    left: 47%;
+    font-family: 'Montserrat';
+    font-size: 6em;
+    color: black;
+    animation: arrow-flash 1s infinite alternate-reverse;
+}
+
+.sect-content.dark-mode::after {
+    color: white;
+}
+
+.sect-content.light-mode::after {
+    color: black;
+}
+
+@keyframes arrow-flash {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.sect-head.full-bar + .sect-content::after {
+    content: none;
 }
 
 .sect-content.dark-mode {
@@ -523,6 +568,7 @@ section {
     position: absolute;
     opacity: 0;
     height: auto;
+    max-width: 60vw;
     /* margin-left: 20px; */
     top: 78px;
     left: 224px;
@@ -589,10 +635,17 @@ section {
     width: 136px;
     height: auto;
     opacity: 1;
+    clip-path: polygon(85% 0%, 100% 15%, 100% 100%, 15% 100%, 0% 85%, 0% 0%);
     margin: 10px;
-    border-radius: 50%;
     transition: 1s;
-    box-shadow: 0px 0px 10px 1px #000;
+    /* box-shadow: 0px 0px 10px 1px #000; */
+}
+
+#headshot-wrapper {
+    position: relative;
+    top: 1em;
+    left: 1em;
+    filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.5))
 }
 
 #headshot.dark-mode {
@@ -606,8 +659,8 @@ section {
 #ov-head {
     font-size: 4em;
     position: absolute;
-    left: 224px;
-    top: 60px;
+    left: 200px;
+    top: 70px;
 }
 
 #skills-container {
@@ -628,13 +681,22 @@ section {
 }
 
 #elevator-pitch {
+    margin: 20px;
+}
+
+#elevator-pitch li {
     opacity: 1;
     font-size: 2.5vw;
-    margin: 20px;
+    margin-bottom: 0.5em;
+    transition: color 1s;
 }
 
 #edu + .sect-content {
     height: auto;
+}
+
+#edu + .sect-content li::marker {
+    transition: color 1s;
 }
 
 #edu.full-bar + .sect-content img {
@@ -692,12 +754,17 @@ section {
     grid-row-start: 2
 }
 
+#uf-courses-list p {
+    transition: color 1s;
+}
+
 #lang-display {
     height: 30%;
     width: 46%;
     position: absolute;
     bottom: 5%;
     left: 2%;
+    opacity: 0;
     display: grid;
     grid-template-columns: 13% 5% 82%;
     grid-template-rows: 33.33% 33.33% 33.33%;
@@ -715,11 +782,16 @@ section {
 }
 
 .lang-axis {
-    height: 100%;
+    height: 0;
     width: 2px;
     background-color: white;
     grid-area: axis;
     animation: text-fill 1s 1s forwards;
+    transition: height 1s 4s;
+}
+
+#edu.full-bar + .sect-content #lang-display .lang-axis {
+    height: 100%;
 }
 
 .lang-axis.light-mode {
@@ -745,8 +817,16 @@ section {
     background: linear-gradient(45deg, rgba(83,122,151) 25%, rgba(241,137,37) 50%, rgba(83,122,151) 100%);
 }
 
-#edu.full-bar + .sect-content #lang-display .lang-bar {
+#edu.full-bar + .sect-content #lang-display .lang-bar.cpp {
     width: 90%;
+}
+
+#edu.full-bar + .sect-content #lang-display .lang-bar.java {
+    width: 50%;
+}
+
+#edu.full-bar + .sect-content #lang-display .lang-bar.py {
+    width: 25%;
 }
 
 #cpp-logo {
@@ -757,7 +837,7 @@ section {
 }
 
 #exp + .sect-content {
-    height: 1215px;
+    height: 1132px;
     /* background-image: linear-gradient(to right, #E50914, #1e1e1e); */
 }
 
@@ -785,21 +865,60 @@ section {
     visibility: visible;
 }
 
+#exp + .sect-content #iso-logo, #exp.sect-head + .sect-content #iso-date,
+#exp + .sect-content #iso-logo ~ .content-head, #exp + .sect-content #exp-container * { /*, #exp + .sect-content #iso-logo + .content-head + .content-head,
+#exp + .sect-content #exp-container {*/
+    animation: none;
+    opacity: 0;
+    transition: opacity 1s 5s;
+}
+
+#exp.full-bar + .sect-content #iso-logo, #exp.full-bar + .sect-content #iso-date,
+#exp.full-bar + .sect-content #iso-logo ~ .content-head, #exp.full-bar + .sect-content #exp-container * { /*, #exp + .sect-content #iso-logo + .content-head + .content-head {*/
+    opacity: 1;
+    transition: opacity 1s 5s, color 1s;
+}
+
+/* #exp.full-bar + .sect-content #iso-logo, #exp.full-bar + .sect-content #exp-container .content-text,
+#exp.full-bar + .sect-content #exp-container li {
+    opacity: 1;
+    transition: 1s 5s;
+} */
+
 #iso-logo {
     width: auto;
     height: 143px;
 }
 
-#iso-date, #iso-logo + .content-head, #iso-logo + .content-head + .content-head {
-    left: 155.62px;
+#iso-date, #iso-logo + .content-head, .content-head.sm-view { /*#iso-logo + .content-head + .content-head {*/
+    position: relative;
+    left: 8px; /* I had to add a &nbsp; to fix a formatting error when no text in the type-text span */
+    top: revert;
+    bottom: 70px;
+}
+
+#iso-date {
+    display: block;
+    left: 168px;
+    bottom: 72px;
 }
 
 #exp-container {
     display: inline-block;
+    position: relative;
+    bottom: 60px;
     /* background-color: grey; */
     height: 350px;
     width: 96%;
     margin: 2%
+}
+
+#exp-container * {
+    transition: color 1s;
+}
+
+.content-text {
+    font-size: 2em;
 }
 
 #iso-list {
@@ -813,55 +932,240 @@ section {
     float: right;
 }
 
-/* #l3h-logo {
+#l3h-logo {
     width: auto;
     height: 143px;
-    position: absolute;
-    left: 10px;
-} */
+    position: static;
+    display: block;
+    margin: 20px 0 0 10px;
+    opacity: 0;
+}
 
 #exp.full-bar + .sect-content #l3h-logo {
-    width: auto;
-    height: 143px;
-    position: absolute;
-    left: 10px;
-    top: 550px;
+    opacity: 1;
+    transition: 1s;
 }
 
 #l3h-date, #l3h-logo + .content-head, #l3h-logo + .content-head + .content-head {
-    left: 160px;
-}
-
-#l3h-date {
-    top: 628px;
-}
-
-#exp + .sect-content #l3h-logo, #exp.sect-head + .sect-content #l3h-date {
-    animation: none;
-    opacity: 0;
-    transition: opacity 1s 5s;
-}
-
-#exp.full-bar + .sect-content #l3h-logo, #exp.full-bar + .sect-content #l3h-date {
-    opacity: 1;
-    transition: opacity 1s 5s;
-}
-
-#l3h-logo + .content-head {
-    top: 570px;
+    left: 170px;
 }
 
 #l3h-logo + .content-head + .content-head {
-    top: 710px;
+    position: absolute;
+    top: 40px;
+    bottom: unset;
 }
 
+#l3h-date {
+    top: 98px;
+}
+
+#exp.sect-head + .sect-content #l3h-date,
+#exp + .sect-content #l3h-container p, #exp + .sect-content #l3h-container ul {
+    opacity: 0;
+}
+
+#exp.full-bar + .sect-content #l3h-date,
+#exp.full-bar + .sect-content #l3h-container p, #exp.full-bar + .sect-content #l3h-container ul {
+    animation: text-fill 1s 1s forwards;
+}
+
+#l3h-logo + .content-head {
+    top: 40px;
+}
+
+#l3h-logo + .content-head + .content-head {
+}
+
+#l3h-container {
+    margin: 2% 0 4% 2%;
+}
+
+#l3h-list li {
+    transition: color 1s;
+}
+
+#l3h-container #sda-logo {
+    height: 15em;
+    width: auto;
+    margin-right: 2%;
+    float: right;
+    transition: filter 1s, opacity 1s 1s;
+}
+
+#sda-logo.light-mode {
+    filter: invert(1);
+}
+
+#personal-proj.full-bar + .sect-content img {
+    opacity: 1;
+}
+
+#personal-proj + .sect-content .content-head {
+    position: relative;
+    top: unset;
+    bottom: 35px;
+    left: 12px;
+}
 
 #personal-proj + .sect-content {
+    padding-bottom: 24px;
+}
 
+#personal-proj + .sect-content * {
+    transition: 1s;
+}
+
+#personal-proj.full-bar + .sect-content p, #personal-proj.full-bar + .sect-content span {
+    animation: text-fill 1s forwards;
+}
+
+#personal-proj.full-bar + .sect-content #cc-logo + .content-head + .content-text {
+    animation: text-fill 1s 1s forwards;
+}
+
+#personal-proj + .sect-content #misc-die {
+    transition: opacity 1s 5s, filter 1s;
+}
+
+#personal-proj.full-bar + .sect-content #die-btn + .content-head + .content-text {
+    animation: text-fill 1s 6s forwards;
+}
+
+#personal-proj + .sect-content #ecol-logo {
+    transition: opacity 1s 10s, filter 1s;
+}
+
+#personal-proj.full-bar + .sect-content #ecol-logo + .content-head + .content-text {
+    animation: text-fill 1s 11s forwards;
+}
+
+#personal-proj + .sect-content .content-text {
+    margin-left: 2%;
+}
+
+#linesOfCode-container {
+    
+}
+
+body span.emphasize {
+    font-weight: bolder;
+}
+
+#linesOfCode-content {
+    opacity: 0;
+    display: block;
+    font-size: 2em;
+    text-align: center;
+    margin: 1.5rem 0 0.5rem 0;
+}
+
+#bytesOfCode {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2em;
+}
+
+#cc-logo {
+    height: 120px;
+    width: auto;
+    margin: 15px 0 0 10px;
+}
+
+#die-btn, #die-btn0 {
+    all: unset;
+}
+
+#die-btn0 {
+    display: inline-flex;
+    position: relative;
+    top: 0.1em;
+    left: 0.2em;
+}
+
+#misc-die {
+    height: 100px;
+    width: auto;
+    margin: 35px 0 0 20px;
+    transition: 1s;
+}
+
+#misc-die0 {
+    height: 1em;
+    width: auto;
+    transition: 1s;
+}
+
+#misc-die.animate, #misc-die0.animate {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0% {transform: rotate(0deg);}
+    25% {transform: rotate(15deg);}
+    50% {transform: rotate(-15deg);}
+    75% {transform: rotate(15deg);}
+    100% {transform: rotate(0deg);}
+}
+
+.gh-link {
+    display: inline-flex;
+    position: relative;
+    top: 0.2em;
+}
+
+#ecol-logo {
+    height: 120px;
+    width: auto;
+    margin: 35px 0 0 10px;
+    transition: 1s;
+}
+
+/* #ecol-logo, #misc-die, #misc-die0 {
+    transition: color 1s;
+} */
+
+#ecol-logo.dark-mode, #misc-die.dark-mode, #misc-die0.dark-mode {
+    filter: invert(1);
 }
 
 #abt-me + .sect-content {
+    height: 800px;
+    padding: 2%;
+}
 
+#abt-me.full-bar + .sect-content * {
+    opacity: 1;
+}
+
+#my-content {
+    padding-top: 2em;
+    display: grid;
+    grid-template-areas: 
+    "music run"
+    "surf run";
+    grid-auto-rows: 1fr
+}
+
+#my-content * {
+    justify-self: center;
+    align-self: center;
+    opacity: 0;
+}
+
+#abt-me.full-bar + .sect-content #my-content * {
+    animation: text-fill 1s 1s forwards;
+}
+
+#music {
+    grid-area: music;
+}
+
+#run {
+    grid-area: run;
+}
+
+#surf {
+    grid-area: surf;
 }
 
 #contact-info {
@@ -878,6 +1182,10 @@ section {
     z-index: 2;
 }
 
+#contact-info {
+    transition: background-color 1s, border-color 1s;
+}
+
 #contact-info.dark-mode {
     background-color: rgba(55,55,55,0.7);
     border-top: solid 1px rgba(80, 80, 80, 0.7);
@@ -890,14 +1198,22 @@ section {
 
 #contact-info span {
     margin: 15px;
-    transition: 0s;
+    transition: font-size 0s, color 1s;
+}
+
+#contact-info a {
+    transition: font-size 0s;
 }
 
 .whitespace {
     height: .01em;
     width: 100%;
     position: absolute;
-    bottom: -4000px;
+    bottom: -4674px;
+}
+
+.whitespace * {
+    display: none;
 }
 
 @media screen and (max-width: 1400px) { /*add dimensions for smaller pc/laptop not mobile*/ 
@@ -1067,16 +1383,17 @@ section {
         display: none;
     }
 
-    #elevator-pitch {
+    /* #elevator-pitch li{
         font-size: 4vmin;
-    }
+        margin-bottom: 1.5em;
+    } */
 
     #alg-class {
         padding-right: 10%;
     }
 
     #lang-display {
-        height: 46%;
+        height: 40%;
         bottom: 2%;
         grid-template-rows: 75% 5% 20%;
         grid-template-columns: 33.33% 33.33% 33.33%;
@@ -1093,41 +1410,70 @@ section {
         width: auto;
     }
 
-    .lang-axis {
-        width: 100%;
+    #edu.sect-head + .sect-content #lang-display .lang-axis {
+        width: 0;
         height: 2px;
+        transition: width 1s 4s;
     }
 
-    #edu.sect-head + .sect-content #lang-display .lang-bar {
+    #edu.full-bar + .sect-content #lang-display .lang-axis {
+        width: 100%;
+    }
+
+    #edu.sect-head + .sect-content #lang-display .lang-bar.py, 
+    #edu.sect-head + .sect-content #lang-display .lang-bar.java, 
+    #edu.sect-head + .sect-content #lang-display .lang-bar.cpp {
         width: 20%;
         height: 0;
         transition: height 2s ease-in-out 5s;
     }
 
-    #edu.full-bar + .sect-content #lang-display .lang-bar {
+    #edu.full-bar + .sect-content #lang-display .lang-bar.cpp {
         height: 90%;
     }
 
+    #edu.full-bar + .sect-content #lang-display .lang-bar.java {
+        height: 50%;
+    }
+
+    #edu.full-bar + .sect-content #lang-display .lang-bar.py {
+        height: 25%;
+    }
+    
     #exp-sect {
         position: relative;
-        top: 2200px;
+        top: 2100px;
+    }
+
+    #exp + .sect-content {
+        height: 1280px;
     }
 
     #exp.full-bar + .sect-content #l3h-logo {
-        top: 690px;
+        /* top: 690px; */
         animation: text-fill 1s 1s forwards;
     }
     
     #l3h-logo + .content-head + .content.head {
-        top: 750px;
+        /* top: 750px; */
     }
 
     #l3h-date {
-        top: 768px;
+        /* top: 768px; */
     }
 
     #exp.full-bar + .sect-content #l3h-date {
         animation: text-fill 1s 1s forwards;
+    }
+
+    #personal-proj-sect {
+        position: relative;
+        top: 3570px;
+    }
+
+    #abt-me-sect {
+        position: relative;
+        top: 4670px;
     }
 
     #contact-info {
@@ -1140,4 +1486,64 @@ section {
         margin-top: 30px;
     }
 
+    .whitespace {
+        bottom: -5000px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    #elevator-pitch li {
+        font-size: 3.4vw;
+        margin-bottom: 1em;
+    }
+
+    #exp-sect {
+        top: 2250px;
+    }
+
+    #exp + .sect-content {
+        height: 1450px;
+    }
+
+    #personal-proj-sect {
+        top: 3880px;
+    }
+
+    #abt-me-sect {
+        top: 5100px;
+    }
+
+    .whitespace {
+        bottom: -4934px;
+    }
+
+    /* .whitespace * {
+        display: block;
+        position: relative;
+        font-size: 2.5em;
+    } */
+}
+
+/* Big Screen */
+
+@media screen and (min-width: 1540px) {
+    #elevator-pitch li {
+        font-size: 1.8vw;
+    }
+
+    #exp + .sect-content {
+        height: 1152px;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    #elevator-pitch li {
+        font-size: 1.5vw;
+    }
+}
+
+@media screen and (min-width: 1540px) {
+    #elevator-pitch li {
+        font-size: 3vh;
+    }
 }
