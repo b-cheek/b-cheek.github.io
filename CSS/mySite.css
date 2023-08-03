@@ -398,7 +398,7 @@ section {
 }
 
 #edu-sect {
-    top: 1000px;
+    top: 997px;
 } 
 
 #edu {
@@ -407,7 +407,7 @@ section {
 
 #exp-sect {
     position: relative;
-    top: 2000px;
+    top: 1984.2px;
 }
 
 #exp {
@@ -415,7 +415,7 @@ section {
 }
 
 #personal-proj-sect {
-    top: 3700px;
+    top: 3316.2px;
 } 
 
 #personal-proj {
@@ -423,7 +423,7 @@ section {
 }
 
 #abt-me-sect {
-    top: 5000px;
+    top: 4394.2px;
 }
 
 #abt-me {
@@ -782,12 +782,16 @@ section {
 }
 
 .lang-axis {
-    height: 100%;
+    height: 0;
     width: 2px;
     background-color: white;
     grid-area: axis;
     animation: text-fill 1s 1s forwards;
-    transition: 1s;
+    transition: height 1s 4s;
+}
+
+#edu.full-bar + .sect-content #lang-display .lang-axis {
+    height: 100%;
 }
 
 .lang-axis.light-mode {
@@ -833,7 +837,7 @@ section {
 }
 
 #exp + .sect-content {
-    height: 1175px;
+    height: 1132px;
     /* background-image: linear-gradient(to right, #E50914, #1e1e1e); */
 }
 
@@ -1004,6 +1008,10 @@ section {
     left: 12px;
 }
 
+#personal-proj + .sect-content {
+    padding-bottom: 24px;
+}
+
 #personal-proj + .sect-content * {
     transition: 1s;
 }
@@ -1121,7 +1129,7 @@ body span.emphasize {
 }
 
 #abt-me + .sect-content {
-    height: 1000px;
+    height: 800px;
     padding: 2%;
 }
 
@@ -1134,8 +1142,7 @@ body span.emphasize {
     display: grid;
     grid-template-areas: 
     "music run"
-    "surf run"
-    "song song";
+    "surf run";
     grid-auto-rows: 1fr
 }
 
@@ -1202,7 +1209,11 @@ body span.emphasize {
     height: .01em;
     width: 100%;
     position: absolute;
-    bottom: -4000px;
+    bottom: -4674px;
+}
+
+.whitespace * {
+    display: none;
 }
 
 @media screen and (max-width: 1400px) { /*add dimensions for smaller pc/laptop not mobile*/ 
@@ -1372,17 +1383,17 @@ body span.emphasize {
         display: none;
     }
 
-    #elevator-pitch li{
+    /* #elevator-pitch li{
         font-size: 4vmin;
         margin-bottom: 1.5em;
-    }
+    } */
 
     #alg-class {
         padding-right: 10%;
     }
 
     #lang-display {
-        height: 46%;
+        height: 40%;
         bottom: 2%;
         grid-template-rows: 75% 5% 20%;
         grid-template-columns: 33.33% 33.33% 33.33%;
@@ -1399,9 +1410,14 @@ body span.emphasize {
         width: auto;
     }
 
-    .lang-axis {
-        width: 100%;
+    #edu.sect-head + .sect-content #lang-display .lang-axis {
+        width: 0;
         height: 2px;
+        transition: width 1s 4s;
+    }
+
+    #edu.full-bar + .sect-content #lang-display .lang-axis {
+        width: 100%;
     }
 
     #edu.sect-head + .sect-content #lang-display .lang-bar.py, 
@@ -1426,11 +1442,11 @@ body span.emphasize {
     
     #exp-sect {
         position: relative;
-        top: 2200px;
+        top: 2100px;
     }
 
     #exp + .sect-content {
-        height: 1350px;
+        height: 1280px;
     }
 
     #exp.full-bar + .sect-content #l3h-logo {
@@ -1452,7 +1468,12 @@ body span.emphasize {
 
     #personal-proj-sect {
         position: relative;
-        top: 3750px;
+        top: 3570px;
+    }
+
+    #abt-me-sect {
+        position: relative;
+        top: 4670px;
     }
 
     #contact-info {
@@ -1465,11 +1486,64 @@ body span.emphasize {
         margin-top: 30px;
     }
 
+    .whitespace {
+        bottom: -5000px;
+    }
 }
 
 @media screen and (max-width: 1000px) {
     #elevator-pitch li {
         font-size: 3.4vw;
         margin-bottom: 1em;
+    }
+
+    #exp-sect {
+        top: 2250px;
+    }
+
+    #exp + .sect-content {
+        height: 1450px;
+    }
+
+    #personal-proj-sect {
+        top: 3880px;
+    }
+
+    #abt-me-sect {
+        top: 5100px;
+    }
+
+    .whitespace {
+        bottom: -4934px;
+    }
+
+    /* .whitespace * {
+        display: block;
+        position: relative;
+        font-size: 2.5em;
+    } */
+}
+
+/* Big Screen */
+
+@media screen and (min-width: 1540px) {
+    #elevator-pitch li {
+        font-size: 1.8vw;
+    }
+
+    #exp + .sect-content {
+        height: 1152px;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    #elevator-pitch li {
+        font-size: 1.5vw;
+    }
+}
+
+@media screen and (min-width: 1540px) {
+    #elevator-pitch li {
+        font-size: 3vh;
     }
 }

@@ -52,7 +52,7 @@ fetch(request)
             })
       }
     }
-    console.log(langMap);
+    // console.log(langMap);
   })
   .catch((error) => {
     console.error(error);
@@ -105,7 +105,7 @@ class ClassWatcher {
 const keysArray = Array.from(langMap.keys());
 
 const loadLang = () => {
-  console.log("loadLang");
+  // console.log("loadLang");
   let randIndex = Math.floor(Math.random() * keysArray.length);
   while (keysArray[randIndex] == document.getElementById("codeLang").innerHTML) {
     randIndex = Math.floor(Math.random() * keysArray.length);
@@ -133,7 +133,7 @@ const loadLang = () => {
     delta += 1;
   }
   updateVals = updateVals.concat(updateValsRight).reverse();
-  console.log(updateVals)
+  // console.log(updateVals)
   let time = 1.5;
   let exp = 3;
   let extraWait = 0;
@@ -143,7 +143,7 @@ const loadLang = () => {
       if (updateVals.length < 20) extraWait += (20 - (updateVals.length))*7;
       setTimeout(function() {
         document.getElementById("bytesOfCode").innerHTML = num.toLocaleString();
-        console.log((Math.pow(2, exp-1)*time*(Math.pow((num/bytes)-0.5, exp)) + time/2)*1000 + extraWait, num);
+        // console.log((Math.pow(2, exp-1)*time*(Math.pow((num/bytes)-0.5, exp)) + time/2)*1000 + extraWait, num);
       // }, 0);
       // }, (4*(1/(1+Math.exp(-5*((num-0.0054)/bytes))))-1.973)*1000); sigmoid function, start slow go fast
       // }, 2*Math.pow((num/bytes), 3)*1000); quadratic function, start fast go slow
