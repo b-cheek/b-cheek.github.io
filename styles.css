@@ -1,14 +1,15 @@
 :root {
     --accent: #0080ff;
-    --text: #000080;
+    --text-primary: #000000;
+    --text-secondary: #303030;
     --bg: #ffffff;
-}
+} 
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: var(--text)
+    color: var(--text-primary)
 }
 
 body {
@@ -29,6 +30,10 @@ section {
     flex-wrap: wrap;
 }
 
+section.hero {
+    margin-top: 40px;
+}
+
 .hero.graphic {
     position: relative;
     height: min(400px, 80vw);
@@ -45,4 +50,10 @@ section {
     margin: 0 10px;
     font-size: min(80px, 10vw);
     text-align: center;
+}
+
+.hero > h3 {
+    /* color: var(--text-secondary); */
+    font-size: min(40px, 6vw);
+    font-style: italic;
 }
