@@ -1,5 +1,48 @@
+:root {
+    --accent: #0080ff;
+    --text: #000080;
+    --bg: #ffffff;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: var(--text)
+}
+
+body {
+    background-color: var(--bg);
+}
+
+section {
+    padding: 20px 0px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 0px 20px;
+    flex-wrap: wrap;
+}
+
+.hero.graphic {
+    position: relative;
+    height: min(400px, 80vw);
+    width: min(400px, 80vw);
+}
+
+.hero.graphic > div {
+    position: absolute;
+    height: 95%;
+    width: 95%;
+}
+
+.hero.name {
+    margin: 0 10px;
+    font-size: min(80px, 10vw);
+    text-align: center;
 }
