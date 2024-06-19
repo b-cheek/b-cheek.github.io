@@ -19,5 +19,27 @@
             </div>
         </div>
     </section>
+    <section>
+        <div id="education" class="content alt-bg slant">
+            <div>
+                <h2 style="font-style:italic;">Education</h2>
+                <div class="education">
+                    <h3>University of Florida</h3>
+                    <p>- Graduating May 2025</p>
+                    <p>- 3.80 GPA</p>
+                </div>
+            </div>
+            <script>
+                // Position text content right of the background image
+                content = document.querySelector("#education div");
+                content.style.transform = `translateX(${0.9*content.parentElement.offsetHeight-30}px)`;
+
+                window.addEventListener("resize", () => {
+                    content = document.querySelector("#education div");
+                    content.style.transform = `translateX(${0.9*content.parentElement.offsetHeight-30}px)`;
+                });
+            </script>
+        </div>
+    </section>
 </body>
 </html>
