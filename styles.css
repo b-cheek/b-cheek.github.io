@@ -141,6 +141,10 @@ section.hero {
     background-color: var(--accent); */
 }
 
+#nextExperience::after {
+    content: none;
+}
+
 /* .three-col {
     align-items: flex-start;
 }
