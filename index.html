@@ -22,11 +22,11 @@
     <section>
         <div id="education" class="content alt-bg slant">
             <div>
-                <h2 style="font-style:italic;">Education</h2>
+                <h2>Education</h2>
                 <div class="education">
                     <h3>University of Florida</h3>
                     <p>- Graduating May 2025</p>
-                    <p>- 3.80 GPA</p>
+                    <p>- 3.79 GPA</p>
                 </div>
             </div>
             <script>
@@ -39,6 +39,58 @@
                     content.style.transform = `translateX(${0.9*content.parentElement.offsetHeight-30}px)`;
                 });
             </script>
+        </div>
+    </section>
+    <section>
+        <div id="experience" class="content">
+            <h2>Internships</h2>
+            <div class="flex">
+                <div>
+                    <h3>ISO Group</h3>
+                </div>
+                <div>
+                    <h3>L3Harris</h3>
+                </div>
+                <div>
+                    <h3>L3Harris</h3>
+                </div>
+                <div style="display:flex;justify-content:center;align-items:center;">
+                    <h1 style="font-size:calc(20vw + 100px);text-shadow: 0.5vw -0.5vw var(--accent);">?</h1>
+                </div>
+                <script>
+                    const positionArrows = () => {
+                        // Add arrows between flex children, consider 3 possible flex scenarios
+                        // and position arrows accordingly based on parent boxes
+                        flexChildren = document.querySelectorAll(".flex div");
+                        for (i=0; i<flexChildren.length-1; i++) {
+                            arrow = document.createElement("div");
+                            thisRect = flexChildren[i].getBoundingClientRect();
+                            nextRect = flexChildren[i+1].getBoundingClientRect();
+                            console.log(thisRect, nextRect);
+                            // Horizontal arrow
+                            if (thisRect.top == nextRect.top) {
+                                arrow.style.setProperty("--arrow-transform", "rotate(0deg)");
+                                flexChildren[i].style.setProperty("--arrow-top", `${window.pageYOffset + thisRect.y + thisRect.height/2 - 10}px`);
+                                flexChildren[i].style.setProperty("--arrow-left", `calc(${thisRect.x + thisRect.width}px + 0.5vw)`);
+                            }
+                            // Vertical arrow
+                            else if (thisRect.left == nextRect.left) {
+                                flexChildren[i].style.setProperty("--arrow-transform", "rotate(90deg)");
+                                flexChildren[i].style.setProperty("--arrow-top", `calc(${window.pageYOffset + thisRect.y + thisRect.height - 10}px + 3vw)`);
+                                flexChildren[i].style.setProperty("--arrow-left", `${thisRect.x + thisRect.width/2 - 10}px`);
+                            }
+                            // Diagonal arrow
+                            else {
+                                flexChildren[i].style.setProperty("--arrow-transform", "rotate(135deg)");
+                                flexChildren[i].style.setProperty("--arrow-top", `calc(${window.pageYOffset + thisRect.y + thisRect.height - 10}px + 3vw)`);
+                                flexChildren[i].style.setProperty("--arrow-left", `calc(${thisRect.x}px - 5.5vw)`);
+                            }
+                        }
+                }
+                positionArrows();
+                window.addEventListener("resize", positionArrows);
+                </script>
+            </div>
         </div>
     </section>
 </body>
