@@ -102,6 +102,10 @@ section.hero {
     margin-top: 6vw;
 }
 
+#experience h5 {
+    font-style: italic;
+}
+
 .flex > div {
     width: 500px;
     height: 500px;
@@ -114,21 +118,27 @@ section.hero {
 
 .flex > div::after {
     content: '';
+    background-image: url('assets/right-arrow-svgrepo-com.svg');
+    background-repeat: no-repeat;
     display: block;
     position: absolute;
     top: var(--arrow-top);
     left: var(--arrow-left);
     transform: var(--arrow-transform);
-    width: 5vw;
-    height: 20px;
-    clip-path: polygon(0% 30%,
+    width: 3vw;
+    height: 3vw;
+    background-size: cover;
+    /* filter to make the svg #0080f0 (see https://codepen.io/sosuke/pen/Pjoqqp) */
+    filter: invert(45%) sepia(68%) saturate(5750%) hue-rotate(196deg) brightness(101%) contrast(110%);
+    /* Old clip path implementation of arrow, keeping for debugging */
+    /* clip-path: polygon(0% 30%,
                   80% 30%,
                   80% 0%,
                  100% 50%,
                   80% 100%,
                   80% 70%,
                    0% 70%);
-    background-color: var(--accent);
+    background-color: var(--accent); */
 }
 
 /* .three-col {
