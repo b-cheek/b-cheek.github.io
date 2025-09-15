@@ -99,7 +99,7 @@ section.hero {
     flex-wrap: wrap;
     justify-content: center;
     gap: 6vw;
-    margin-top: 6vw;
+    margin-top: calc(10px + 3vw);
 }
 
 #experience h5 {
@@ -143,6 +143,11 @@ section.hero {
 
 #nextExperience::after {
     content: none;
+}
+
+#projects img {
+    width: 200px;
+    height: auto;
 }
 
 /* .three-col {
